@@ -15755,9 +15755,27 @@ readers do not read off random characters that represent icons */
   width: auto;
 }
 
+/*!
+ * Font Awesome Free 5.6.3 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+@font-face {
+  font-family: 'Font Awesome 5 Free';
+  font-style: normal;
+  font-weight: 900;
+  src: url("../webfonts/fa-solid-900.eot");
+  src: url("../webfonts/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../webfonts/fa-solid-900.woff2") format("woff2"), url("../webfonts/fa-solid-900.woff") format("woff"), url("../webfonts/fa-solid-900.ttf") format("truetype"), url("../webfonts/fa-solid-900.svg#fontawesome") format("svg");
+}
+/* line 19, ../../../bower_components/fontawesome/scss/solid.scss */
+.fa,
+.fas {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+}
+
 /* GLOBAL STYLES
 -------------------------------------------------- */
-/* line 10, ../../src/stylesheets/main.scss */
+/* line 11, ../../src/stylesheets/main.scss */
 body {
   padding-top: 87px;
   padding-bottom: 20px;
@@ -15765,7 +15783,7 @@ body {
   background-color: #FFA500;
 }
 @media (max-width: 991px) {
-  /* line 10, ../../src/stylesheets/main.scss */
+  /* line 11, ../../src/stylesheets/main.scss */
   body {
     padding-top: 50px;
   }
@@ -15773,7 +15791,7 @@ body {
 
 /* NAVBAR
 -------------------------------------------------- */
-/* line 24, ../../src/stylesheets/main.scss */
+/* line 25, ../../src/stylesheets/main.scss */
 .navbar-wrapper {
   position: absolute;
   top: 0;
@@ -15781,97 +15799,97 @@ body {
   left: 0;
   z-index: 20;
 }
-/* line 32, ../../src/stylesheets/main.scss */
+/* line 33, ../../src/stylesheets/main.scss */
 .navbar-wrapper .container {
   padding-right: 0;
   padding-left: 0;
   font-weight: bold;
 }
-/* line 38, ../../src/stylesheets/main.scss */
+/* line 39, ../../src/stylesheets/main.scss */
 .navbar-wrapper .navbar {
   padding-right: 15px;
   padding-left: 15px;
 }
-/* line 45, ../../src/stylesheets/main.scss */
+/* line 46, ../../src/stylesheets/main.scss */
 .navbar-wrapper .navbar-header a {
   color: #F5F1DE;
   font-weight: bold;
   font-size: small;
 }
-/* line 50, ../../src/stylesheets/main.scss */
+/* line 51, ../../src/stylesheets/main.scss */
 .navbar-wrapper .navbar-header a:hover {
   color: #F5F1DE;
   text-decoration: none;
 }
-/* line 58, ../../src/stylesheets/main.scss */
+/* line 59, ../../src/stylesheets/main.scss */
 .navbar-wrapper .navbar-links {
   padding-top: 1.5%;
 }
-/* line 61, ../../src/stylesheets/main.scss */
+/* line 62, ../../src/stylesheets/main.scss */
 .navbar-wrapper .navbar-links ul li a:hover {
   background-color: #e69500;
 }
 
-/* line 69, ../../src/stylesheets/main.scss */
+/* line 70, ../../src/stylesheets/main.scss */
 .navbar-header img {
   padding-top: 5px;
 }
 
-/* line 73, ../../src/stylesheets/main.scss */
+/* line 74, ../../src/stylesheets/main.scss */
 .navbar-wrapper .navbar .container {
   width: auto;
 }
 
 /* CAROUSEL
 -------------------------------------------------- */
-/* line 84, ../../src/stylesheets/main.scss */
+/* line 85, ../../src/stylesheets/main.scss */
 .carousel .item {
   min-height: 600px;
   background-color: #808080;
 }
 @media (max-width: 1199px) {
-  /* line 84, ../../src/stylesheets/main.scss */
+  /* line 85, ../../src/stylesheets/main.scss */
   .carousel .item {
     min-height: 400px;
   }
 }
-/* line 92, ../../src/stylesheets/main.scss */
+/* line 93, ../../src/stylesheets/main.scss */
 .carousel .first-slide {
   background: url("/images/Slider1.jpg") no-repeat center;
   background-size: cover;
 }
-/* line 96, ../../src/stylesheets/main.scss */
+/* line 97, ../../src/stylesheets/main.scss */
 .carousel .second-slide {
   background: url("/images/Slider2.png") no-repeat center;
   background-size: cover;
 }
-/* line 100, ../../src/stylesheets/main.scss */
+/* line 101, ../../src/stylesheets/main.scss */
 .carousel .third-slide {
   background: url("/images/Slider3.jpg") no-repeat center;
   background-size: cover;
 }
-/* line 104, ../../src/stylesheets/main.scss */
+/* line 105, ../../src/stylesheets/main.scss */
 .carousel .last-slide {
   background: url("/images/Slider4.png") no-repeat center;
   background-size: cover;
 }
 
-/* line 111, ../../src/stylesheets/main.scss */
+/* line 112, ../../src/stylesheets/main.scss */
 .carousel-caption {
   z-index: 10;
 }
 
-/* line 115, ../../src/stylesheets/main.scss */
+/* line 116, ../../src/stylesheets/main.scss */
 .titol-portada {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* line 119, ../../src/stylesheets/main.scss */
+/* line 120, ../../src/stylesheets/main.scss */
 .fletxeta {
   margin-top: 150%;
 }
 
-/* line 123, ../../src/stylesheets/main.scss */
+/* line 124, ../../src/stylesheets/main.scss */
 .carousel-inner > .item > img {
   position: absolute;
   top: 0;
@@ -15883,23 +15901,23 @@ body {
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 @media (min-width: 992px) {
-  /* line 136, ../../src/stylesheets/main.scss */
+  /* line 137, ../../src/stylesheets/main.scss */
   .navbar-wrapper {
     margin-top: 20px;
   }
-  /* line 139, ../../src/stylesheets/main.scss */
+  /* line 140, ../../src/stylesheets/main.scss */
   .navbar-wrapper .container {
     padding-right: 15px;
     padding-left: 15px;
   }
-  /* line 144, ../../src/stylesheets/main.scss */
+  /* line 145, ../../src/stylesheets/main.scss */
   .navbar-wrapper .navbar {
     padding-right: 0;
     padding-left: 0;
     border-radius: 4px;
   }
 
-  /* line 151, ../../src/stylesheets/main.scss */
+  /* line 152, ../../src/stylesheets/main.scss */
   .carousel-caption p {
     margin-bottom: 18px;
     font-size: 20px;
