@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Connectar OpenOffice2 a Mysql
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2005-12-21 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <p><span class="noticia"><strong>Actualitzaci&oacute;:</strong> He afegit captures de pantalla, per fer-ho una mica m&eacute;s llegible<br /> <br /> En aquest article es veu com connectar l&#39;OpenOffice amb Mysql.<br /> <br /> &Eacute;s a dir, des d&#39;OpenOffice es veuran les taules d&#39;una base de dades de Mysql, generar informes, formularis, consultes, etc. Tot de forma visual, sense haver de saber SQL, ni generar programes per tal de crear informes, etc.<br /> <br /> L&#39;article, tot i ser llarg, &eacute;s nom&eacute;s per explicar uns 4 o 5 passos necessaris per aconseguir la connexi&oacute;. El resum de l&#39;article pot ser suficient. Segurament unes imatges haguessin estat convenients, si cal m&eacute;s endavant es far&agrave;.</span><br />&nbsp;</p><br />    <div id="article" class="article_normal"><h2>Introducci&oacute;</h2><br /> Molta gent fa servir el paquet ofim&agrave;tic <a href="http://openoffice.org/">OpenOffice.org</a>, el qual a la versi&oacute; 2.0 (properament en catal&agrave;) tamb&eacute; t&eacute; bases de dades amb el mateix paradigma que Microsoft Access (&eacute;s a dir, una base de dades &quot;personal&quot; -sense cap tipus de servidor-, consultes, informes, formularis, etc.)<br /> De totes maneres tamb&eacute; disposa de la possibilitat de connectar-se de manera f&agrave;cil a un servidor Mysql i treballar amb aquest com si fos una base de dades local (crear taules, inserir dades, modificar, etc.). &Eacute;s una bona soluci&oacute; per comen&ccedil;ar a poblar la base de dades, o tenir-ne una visi&oacute; una mica m&eacute;s elevada que nom&eacute;s amb la l&iacute;nia de comandes. A m&eacute;s a m&eacute;s hi ha molt bona integraci&oacute; amb el paquet OpenOffice, es poden generar informes, formularis, etc. de manera f&agrave;cil.<br /> <br /> Cal mencionar que hi ha altres eines visuals que permeten fer aquestes operacions (si m&eacute;s no modificar taules, crear base de dades, etc.) per&ograve; OpenOffice permet tenir-ho tot integrat, en cas que es desitgi.<br /> <br /> En aquest article es veur&agrave; com configurar OpenOffice i Mysql perqu&eacute; aquest accedeixi a una Base de dades. Amb el &quot;Resum dels passos&quot; segurament &eacute;s suficient. Si no hi ha problemes &eacute;s un proc&eacute;s curt i f&agrave;cil, per&ograve; llarg d&#39;explicar.<br /> <br /> <h2>Resum dels passos</h2><br /> Resum dels passos a seguir, per tal de connectar OpenOffice amb Mysql (es detallaran a continuaci&oacute;):<br /> <br /> <li>Tenir OpenOffice 2.0 instal&middot;lat al nostre ordinador<br /> </li><li>Tenir configurat un Java i que OpenOffice identifiqui aquest. Es pot comprovar a &quot;Eines&quot; - &quot;Opcions&quot; - &quot;OpenOffice.org&quot; - &quot;Java&quot;, seleccionar el quin vulguem o &quot;Afegir&quot;). A Ubuntu ja ve ben configurat el Java de la FSF, sin&oacute; baixar de la <a href="http://java.sun.com/j2se/1.5.0/download.jsp">plana Web de Sun</a> el JRE 5.0 Update 6, descomprimir i indicar-li el directori a OpenOffice.<br /> </li><li>Tenir instal&middot;lat Mysql, tenir una base de dades i permisos perque s&#39;hi connecti un usuari:<br />  <br />  </li><li>apt-get install mysql-common<br />  </li><li>mysqladmin -u root create agenda<br />  <br /> </li><li>Baixar de la p&agrave;gina Web de Mysql el <a href="http://www.mysql.com/products/connector/j/">connector JDBC</a>, desempaquetar-lo, deixar el fitxer .jar a un directori i que OpenOffice en conegui el seu PATH (&quot;Eines&quot; - &quot;Opcions&quot; - &quot;OpenOffice.org&quot; - &quot;Java&quot; - &quot;ClassPath&quot; - &quot;AddArchive&quot;)<br /> </li><li>&Uacute;s de Mysql des d&#39;OpenOffice Base (&quot;Nou&quot; - &quot;Crear&quot; - &quot;Base de Dades&quot;, facilitar les dades de connexi&oacute;). Treballar de forma habitual<br /> </li><li>Un afegit&oacute;: exemple &quot;curi&oacute;s&quot; d&#39;integraci&oacute;<br /> <br /> <br /> <h2>Instal&middot;lar OpenOffice2</h2><br /> Els usuaris d&#39;Ubuntu Breeze o posterior ja tenen per defecte l&#39;OpenOffice2 (tot i no ser el definitiu, poden tenir l&#39;OpenOffice2 definitiu seguint <a href="http://www.bernatspescaires.org/web/index.php?option=com_content&amp;task=view&amp;id=154&amp;Itemid=2">aquestes instruccions</a>)<br /> <br /> Usuaris de Debian Unstable ja el tenen als dip&ograve;sits oficials.<br /> <br /> Usuaris de Debian Sarge, poden instal&middot;lar l&#39;OpenOffice dels <a href="http://openoffice.debian.net/">backports</a>, o b&eacute; <a href="http://download.openoffice.org/2.0.0/index.html">descarregar</a> l&#39;OpenOffice2 i convertir-lo en paquets Debian (<a href="http://www.reallylinux.com/docs/oo2install.shtml">instruccions</a>, b&agrave;sicament descarregar-lo, descomprimir-lo, i fer alien -d *.rpm). Si ning&uacute; necessita ajuda poseu un comentari o apunteu-vos a la <a href="http://catux.org/cgi-bin/mailman/listinfo/llista">llista de correu.</a><br /> <br /> <h2>Instal&middot;lar Java</h2><br /> Usuaris d&#39;Ubuntu: ja tenen configurat el Java de la FSF, poden passar a la seg&uuml;ent secci&oacute;.<br /> <br /> Usuaris d&#39;altres distribucions: <a href="http://java.sun.com/j2se/1.5.0/download.jsp">descarregar el JRE 5.0</a> de la p&agrave;gina Web de Sun, segurament el fitxer &quot;Linux self extracting file&quot;.<br /> <strong>Nota:</strong> No &eacute;s lliure, utilitza la <a href="http://java.sun.com/j2se/1.5.0/jre-1_5_0_06-license.txt">Sun License</a>. M&eacute;s endavant es far&agrave; un article de com utilitzar el Java de la FSF amb OpenOffice.. Amb la Debian estable m&#39;ha estat impossible, amb Debian inestable segurament cal instal&middot;lar el paquet java-gcj-compat, tal com fa Ubuntu.<br /> <br /> Un cop descarregat, des d&#39;un terminal es donaran permisos d&#39;execuci&oacute; (chmod u+x fitxer_descarregat_jre.bin) i s&#39;executar&agrave;: ./fitxer_descarregat.bin. Tenint en compte els permisos d&#39;escriptura, l&#39;instal&middot;leu on ho cregueu convenient, com pot ser /opt/jre15 o /usr/local/jre15 (si estem amb l&#39;usuari root) o tipus /home/usuari/bin/jre si el volem dins el HOME de l&#39;usuari.<br /> <br /> Un instal&middot;lat el Java, a l&#39;OpenOffice anar al men&uacute; &quot;Tools&quot; - &quot;Options...&quot; - &quot;OpenOffice.org&quot; (pestanya esquerre) - &quot;Java&quot;. Esperar una mica (intenta buscar les m&agrave;quines Java disponibles) i al llistat seleccionar la &quot;Sun Microsystems Inc.&quot;. En cas que no aparegui cap al llistat fer clic a &quot;Add...&quot; i buscar el directori on s&#39;ha instal&middot;lat. Tancar i executar de nou l&#39;OpenOffice.<br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql1.png" alt="" /><br /> <br /> <br /> En aquest moment ja es t&eacute; el Java instal&middot;lat, si es fa &quot;File&quot; - &quot;New&quot; - &quot;Database&quot; i &quot;Create a new Database&quot; per fer una nova base de dades es pot accedir a les funcions que sense la m&agrave;quina Java no es podia (p. ex. &quot;Tables&quot; - &quot;Create Table in Design View...&quot;)<br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql4.png" alt="" /><br /> <br /> <br /> <h2>Instal&middot;lar i configurar Mysql</h2><br /> Cal tenir un servidor Mysql per connectar-s&#39;hi. El podem instal&middot;lar a la nostra pr&ograve;pia m&agrave;quina, o que es trobi a una altra m&agrave;quina i que estigui en xarxa. Els dos casos s&oacute;n molt semblants.<br /> <br /> Per instal&middot;lar Mysql a una Ubuntu cal seguir els passos de la <a href="http://ubuntuguide.org/#installmysqldatabaseserver">guia Ubuntu</a>.<br /> <br /> Per fer-ho a una Debian es pot teclejar, com usuari primer:<br /> <br /> apt-get install mysql-common<br /> <br /> Un cop instal&middot;lat, s&#39;ha de fer una base de dades nova i donar permisos a un usuari per aquesta base de dades. Per exemple, es pot fer:<br /> <br /> mysqladmin -u root create agenda<br /> <br /> <strong>Nota:</strong> caldria modificar la contrasenya d&#39;acc&eacute;s de l&#39;usuari primer de Mysql (no t&eacute; res a veure amb l&#39;usuari primer del sistema). Per fer-ho, es pot executar:<br /> <br /> mysqladmin -u root password nova_contrasenya<br /> <br /> <br /> Si es t&eacute; una contrasenya i es vol crear una nova base de dades, perqu&egrave; mysqladmin demani la contrasenya cal executar:<br /> <br /> mysqladmin -u root -p create agenda2<br /> <br /> <br /> Cal donar permisos a usuari primer per connectar-se des de la IP de la pr&ograve;pia m&agrave;quina mitjan&ccedil;ant TCP/IP. El client consola de Mysql ho fa mitjan&ccedil;ant un fitxer s&ograve;col, en canvi OpenOffice i el seu controlador ho faran mitjan&ccedil;ant una connexi&oacute; a localhost. Aix&iacute; que cal:<br /> <br /> mysql -u root -p<br /> (escriure la contrasenya, si en demana)<br /> <br /> grant all on agenda.* to &#39;root&#39;@&#39;127.0.0.1&#39;;<br /> (si ho volem sense contrasenya)<br /> <br /> grant all on agenda.* to &#39;root&#39;@&#39;127.0.0.1&#39; identified by &#39;contrasenya&#39;;<br /> (si desitgem una contrasenya)<br /> <br /> <br /> <br /> <strong>Nota:</strong> per seguretat, caldria fer un usuari especial per la base de dades, amb nom&eacute;s les operacions sobre les taules que es necessitin. Consultar un manual de Mysql (al final del document n&#39;hi ha un enlla&ccedil;at), ja que s&oacute;n tasques d&#39;administraci&oacute;.<br /> <br /> <strong>Nota avan&ccedil;ada:</strong><br /> Si es vol que altres m&agrave;quines accedeixin a aquesta base de dades, cal comentar la l&iacute;nia &quot;skip-external-networking&quot; de /etc/mysql/my.cnf i reiniciar Mysql (/etc/init.d/mysql restart).<br /> A continuaci&oacute; caldr&agrave; entrar al mysql amb &quot;mysql -u root -p&quot;, i fer un nou usuari (en aquest cas, de nom usuari, i que pot accedir des de tota la xarxa 192.168.0.X, identificat amb &#39;contrasenya&#39; a la base de dades agenda per qualsevol taula):<br /> <br /> grant all on agenda.* to &#39;usuari&#39;@&#39;192.168.0.%&#39; identified by &#39;contrasenya&#39;;<br /> <br /> <br /> <h2>Instal&middot;laci&oacute; del controlador OpenOffice -&gt; Mysql</h2><br /> Ja nom&eacute;s falta descarregar el controlador per tal que OpenOffice es pugui comunicar amb Mysql. Cal anar a la p&agrave;gina Web de Mysql i baixar el fitxer &quot;<a href="http://dev.mysql.com/downloads/connector/j/3.1.html">Source and Binaries (tar.gz)</a>&quot;.<br /> Un cop s&#39;hagi descarregat al nostre ordinador, cal extreure&#39;n el el fitxer mysql-connector-java-3.1.12-bin.jar. Es pot fer mitjan&ccedil;ant alguna eina visual o b&eacute; des de la l&iacute;nia de comandes:<br /> <br /> tar -xvzf mysql-connector-java-3.1.12.tar.gz mysql-connector-java-3.1.12/mysql-connector-java-3.1.12-bin.jar<br /> <br /> (Ull! poden haver canviat el n&uacute;mero de versi&oacute;)<br /> <br /> Llavors nom&eacute;s cal anar a l&#39;OpenOffice, men&uacute; &quot;Tools&quot; - &quot;Options...&quot; - &quot;OpenOffice.org&quot; - &quot;Java&quot; - &quot;Class Path&quot; - &quot;Add archive&quot; i anar a buscar el fitxer .jar. Seleccionar-lo.<br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql2.png" alt="" /><br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql3.png" alt="" /><br /> <br /> <br /> En aquest moment OpenOffice ja es pot connectar amb Mysql. El seg&uuml;ent apartat es veu com fer-ho.<br /> <br /> <h2>&Uacute;s d&#39;OpenOffice amb Mysql</h2><br /> Ja nom&eacute;s cal connectar a la base de dades, fer-hi les noves taules i posar-hi dades, fer informes, etc. S&#39;explica aqu&iacute; l&#39;assistent que demanar&agrave; les coses, segurament &eacute;s m&eacute;s f&agrave;cil fer-ho amb l&#39;assistent que explicar-ho.<br /> <br /> Igualment, no s&#39;entrar&agrave; amb l&#39;&uacute;s d&#39;OpenOffice Database. A Internet hi ha manuals molt bons. Alguns es poden trobar a la p&agrave;gina web de <a href="http://superalumnos.net/">Superalumnos</a>. En aquest article nom&eacute;s veurem com comen&ccedil;ar-hi a treballar, sense veure-ho en profunditat.<br /> <br /> Per connectar a la base de dades, a l&#39;OpenOffice s&#39;ha de marcar &quot;File&quot; - &quot;New&quot; - &quot;Database&quot;. Apareixer&agrave; un quadre de di&agrave;leg, on s&#39;ha de seleccionar &quot;Connect to an existing database&quot;, i marcar l&#39;opci&oacute; &quot;MySQL&quot;. Despr&eacute;s premerem &quot;Next&quot;.<br /> <br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql4.png" alt="" /><br /> <br /> <br /> Ara cal seleccionar &quot;Connect using JDBC (Java Database Connectivity)&quot; i &quot;Next&quot;.<br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql5.png" alt="" /><br /> <br /> <br /> Ja quasi acabant l&#39;assistent, a &quot;Name of the database&quot; s&#39;escriur&agrave; el nom de la base de dades que s&#39;ha fet als passos anteriors. A &quot;Server URL&quot; s&#39;escriur&agrave; &quot;localhost&quot;, o b&eacute; la IP o nom de la m&agrave;quina que cont&eacute; el servidor Mysql. &quot;Port number&quot; i &quot;MySQL JDBC driver class&quot; no es modificar&agrave;. Es pot pressionar &quot;Test class&quot;, si apareix &quot;The JDBC driver was loaded successfully&quot; &eacute;s que ha anat b&eacute;, en cas contrari donar&agrave; un error i informaci&oacute; de l&#39;error (segurament algun problema amb Java, cal llegir l&#39;error atentament i si es demana ajuda a alg&uacute; fer un copiar i enganxar de l&#39;error).<br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql6.png" alt="" /><br /> <br /> <br /> El seg&uuml;ent pas &eacute;s escriure el &quot;User name&quot; (root, si s&#39;ha seguit aquest article). Si s&#39;ha configurat una contrasenya, marcar &quot;Password required&quot;. Es pot fer una prova mitjan&ccedil;ant el bot&oacute; &quot;Test connection&quot; (demanar&agrave; la contrasenya si cal).<br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql8.png" alt="" /><br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql7.png" alt="" /><br /> <br /> <br /> Ja a l&#39;&uacute;ltim pas, es demana si &quot;Do you want the wizard to register the database in OpenOffice.org?&quot;. Si es marca s&iacute;, aquesta base de dades estar&agrave; disponible com a font de dades a totes les aplicacions d&#39;OpenOffice, si es marca que no, no estar&agrave; disponible (en aquest exemple es marca que s&iacute;). Finalment ja es pot pressionar &quot;Finish&quot;, i demanar&agrave; el nom d&#39;un fitxer local per desar-hi dades de la base de dades. Les dades estaran al servidor Mysql, per&ograve; demana un fitxer local pels informes, formularis, consultes, etc.<br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql9.png" alt="" /><br /> <br /> <br /> Finalment es tindr&agrave; ja l&#39;interf&iacute;cie habitual d&#39;OpenOffice Database, si es fa clic a &quot;Tables&quot; potser demanar&agrave; la contrasenya (si cal) i es veuran les taules de la base de dades. Prement &quot;Create table in design view&quot; es podran fer les taules que es desitgin, directament al servidor (per tant, si es miren els logs de Mysql al servidor es veur&agrave; com OpenOffice executa sent&egrave;ncies SQL com &quot;create table&quot;, etc.).<br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql10.png" alt="" /><br /> <br /> <br /> <br /> Evidentment, tamb&eacute; es pot connectar amb qualsevol base de dades ja existent al servidor (sempre que es faci amb un usuari que tingui permisos suficients) i veure&#39;n les taules, fer consultes de forma amigable, generar informes amb assistents, etc.<br /> <br /> <br /> <h2>Un exemple d&#39;integraci&oacute;</h2><br /> S&#39;executa l&#39;OpenOffice Writer (l&#39;editor de text) i es fa clic a &quot;View&quot; - &quot;Data sources&quot;. A l&#39;esquerra se selecciona a la base de dades que s&#39;ha registrat, es fa clic a &quot;Tables&quot; i a una taula (amb dades, millor). Es marca tota la taula sencera. Hi ha una icona, a la barra d&#39;eines de &quot;Sources&quot; (la nova que ha aparegut) que &eacute;s &quot;Data to text&quot;, on apareix un men&uacute; per seleccionar quines columnes es volen al document i on es pot canviar el format. Finalment es clica &quot;Ok&quot; i es tindr&agrave; una taula al document amb el contingut de la taula de la base de dades. Fent-ho mitjan&ccedil;ant consultes (Queries) es podria inserir un Join d&#39;una taula, filtrar per files, etc.<br /> <br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql12.png" alt="" /><br /> <img src="http://catux.org/imatges/articles/oo-mysql/oo-mysql13.png" alt="" /><br /> <br /> <br /> <h2>Nota</h2><br /> Fa mesos a Catux es va fer un curs extens de Mysql (el vem repetir en format breu a les passades <a href="http://jornadespl.org/">Jornades de Programari Lliure</a> i a <a href="http://catux.org/index.php?num=337">Jornades de PL a Ripoll</a>), la documentaci&oacute; est&agrave; disponible en format OpenOffice Impress (presentacions). Es pot <a href="http://catux.org/cursos/cursos/mysql-catux.tar.gz">descarregar.</a></li></div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

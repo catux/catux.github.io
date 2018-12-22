@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        memstat: Descobreix on es fa servir la memòria virtual.
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2008-12-27 15:47:48
+    
+                per
+                
+        Mecatxis
+    
+            </h3>
+
+            <p>
+                
+        <p>Un nou article de Deb a Day traduït a la web de Catux: <a href="http://debaday.debian.net/2008/10/19/memstat-identify-what-is-using-up-virtual-memory/">memstat: Descobreix on es fa servir la memòria virtual</a>.</p><p><br />Article de   <strong><a href="http://rapidpacket.com/%7Extat">Todd Troxel</a> </strong>publicat el 19 d'Octubre del 2008 per Vicho<br /><br /> Aquesta eina et permet saber quines llibreries i programes estant consumint memòria. És molt fàcil de fer servir. Aquí teniu un exemple de sortida (la opció <font face="andale mono,times">-w</font> fa que memstat no talli les línies a 80 columnes):<br /><font face="andale mono,times"><br /></font>  </p><pre><font face="andale mono,times">gaius% memstat -w</font></pre><pre><font face="andale mono,times">    256k: PID  5465 (/lib/ld-2.3.6.so)</font></pre><pre><font face="andale mono,times">    368k: PID 13019 (/var/db/nscd/passwd)</font></pre><pre><font face="andale mono,times">   3352k: PID 13914 (/usr/lib/gconv/gconv-modules.cache)</font></pre><pre><font face="andale mono,times">      8k: /usr/bin/memstat 5465</font></pre><pre><font face="andale mono,times">     12k: /lib/libcap.so.1.10 13019</font></pre><pre><font face="andale mono,times">    256k: /lib/libncurses.so.5.5 13914</font></pre><pre><font face="andale mono,times">     88k: /lib/ld-2.3.6.so 5465 13019</font></pre><pre><font face="andale mono,times">    256k: /lib/libncurses.so.5.5 13019</font></pre><pre><font face="andale mono,times">   1212k: /lib/tls/libc-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">     32k: /lib/tls/libnss_compat-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">     24k: /lib/tls/libcrypt-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">     12k: /lib/tls/libdl-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">    144k: /lib/tls/libm-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">     76k: /lib/tls/libnsl-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">     40k: /lib/tls/libnss_files-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">     36k: /lib/tls/libnss_nis-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">     60k: /lib/tls/libpthread-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">     28k: /lib/tls/librt-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">     88k: /lib/ld-2.3.6.so 13914</font></pre><pre><font face="andale mono,times">   1212k: /lib/tls/libc-2.3.6.so 5465 13019</font></pre><pre><font face="andale mono,times">     12k: /lib/tls/libdl-2.3.6.so 13019</font></pre><pre><font face="andale mono,times">    144k: /lib/tls/libm-2.3.6.so 13019</font></pre><pre><font face="andale mono,times">     76k: /lib/tls/libnsl-2.3.6.so 13019</font></pre><pre><font face="andale mono,times">    480k: /bin/zsh-beta 13019</font></pre><pre><font face="andale mono,times">    212k: /var/db/nscd/passwd 13019</font></pre><pre><font face="andale mono,times">    788k: /usr/bin/irssi 13914</font></pre><pre><font face="andale mono,times">    148k: /usr/lib/libpcre.so.3.12.0 13019</font></pre><pre><font face="andale mono,times">    176k: /usr/lib/perl5/auto/Irssi/Irssi.so 13914</font></pre><pre><font face="andale mono,times">     80k: /usr/lib/perl5/auto/Irssi/Irc/Irc.so 13914</font></pre><pre><font face="andale mono,times">     80k: /usr/lib/perl5/auto/Irssi/UI/UI.so 13914</font></pre><pre><font face="andale mono,times">     12k: /usr/lib/gconv/CP1252.so 13914</font></pre><pre><font face="andale mono,times">     24k: /usr/lib/gconv/gconv-modules.cache 13914</font></pre><pre><font face="andale mono,times">     76k: /usr/lib/libz.so.1.2.3 13914</font></pre><pre><font face="andale mono,times">    584k: /usr/lib/libglib-2.0.so.0.1200.4 13914</font></pre><pre><font face="andale mono,times">   1128k: /usr/lib/libperl.so.5.8.8 13914</font></pre><pre><font face="andale mono,times">     12k: /usr/lib/libgmodule-2.0.so.0.1200.4 13914</font></pre><pre><font face="andale mono,times">   1240k: /usr/lib/i686/cmov/libcrypto.so.0.9.8 13914</font></pre><pre><font face="andale mono,times">    248k: /usr/lib/i686/cmov/libssl.so.0.9.8 13914</font></pre><pre><font face="andale mono,times">      8k: /usr/lib/zsh-beta/4.3.2-dev-1/zsh/terminfo.so 13019</font></pre><pre><font face="andale mono,times">     24k: /usr/lib/zsh-beta/4.3.2-dev-1/zsh/zutil.so 13019</font></pre><pre><font face="andale mono,times">     56k: /usr/lib/zsh-beta/4.3.2-dev-1/zsh/compctl.so 13019</font></pre><pre><font face="andale mono,times">    116k: /usr/lib/zsh-beta/4.3.2-dev-1/zsh/complete.so 13019</font></pre><pre><font face="andale mono,times">    196k: /usr/lib/zsh-beta/4.3.2-dev-1/zsh/zle.so 13019</font></pre><pre><font face="andale mono,times">--------</font></pre><pre><font face="andale mono,times">  13480k</font></pre><p>&nbsp;</p><p>&nbsp;</p><p>Aquesta sortida llista una sèrie de llibreries i processos carregats en memòria i l'espai que ocupen. En primer lloc es llisten els processos i la quantitat de memòria que fan servir. No inclou la memòria compartida. A continuació, els objectes compartits i, al final, el total.</p><br />Per si us interessa, els objectes compartits són com ara <font face="andale mono,times">/lib/tls/libc-2.3.6.s</font> que és compartida per tots els processos que els necessiten per estalviar memòria i així tot rutlla més ràpid. En comptes de carregar aquesta llibreria a la memòria per cada procés, Linux en carrega una còpia i la fa servir per tots els processos que la necessitin. Potser us n'adonareu que aquests valors no coincideixen amb el que diu el sistema. Si feu una ullada a <a href="http://unixhelp.ed.ac.uk/CGI/man-cgi?ps">ps(1)</a> veureu dues columnes relacionades amb la memòria: <font face="andale mono,times">RSS</font> i <font face="andale mono,times">VSZ</font>. Per cadascun dels processos, <font face="andale mono,times">RSS</font> és la quantitat de memòria que fa servir el proces, i <font face="andale mono,times">VSZ</font> la quantitat comptant els objectes compartits. Per que quadri  correctament, cal comptar cada objecte compartit un sol cop a tot el sistema.<br /><br />Es pot mostrar les dades de l'usuari executant memstat com a usuari sense privilegis. Quan s'executa coma root, memstat mostrat tot el que es consumeix al sistema.<br /><br />Memstat funciona escanejant els fitxers a <font face="andale mono,times">/proc</font> i buscant els binaris als camins llistats a <font face="andale mono,times">/etc/memstat.conf</font>. El fitxer que hi ha per defecte sol ser suficient normalment. Si teniu llibreries o binaris que no són al lloc estàndard, heu de modificar el fitxer per poder tenir resultats fiables.<br /><br />L'autor de memstat és Joshua Yelon. Està disponible a totes les distribucions de  <a href="http://packages.debian.org/memstat">Debian</a> i <a href="http://packages.ubuntu.com/memstat">Ubuntu</a> actuals.
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

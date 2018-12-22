@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Ús de les Magic SysRq keys
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-05-20 00:00:00
+    
+                per
+                
+        Pinucset
+    
+            </h3>
+
+            <p>
+                
+        <p><span class="noticia">El SysRq &eacute;s un sistema mitjan&ccedil;ant el qual podem transmetre ordres al Kernel mitjan&ccedil;ant el teclat tot i que aquest estigui col&middot;lapsat, amb les X penjades, etc.</span><br />&nbsp;</p><br />     Qu&egrave; s&oacute;n les SysRq?<br /> El SysRq &eacute;s un sistema que permet mitjan&ccedil;ant unes unes combinacions de tecles transmetre funcions determinades ometent el que estigui fent el Kernel i encara que aquest estigui amb Kernel Panic.<br /> <br /> Com activar les SysRq<br /> Tot i que per defecte est&agrave; activat ho comprovarem mirant el fitxer /proc/sys/kernel/sysrq fent un:<br /> <br /> cat /proc/sys/kernel/sysrq<br /> <br /> si no est&agrave; activat no hi haur&agrave; res, per tant les activarem compilant el Kernel i responent s&iacute; a la pregunta &#39;Magic SysRq key (CONFIG_MAGIC_SYSRQ)&#39;.<br /> <br /> Utilitzaci&oacute; de les SysRq<br /> Quan usem un Kernel amb el SysRq activat el fitxer /proc/sys/kernel/sysrq cont&eacute; la informaci&oacute; de les funcions que podem executar mitjan&ccedil;ant les combinacions.<br /> <br /> Depenent del n&uacute;mero que hi hagi en aquest fitxer significar&agrave; varies coses, el 1 i el 2 s&oacute;n molt clars. Per&ograve; els dem&egrave;s s&oacute;n com els permisos, anar sumant per anar donant permisos.<br /> <br /> <br /> <div id="article" class="article_normal"><li>0 - Totes les funcions estan desactivades</li><br /> <li>1 - Totes les funcions estan activades</li><br /> <li> &gt;2 - Activa el nivell de log de la consola (Enable control of console logging level)</li><br /> <li> &gt;4 - Activa el control del teclat</li><br /> <li> &gt;8 - Activa el debug del bolcat de processos</li><br /> <li> &gt;16: Activa la comanda sync</li><br /> <li> &gt;32: Activa el remuntar de nom&eacute;s lectura</li><br /> <li> &gt;64: Activa el signalling de processos (term, kill, oom-kill)<br /> </li><li> &gt;128: Permet reiniciar i apagar</li><br /> <li> &gt;256: Permet canviar la prioritat de totes les tasques de temps real</li><br /> <br /> Podem editar aquest fitxer fent:<br /> <br /> echo &quot;n&uacute;mero&quot; &gt;/proc/sys/kernel/sysrq<br /> <br /> on n&uacute;mero &eacute;s el n&uacute;mero que volem.<br /> <br /> Com usar les SysRq<br /> <br /> <li>En totes les arquitectures</li><br /> Es passa la comanda<br /> echo t &gt; /proc/sysrq-trigger<br /> <br /> on t pot ser qualsevol lletra que volem que faci de [Tecla de comanda].<br /> <br /> <li>En les arquitectures X86</li><br /> Prement <strong>&#39;ALT-SysRq-[Tecla de comanda]&#39;</strong> on SysRq &eacute;s la tecla de &#39;Print Screen&#39;<br /> <br /> <li>En les arquitectures SPARC</li><br /> Prement <strong>&#39;ALT-STOP-[Tecla de comanda&gt;]</strong>.<br /> <br /> <li>En les arquitectures PowerPC</li><br /> Prement <strong>&#39;ALT - Print Screen (or F13) - [Tecla de comanda]</strong><br /> <br /> <br /> Quines comandes li posem passar<br /> Aquestes s&oacute;n les comandes que li podem passar (a [Tecla de comanda]):<br /> <br /> <li>&#39;r&#39; - Canvia el teclat de mode raw a mode XLATE</li><br /> <li>&#39;k&#39; - Mata tots els programes de la consola virtual actual</li><br /> <li>&#39;o&#39; - Apaga el sistema (si aquest ho soporta)</li><br /> <li>&#39;s&#39; - Intenta sincronitzar tots els sistemes de fitxers muntats</li><br /> <li>&#39;u&#39; - Intenta montar de nou tots els sistemes montats com a nom&eacute;s lectura.</li><br /> <li>&#39;p&#39; - Bolca els registres i banderes actuals a la consola.</li><br /> <li>&#39;t&#39; - Volca una llista de les tarees en execuci&oacute; i la seva informaci&oacute; a la consola</li><br /> <li>&#39;m&#39; - Volca la informaci&oacute; de la memoria a la consola.</li><br /> <li>&#39;0&#39;-&#39;9&#39; - Estableix el nivell d&#39;informaci&oacute; a la consola, controlant els missatges que el nucli envia a aquesta. 0 far&agrave; que tots els missatges d&#39;emergencia (PANICS o OOPS) se li enviaran.</li><br /> <li>&#39;e&#39; - Envia un SIGTERM a tots els processos, excepte l&#39;init.</li><br /> <li>&#39;i&#39; - Envia un SIGKILL a tots els processos, excepte l&#39;init.</li><br /> <li>&#39;l&#39; - Envia un SIGKILL a tots els processos, incl&oacute;s l&#39;init.</li><br /> <li>&#39;h&#39; - Mostra l&#39;ajuda (tamb&eacute; la mostren les altres tecles que no tenen cap comanda assignada</li><br /> <br /> <br /> Procediment d&#39;emerg&egrave;ncia en un servidor<br /> Si usem el SysRq en cas que el nostre ordinador o un servidor ens doni un Kernel Panic farem aquestes comandes per tal de no perdre dades i tancar mitjanament b&eacute; l&#39;ordinador.<br /> <br /> <li>Matem els programes mitjan&ccedil;ant SIGTERM <strong>&#39;ALT-SysRq-[e]&#39;</strong></li><br /> <li>Sincronitzar <strong>&#39;ALT-SysRq-[S]&#39;</strong></li><br /> <li>Desmuntar <strong>&#39;ALT-SysRq-[U]&#39;</strong></li><br /> <li>Apagar <strong>&#39;ALT-SysRq-[O]&#39;</strong> o Reiniciar <strong>&#39;Alt-SysRq-[B]</strong></li></div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

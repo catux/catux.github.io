@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Diccionari de català
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2005-04-18 00:00:00
+    
+                per
+                
+        xavierfim
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Presentaci&oacute; d&#39;un script en bash que permet accedir al diccionari de l&#39;Institut d&#39;Estudis Catalans. </span><div id="article" class="article_normal"><br /> Arran de la not&iacute;cia apareguda a CATUX sobre una <a href="http://www.catux.org/index.php?num=291">seq&uuml;&egrave;ncia que permetia comptar lletres</a> vaig decidir-me finalment a fer una humil contribuci&oacute; a la comunitat del programari que tant m&#39;ha donat, a partir d&#39;una necessitat personal.<br /> <br /> <br /> <br /> Acostumo a visitar el <a href="http://pdl.iec.es/entrada/diec.asp">diccionari del Institut d&#39;Estudis Catalans</a> (IEC) i necessitava una manera m&eacute;s pr&agrave;ctica que no pas obrint un navegador cada vegada i buscant la p&agrave;gina als punts preferits. Donava la casualitat que Javier Fern&aacute;ndez-Sanguino Pe&ntilde;a (que malgrat la coincid&egrave;ncia de nom i cognom, no som el mateix ;-) ) havia fet una petita utilitat en l&iacute;nia de comandes per a accedir al diccionari de la &quot;Real Academia de la Lengua&quot; (<a href="http://www.iespana.es/pacodebian/drae.html">aqu&iacute;</a> i <a href="http://www.badopi.org/node/147">aqu&iacute;</a>).<br /> <br /> <br /> <br /> Agafant-ne la idea he mirat d&#39;adaptar-ho al servei que ofereix l&#39;IEC i d&#39;aqu&iacute; n&#39;ha sortit aquesta petita utilitat: <a href="http://catux.org/arxius/iec.sh%3Cbr%20/%3E">iec.sh</a>. La podeu descarregar de <a href="http://catux.org/arxius/iec.sh">http://catux.org/arxius/iec.sh</a>.<br /> <br /> <br /> <br /> El que fa aquest programa &eacute;s connectar-se al web de l&#39;IEC, esbrinar quin &eacute;s el n&uacute;mero de la paraula que estem buscant i, despr&eacute;s, tornar-se a connectar a la p&agrave;gina que cont&eacute; la definici&oacute; i que es pot trobar sabent el n&uacute;mero de la paraula. Tot plegat, doncs, ha de fer dues crides al servidor de l&#39;IEC.<br /> <br /> <br /> <br /> Problemes, dubtes i coses a fer? Oi tant, a cabassos. Us en faig cinc c&egrave;ntims per si alg&uacute; m&eacute;s t&eacute; la intenci&oacute; de posar-s&#39;hi:<br /> <br /> <br /> <br /> <li>No estic segur que si el programa no troba la paraula mostri adequadament un missatge d&#39;error.</li><br /> <br /> <li>Seria interessant que si es cerqu&eacute;s m&eacute;s d&#39;un terme el programa iter&eacute;s i es repet&iacute;s per a cadascun dels termes cercats.</li><br /> <br /> <li>Hi ha paraules que tenen m&eacute;s d&#39;una entrada (un n&uacute;mero al diccionari). De moment, el programa nom&eacute;s accedeix a la primera entrada.</li><br /> <br /> <li>Estaria b&eacute; que el programa tamb&eacute; cerqu&eacute;s al web del <a href="http://dcvb.iecat.net/">Diccionari catal&agrave;-valenci&agrave;-balear</a>, l&#39;&quot;Alcover-Moll&quot; [6] i present&eacute;s ambd&oacute;s resultats.</li><br /> <br /> <br /> <br /> <br /> <br /> <br /> Vull donar les gr&agrave;cies especialment a en Carles Pina i Estany, qui em va desencallar en un parell de punts i qui s&#39;ha ofert per penjar el programa al web de Catux. Gr&agrave;cies.<br /> <br /> <br /> <br /> <br /> Espero que sigui &uacute;til.<br /> </div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Varis
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

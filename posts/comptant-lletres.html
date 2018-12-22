@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Comptant lletres
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2005-03-23 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Ahir de cop i volta i per motius que no venen al cas em vaig demanar quina &eacute;s la lletra menys utilitzada en angl&egrave;s.<br /> <br /> Amb la meva Debian, vaig anar r&agrave;pidament a /usr/share/dict i sortosament tenia instal&middot;lats els diccionaris american-english, catalan, spanish<br /> <br /> Seguidament escrivint:<br /> carles@pinux:/usr/share/dict$ for i in {a..z}; do echo &quot;$i $(grep -c -i $i american-english)&quot;; done | sort -n -k 2 | head -10<br /> Es veu que les lletres menys utilitzades s&oacute;n q, j, x; amb una proporci&oacute; d&#39;unes 44 vegades menys que les m&eacute;s utilitzades (i, e, s).<br /> <br /> Hi ha menys de 2000 paraules amb q o j; i m&eacute;s de 60000 amb e i s.<br /> <br /> En catal&agrave;, apart que el llistat de paraules &eacute;s m&eacute;s complet, w, k i h s&oacute;n les menys utilitzades i r, a i e les que m&eacute;s.<br /> <br /> Despr&eacute;s diuen que la consola no t&eacute; flexibilitat! M&eacute;s r&agrave;pid que aix&ograve; &eacute;s dif&iacute;cil!<br /> <br /> Es far&agrave; a Catux un curs de Bash (propers mesos, ja ho comentarem per aqu&iacute;), qui vulgui fer coses d&#39;aquest tipus ja sap on en pot aprendre.<br /> <br /> Nota: s&eacute; que podria haver-ho fet sense for i amb un fitxer amb les lletres i que el grep agaf&eacute;s les expressions d&#39;all&agrave;, ho he deixat tal com s&#39;em va acudir<br /> Nota2: {a..z} &eacute;s v&agrave;lid per Bash 3.0 i fa una llista de les lletres de l&#39;alfabet</span>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Notícies, Últimes notícies
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Re: Comptant lletres mmmm... curió. I ja que parlem de curiositats, només una més, i és que no he estat capaç de trobar el diccionari 'catalan'.
+
+Faig servir gentoo i la pròpia distribució no el porta. Fa estona que busco a la xarxa però no aconsegueixo trobar-lo. Com podria aconseguir-lo?
+
+Gràcies,<p class="comment-author">Escrit al 2006-12-29 00:35:29 per Anònim</p></li><li class="list-group-item comment">Re: Comptant lletres XDDDD vaya vacilada cpina XDD un article nomes per demostrar que saps bash?? aix...<p class="comment-author">Escrit al 2006-12-29 00:37:37 per Anònim</p></li><li class="list-group-item comment">Re: Comptant lletres A l'Anònim que no troba el diccionari, estan al paquet wcatalan i wspanish de Debian:
+http://packages.debian.org/unstable/text/wcatalan
+I es poden baixar sense amb .tar.gz... (la web per trobar paquets, o quin paquet conté un fitxer, és http://packages.debian.org)
+
+A l'Anònim de les 11:40, no és un article, és una noticia :-) (curiositat, més aviat). No és per demostrar que sé o no sé Bash (que n'hauria d'aprendre més, segurament), és per demostrar la potència/facilitat de Bash. I a més per "promocionar" una mica el curs de Catux de Bash quan es faci, obrir una mica els ulls a algú, etc.<p class="comment-author">Escrit al 2006-12-29 00:38:27 per cpina</p></li><li class="list-group-item comment">Re: Comptant lletres 
+Sóc l'anònim del diccionari.
+
+Pel que veig, el paquet wcatalan el que conté són els diccionaris ortogràfics que es fan servir per l'ispell, aspell o myspell. Jo em referia concretament als diccionaris que hi ha a '/usr/lib/dict' a la meva distribució i que són els que donen o bé la traducció de paraules o bé la definició, i no pas la correcció ortogràfica. I es fan servir sota el servidor 'dictd'.
+
+$ dict hello
+(i em surt la definició de 'hello' segons els diccionaris que tinc instal·lats).
+
+¿Ens hem entès o m'he perdut jo alguna cosa?
+
+En qualsevol cas, gràcies per la resposta<p class="comment-author">Escrit al 2006-12-29 00:39:07 per Anònim</p></li><li class="list-group-item comment">Re: Comptant lletres Ostres, doncs no ho sé perquè no faig servir dict...
+
+De totes maneres a Debian paquets relacionats amb dict i català no en veig cap, i amb dict i castellà veig:
+dict-freedict-eng-spa
+dict-freedict-spa-eng
+
+Que a més no són les definicions, són traduccions (suposo, pel nom)
+
+Això és el què sé :-)
+(de totes maneres no conec, apart del projecte diccionari de Wikipedia, cap diccionari en català lliure...)<p class="comment-author">Escrit al 2006-12-29 00:40:38 per cpina</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

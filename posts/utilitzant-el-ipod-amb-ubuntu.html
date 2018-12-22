@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Utilitzant el iPod amb ubuntu
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-06-30 00:00:00
+    
+                per
+                
+        franhp
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">En aquest article  s&#39;intenta fer que aquells usuaris que encara utilitzen Windows o Mac OS X perqu&egrave; estan lligats a iTunes, puguin ser lliures definitivament.<br /> A l&#39;article s&#39;inclou un manual sobre com instal&middot;lar suport per poder pujar videos al ipod i tamb&eacute; els trucs que faig servir per poder jugar-hi.<br /> <br /> Properament es penjaran articles sobre <a href="http://ipodlinux.org/">ipodlinux</a> i podcasts.</span> <br />    Si alg&uacute; de vosaltres poseeix un iPod video de 30 o 60 GB haureu comprovat que no hi ha manera de poder pujar-hi videos, sino &eacute;s utilitzant iTunes, el qual nom&eacute;s funciona sota sistemes propietaris, o emulant una versi&oacute; antiga que no ho t&eacute; gaire suportat. B&eacute; doncs, ja tenim una soluci&oacute;:<br /> <br /> Primer instal&middot;lem algunes cosetes que necessita el nostre sistema ...<br /> <br /> sudo apt-get remove libmp4v2-0 libmp4v2-dev faac gstreamer0.8-faac libfaac0 libfaac-dev<br /> <br /> sudo apt-get install libexpat1-dev libglade2-0 libglade2-dev flex libid3tag0 libid3tag0-dev libxml-parser-perl libtool automake checkinstall libsdl1.2-dev<br /> <br /> <br /> Ara ve la part complicada, compilar (si no s&#39;&eacute;s expert, si us plau contacteu amb el &quot;linuxer&quot; m&eacute;s pr&ograve;xim o demaneu ajuda als pares ;-) ).<br /> <br /> <br /> mkdir ipodvideo<br /> <br /> cd ipodvideo<br /> <br /> wget http://internap.dl.sourceforge.net/sourceforge/mpeg4ip/mpeg4ip-1.4.1.tar.gz<br /> tar xzf mpeg4ip-1.4.1.tar.gz<br /> <br /> cd mpeg4ip-1.4.1<br /> <br /> ./bootstrap --disable-server<br /> <br /> sudo cp mpeg4ip_config.h /usr/local/include<br /> <br /> sudo cp include/mpeg4ip.h include/mpeg4ip_version.h /usr/local/include<br /> <br /> ./configure<br /> <br /> sed -i &quot;s/SUBDIRS = \. test util/SUBDIRS = \./&quot; lib/mp4v2/Makefile<br /> <br /> make<br /> <br /> sudo checkinstall -D make install<br /> <br /> <br /> <br /> I ara libgpod<br /> <br /> <br /> <br /> wget http://umn.dl.sourceforge.net/sourceforge/gtkpod/libgpod-0.3.2.tar.gz<br /> <br /> tar xzf libgpod-0.3.2.tar.gz<br /> <br /> cd libgpod-0.3.2/<br /> <br /> ./configure<br /> <br /> make<br /> <br /> sudo checkinstall -D make install<br /> <br /> <br /> <br /> Copiem unes quantes llibreries ...<br /> <br /> <br /> <br /> sudo cp /usr/local/lib/libgpod* /usr/lib <br /> <br /> i seguim ...<br /> <br /> <br /> wget http://easynews.dl.sourceforge.net/sourceforge/gtkpod/gtkpod-0.99.4.tar.gz<br /> <br /> tar xzf gtkpod-0.99.4.tar.gz<br /> <br /> cd gtkpod-0.99.4<br /> <br /> ./configure<br /> <br /> make<br /> <br /> sudo checkinstall -D make install<br /> <br /> <br /> NOTA: Heu de canviar el nom del programa de gtkpod-0.99.4 a gtkpod en el pas de checkinstall<br /> <br /> <br /> Oleeeee, ja ho tenim tot, i ara qu&eacute;?<br /> <br /> sudo apt-get build-dep ffmpeg<br /> <br /> sudo apt-get install liblame-dev libfaad2-dev libfaac-dev libxvidcore4-dev liba52-0.7.4 liba52-0.7.4-dev<br /> <br /> apt-get source ffmpeg<br /> <br /> cd ffmpeg-*/<br /> <br /> ./configure --enable-gpl --enable-pp --enable-zlib --enable-vorbis \<br />         --enable-libogg --enable-theora --enable-a52 --enable-dts \<br />         --enable-dc1394 --enable-libgsm --disable-debug --enable-mp3lame \<br />         --enable-faad --enable-faac --enable-xvid<br /> <br /> make<br /> <br /> sudo checkinstall -D make install<br /> <br /> Tornem a instal&middot;lar el que haviem tret ...<br /> <br /> <br /> <br /> sudo apt-get install libmp4v2-0 libmp4v2-dev faac gstreamer0.8-faac libfaac0 <br /> libfaac-dev<br /> <br /> I ja esta!!! Ara, amb un senzill script, podrem passar els nostres videos a un format que l&#39;iPod sigui capa&ccedil; d&#39;entendre. Crearem ipodvidenc.sh i hi enganxarem.<br /> <br /> <br /> <br /> #!/bin/bash<br /> ## ipodvidenc - The iPod Video Encoder for Linux.<br /> ## Created by Eric Hewitt, January 9, 2006.<br /> ## Released under the GPL.  Go nuts.<br /> <br /> input_file=$1<br /> <br /> echo &quot;Com voldria que s&#39;anomen&eacute;s el vostre video?&quot;<br /> <br /> read output_file_name<br /> <br /> echo &quot;$output_file_name est&aacute; a $PWD. Li sembla b&eacute;? [s/n]&quot;<br /> <br /> read output_file_loc_permis<br /> <br /> if [ $output_file_loc_permis = &#39;n&#39; ] || [ $output_file_loc_permis = &#39;N&#39; ]<br /> then<br />         echo &quot;On vols desar $output_file_name.mov?&quot;<br />         read output_dir<br /> else<br />         output_dir=$PWD<br /> fi<br /> <br /> ffmpeg -i &quot;${input_file}&quot; -f mp4 -vcodec mpeg4 -maxrate 1000 -b 700 -qmin 3 -qmax 5 -bufsize 4096 -g 300 -acodec aac -ab 192 -s 320x240 -aspect 4:3 &quot;${output_dir}/${output_file_name}.mov&quot;<br /> <br /> <br /> I ara, copiem el video a on estigui el script, executem &quot;sh ipodvidenc.sh video.avi&quot; responem a les preguntes i pam papapatam! el nostre video llest per pujar al ipod utilitzant gtkpod.<br /> <br /> <h2>Trucs</h2><br /> <br /> Muntar ipod: sudo mount /dev/sda2 /lloc/triat<br /> <br /> <br /> Triem gtkpod i al men&uacute; Edit -- Edit Preferences -- &quot;iPod mount point&quot; escrivim /lloc/triat . Anem a la secci&oacute; &quot;Tools&quot; i escrivim &quot;totem %s&quot; on posa &quot;Command forPlay Now&quot;. Tanquem i el tornem a encendre.<br /> Per desmuntar el ipod:sudo eject -v /dev/sda2.<br /> <br /> NOTA! Prometo articles sobre <a href="http://www.catux.org/index.php?contingut=articles&amp;num=114">ipodlinux</a> i podcasts<br /> <br /> Font: <a href="http://www.ubuntuforums.org/showthread.php?t=114946">http://www.ubuntuforums.org/showthread.php?t=114946</a>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Re: Utilitzant el iPod amb Ubu Un tutorial molt util, jo ja havia fet gairebe tot, excepte el fet de passar els videos desde linux.
+
+Afegiria que probessiu el programa gpixpod, per a sincronitzar les fotos que tingueu, es molt bo. Permet crear albums i a diferents tamanys per a poguer veure tant al pod com a la tele. Si no teniu el cable per veure a la tele us u recomano (ebay 9&#8364;).
+
+També faria servir un conector del evolution que sincronitza els contactes i les agendes (jo no l'uso tant, pero pot ser util).
+
+Gracies pel tutorial Grap.<p class="comment-author">Escrit al 2006-12-29 16:47:18 per pachu</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

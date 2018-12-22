@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Traducció de Fitxers PO
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2008-03-24 11:57:04
+    
+                per
+                
+        franhp
+    
+            </h3>
+
+            <p>
+                
+        <p>Us presento un article sobre la traducció de fitxers PO que he trobat gràcies a<a href="http://www.softcatala.org/~jmas/bloc/pivot/entry.php?id=354" target="_blank"> Jordi Mas.</a></p><p>L'original també el podeu trobar al següent enllaç: <a href="http://www.softcatala.org/wiki/Traducci%C3%B3_Fitxers_PO" target="_blank">http://www.softcatala.org/wiki/Traducci%C3%B3_Fitxers_PO</a> </p><h1><span class="mw-headline"> Introducció als fitxers PO </span></h1> <p>Aquest article és un introducció al fitxers PO, en quins aspectes hem de posar especial cura i amb eines podem usar per treballar amb ells. </p><p>Els fitxers PO (<em>Portable Objects</em>) són un format molt popular dins del programari lliure per gestionar traduccions de programari i documentació. Es tracta de fitxers de text amb extensió PO, pensats per ser senzills d'usar per a traductors, que un cop processats són convertits en fitxers MO (<em>Machine Objects</em>), de format binari, per tal que les aplicacions els puguin carregar de forma més eficient. </p><p>Els fitxers de PO al ser fitxers de text es poden obrir en qualsevol processador de textos o amb eines específiques com veurem més endavant. </p> <a name="La_cap.C3.A7alera_PO"></a><h2> <span class="mw-headline"> La capçalera PO </span></h2> <p>Els fitxers PO comencen amb una capçalera que facilita detalls perquè la traducció del programa pugui ser processada correctament. Un fitxer PO d'un programa sense traduir al català conté una capçalera com la següent que convé emplenar correctament: </p> <pre># SOME DESCRIPTIVE TITLE.<br /># Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER<br /># This file is distributed under the same license as the PACKAGE package.<br /># FIRST AUTHOR &lt;EMAIL@ADDRESS&gt;, YEAR.<br />#, fuzzy<br />msgid ""<br />msgstr ""<br />"Project-Id-Version: PACKAGE VERSION\n"<br />"Report-Msgid-Bugs-To: \n"<br />"POT-Creation-Date: 2007-12-16 03:48+0100\n"<br />"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"<br />"Last-Translator: FULL NAME &lt;EMAIL@ADDRESS&gt;\n"<br />"Language-Team: LANGUAGE &lt;LL@li.org&gt;\n"<br />"MIME-Version: 1.0\n"<br />"Content-Type: text/plain; charset=CHARSET\n"<br />"Content-Transfer-Encoding: 8bit\n"<br />"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"<br /></pre> <p>Les cadenes que comencen amb ?#? són comentaris. Se'n poden afegir tantes com es vulgui. Els textos en majúscula s'han de reemplaçar tal com expliquem a continuació. </p><p>El camp <em>POT-Creation-Date</em> indica el dia i hora que el fitxer PO es va crear o actualizar. Habitualment aquest camp ha de contenir una data de fa pocs dies. El camp <em>PO-Revision-Date</em> utilitza el mateix format que l'anterior i conté l'últim dia i hora que la traducció va ser actualizada. En un fitxer, com en l'exemple, sense traduir cal emplenar-la. Si ja està traduit i s'ha actualitzat la traducció cal llavors actualizar també aquest camp amb la darrera data de la traducció. </p><p>El camp <em>Last-Translator</em> conté el nom i adreça de correu electrònic de l'última persona que va treballar amb la traducció. Per exemple: </p> <pre>"Last-Translator: David Planella Molas &lt;david.planella@gmail.com&gt;\n" </pre> <p>És important incloure aquest camp per tal de poder contactar al darrer traductor per si tenim cap dubte o volem saber si encara esta treballa amb la traducció. </p><p>El camp ?<em>Language-Team?</em> s'ha d'emplenar amb la llista de correu corresponent, que en general serà la mateixa llista de correu que fem sevir per coordinar-nos. Per exemple, en el cas del projecte de <a href="http://www.softcatala.org/wiki/GNOME" title="GNOME"> traducció del GNOME</a>:  </p> <pre>"Language-Team: Catalan &lt;gnome@llistes.softcatala.org&gt;\n"</pre> <p>La codificació que fa servir el nostre editor queda reflectida als camps de contingut següents: </p> <pre>"MIME-Version: 1.0\n" "Content-Type: text/plain; charset=utf-8\n" <br />"Content-Transfer-Encoding: 8bit\n"</pre> <p>Recomanem treballar amb codificació <a class="external text" href="http://en.wikipedia.org/wiki/UTF-8" title="http://en.wikipedia.org/wiki/UTF-8" rel="nofollow">UTF-8</a> que permet representar la gran majoria de llengües del món. </p><p>El següent camp és opcional i no sempre s'inclou. Fa referència als tipus de plurals que hi ha en català, i és sempre igual, per tant no cal entendre la sintaxi. Apareix en traduccions que contenen missatges que permeten especificar la forma en plural més adecuada per a l'idioma: </p> <pre>"Plural-Forms: nplurals=2; plural=n != 1;\n"</pre> <p>Aquest seria un exemple de la capçalera corresponent al programa <a class="external text" href="http://www.gnome.org/projects/evolution/" title="http://www.gnome.org/projects/evolution/" rel="nofollow">Evolution</a> al català: </p> <pre># Evolution translation to Catalan.<br /># Copyright © 2000, 2004, 2005, 2006 Free Software Foundation, Inc.<br /># Softcatalà &lt;info@softcatala.org&gt;, 2000, 2004-2006<br />#<br /># Víctor Nieto &lt;vnie2025@alu-etsetb.upc.es&gt;<br /># Aleix Badia i Bosch &lt;abadia@ica.es&gt;, 2004<br /># Xavier Conde Rueda &lt;xavi.conde@gmail.com&gt;, 2004-2007<br /># Francesc Dorca &lt;f.dorca@filnet.es&gt;, 2004<br /># Jordi Mas &lt;jmas@softcatala.org&gt;, 2004-2007<br /># Enric Balletbò i Serra &lt;eballetbo@km103.com&gt;, 2004<br /># Gil Forcada &lt;gilforcada@guifi.net&gt;, 2006<br /># David Planella Molas &lt;david.planella@gmail.com&gt;, 2007, 2008<br />#<br />msgid ""<br />msgstr ""<br />"Project-Id-Version: evolution\n"<br />"Report-Msgid-Bugs-To: \n"<br />"POT-Creation-Date: 2008-03-19 12:41+0000\n"<br />"PO-Revision-Date: 2008-02-14 08:53+0100\n"<br />"Last-Translator: David Planella Molas &lt;david.planella@gmail.com&gt;\n"<br />"Language-Team: Catalan &lt;tradgnome@softcatala.org&gt;\n"<br />"MIME-Version: 1.0\n"<br />"Content-Type: text/plain; charset=UTF-8\n"<br />"Content-Transfer-Encoding: 8bit\n"<br />"Plural-Forms: nplurals=2; plural=n != 1;\n"<br /></pre> <a name="Els_missatges"></a><h2> <span class="mw-headline"> Els missatges </span></h2> <p>Els fitxers PO contenen missatges per traduir que tenen el següent aspecte: </p> <pre>#: desktop/client/src/connect.c:1013<br />msgid "Program path and filename"<br />msgstr ""<br /></pre> <p>El primer camp, <em>msgid</em>, conté la cadena de text original. En el camp <em>msgstr</em> s'ha d'escriure la traducció. Els missatges llargs poden aparèixer en múltiples línies successives. S'ha de tenir en compte que, tot i que apareixen en linies separades, s'ha d'interpretar com una sola línia sencera, nom com a línies tallades: </p> <pre>#: index.docbook:138<br />#, no-c-format<br />msgid ""<br />"You have entered reconfiguration mode, which will allow you to configure "<br />"site-specific features of your computer. To exit without changing your "<br />"setup, select 'No' and press the &lt;guibutton&gt;Next&lt;/guibutton&gt; button below."<br />msgstr ""<br />"Heu entrat en el mode de reconfiguració, que us permetrà configurar "<br />"característiques específiques del vostre ordinador. Per sortir sense "<br />"canviar la vostra configuració, seleccioneu 'No' i premeu &lt;guibutton&gt;Següent"<br />"&lt;/guibutton&gt; a sota."<br /></pre> <p>En les dues primeres línies de la traducció s'ha afegit un espai al final, però en la tercera no, ja que a l'original (&lt;guibutton&gt;Next&lt;/guibutton&gt;) no n'hi havia. </p><p>A més, hi poden haver abans vàries línies que comencen amb el caràcter '#'. Es tracten de comentaris, i tenen un significat especial: </p> <ul><li> Els que comencen amb el caràcter '#' són comentaris dels traductors. Podem afegir comentaris, si ho trobem necessari. </li><li> Els que comencen amb els caràcters '#.' són comentaris dels programadors. Poden ser indicacions sobre el significat d'un terme escrit. </li><li> Els que comencen amb els caràcters '#:' són referències a la línia del fitxer de codi font d'on es va extreure. </li><li> Els que comencen amb els caràcters '#~' són cadenes invàlides. En actualitzar el document a una versió més recent, es poden haver esborrat algunes cadenes. Es conserven al fitxer per si serveixen al traductor. Com no tenen cap utilitat, es poden esborrar. Solen estar acumulades al final del document. </li></ul> <p>Els que comencen amb els caràcters '#,' són modificadors. El programari que comprova la sintaxi del document pot afegir comprovacions addicionals. Hi ha dues importants: </p><p>1. '#, fuzzy'. Quan s'actualitza un fitxer PO amb una versió més nova, el programari intenta respectar les cadenes originals i trobar concordances per a les noves. Quan no troba una concordància exacta, el programari la marca com a <em>fuzzy</em> (difosa). Fins que no s'esborra aquest modificador, se suposa que no està ben traduïda: </p> <pre>#: desktop/client/src/connect.c:736 desktop/client/src/connect.c:738<br />#, fuzzy<br />msgid "Remote Desktop Size"<br />msgstr "Remot"</pre> <p>2. '#, c-format'. S'afegeix aquest modificador per indicar que la cadena de text conté modificadors de format usats en el llenguatge de programació C. El programari que verifiqui la sintaxi farà comprovacions addicionals en la cadena traduïda. </p><p>En primer lloc, alguns caràcters especials es representen amb una barra invertida ('\') al davant. Alguns dels més comuns són: </p> <ul><li>? '\t': inserció d'una tabulació </li><li> '\n': indicador de final de línia </li><li>? '\?': inserció del caràcter de cometes dobles </li></ul> <p>Exemple: </p> <pre>#: gnome-netinfo/lookup.c:336<br />msgid "Source\tTTL\tAddress Type\tRecord Type1\tResolution\n"<br />msgstr ""</pre> <p>Les cadenes també contenen seqüències de caràcters, que substitueixen cadenes de text o xifres. Les seqüències comencen amb el caràcter '%', i algunes tenen el següent significat: </p> <ul><li>? '%c': se substituirà per un sol caràcter </li><li>? '%d': se substituirà per un nombre enter </li><li>? '%u': se substituirà per un nombre enter positiu </li><li>? '%f': se substituirà per un nombre decimal </li><li>? '%s': se substituirà per una cadena de text </li></ul> <p>En aquest cas, es pot indicar el nombre de xifres decimals, p.e '%.2f' serà una xifra amb dos decimals. Hem d'anar amb compte en traduir cadenes que continguin aquests modificadors de format, per tal de no oblidar-los, ni canviar-los per seqüències invàlides. També hem de recordar que no s'ha de canviar l'ordre relatiu dels modificadors en la cadena original. Per exemple: </p> <pre>#. A "what failed" message when the failure is likely to be permanent;<br />this URI won't be openable<br />#: src/cong-error-file-open.c:82<br />#, c-format<br />msgid "cannot read \"%s\" from %s."<br />msgstr "no pot llegir \"%s\" des de %s."<br /></pre> <p>En aquest missatge hi ha dues cadenes %s: la primera és el text que s'ha de llegir, el segon el fitxer que s'ha de llegir. En la traducció no es pot canviar aquest ordre relatiu. És incorrecte: msgstr "no es pot llegir del fitxer %s la cadena \"%s\"." </p> <a name="Missatges_en_plural"></a><h2> <span class="mw-headline"> Missatges en plural </span></h2> <p>A més, en algunes ocasions el programari permet especificar en un mateix missatge la forma en singular i plural. Hem de tenir en compte que en alguns llenguates hi ha diferents maneres d'expressar el plural segons el valor del cardinal. Per exemple, en polonès, el terme plik (fitxer) té els següents plurals segons el cardinal: </p> <pre>1 plik<br />2,3,4 pliki<br />5-21 pliko'w<br />22-24 pliki<br />25-31 pliko'w<br /></pre> <p>Però millor veure com es tradueixen aquests missatges en català. Recordem que a la capçalera (quan apareixi aquest camp) definirem així el camp següent: </p> <pre>"Plural-Forms: nplurals=2; plural=n != 1;\n"</pre> <p>Per exemple, el següent missatge: </p> <pre>#: src/gnome-cmd-delete-dialog.c:336<br />#, c-format<br />msgid "Do you want to delete the selected file?"<br />msgid_plural "Do you want to delete the %d selected files?"<br />msgstr[0] "S'ha seleccionat %d fitxer. Desitgeu esborrar-lo?"<br />msgstr[1] "S'han seleccionat %d fitxers. Desitgeu esborrar-los?"<br /></pre> <p>Inicialment, els camps msgstr[0] i msgstr[1] estan buits i els hem d'emplenar amb les traduccions: </p> <ul><li> El programari usarà el missatge msgstr[0] automàticament quan %d sigui igual a 1: ("S'ha seleccionat 1 fitxer. Desitgeu esborrar-lo?") </li><li> El programari usarà el missatge msgstr[1] automàticament quan %d sigui diferent que 1: ("S'han seleccionat 32434242444 fitxers. Desitgeu esborrar-los?"). També s'usarà quan %d sigui 0, tot i que possiblement el programador hàbil no ens consultarà en situacions referides al 0: (no té sentit "S'han seleccionat 0 fitxers. Desitgeu esborrar-los?") </li><li> En cas que hi hagin msgstr[2], msgstr[3]... etc, aquestes no s'usaran en el programari en català donada la sintaxi emprada en la capçalera. No cal que es tradueixin. </li></ul> <a name="Eines_de_traducci.C3.B3_de_fitxers_PO"></a><h2> <span class="mw-headline"> Eines de traducció de fitxers PO </span></h2> <p>Tot el que cal és un editor de text, però n'hi ha d'especialitzats que us poden facilitar el treball amb fitxers PO. Sense voler-ne recomanar cap en concret, aquí hi ha una llista dels que ens sembla que us poden ser més útils: </p> <ul><li> Eines per a GNU/Linux <ul><li> <a class="external text" href="http://gtranslator.sourceforge.net/" title="http://gtranslator.sourceforge.net/" rel="nofollow">Gtranslator</a> - El Gtranslator és l'eina de localització creada al voltant del projecte d'escriptori <a href="http://www.softcatala.org/wiki/GNOME" title="GNOME">GNOME</a>. És una eina molt completa que permet traduir fitxers PO i treballar amb memòries de traducció. </li><li> <a class="external text" href="http://i18n.kde.org/tools/kbabel/" title="http://i18n.kde.org/tools/kbabel/" rel="nofollow">KBabel</a> - El KBabel és l'eina de localització creada al voltant del projecte d'escriptori KDE. És una eina molt completa que permet traduir fitxers PO i treballar amb memòries de traducció. </li><li> <a class="external text" href="http://www.gnu.org/software/emacs/" title="http://www.gnu.org/software/emacs/" rel="nofollow">Emacs</a> i <a class="external text" href="http://www.xemacs.org/" title="http://www.xemacs.org/" rel="nofollow">XEmacs</a> - L'Emacs i L'XEmacs en mode po són uns editors de text per a usuaris avançats, que també funcionen en Windows. </li></ul> </li><li> Eines per a Microsoft Windows <ul><li> <a class="external text" href="http://poedit.sourceforge.net/" title="http://poedit.sourceforge.net/" rel="nofollow">PoEdit</a> - És una eina de localització tant per a Windows com per a GNU/Linux que permet treballar amb fitxers PO i usar memòries de traducció. Es troba traduïda al català, i també està disponible per a GNU/Linux. </li><li> <a class="external text" href="http://potranslator.sourceforge.net/" title="http://potranslator.sourceforge.net/" rel="nofollow">potranslator</a> - És una eina de localització per a Windows que permet treballar amb fitxers PO, però de moment no implementa les memòries de traducció. </li></ul> </li></ul> <a name="Correctesa_dels_fitxers_PO"></a><h2> <span class="mw-headline"> Correctesa dels fitxers PO </span></h2> <p>Els fitxers PO contenen diversos elements de formats que si usem editors de textos per a traduir-los es poden eliminar per error. </p><p>Si treballeu amb entorns GNU/Linux o Unix podeu usar les <a class="external text" href="http://www.gnu.org/software/gettext/manual/html_mono/gettext.html" title="http://www.gnu.org/software/gettext/manual/html_mono/gettext.html" rel="nofollow">Manual de les eines gettext</a> per tal de detectar possible errors. Podem usar l'ordre <em>msgfmt</em> de la següent manera: </p> <pre>$ msgfmt -c --statistics ca.po<br />291 missatges traduïts.<br /></pre> <p>El paràmetre <em>-c</em> d'aquesta ordre verifica la correctesa del fitxer i el paràmetre <em>--statistics</em> ens mostra el nombre de cadenes traduïdes, sense traduir i <em>fuzzy</em>. </p><p>Si hi hages cap error <em>msgfmt</em> ens informaria en quines línies es troben i quin és el seu motiu. </p> <hr /> <p>Autors: Quico Llach, Jordi Mas </p>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Varis
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

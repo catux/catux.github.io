@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Ús de la Catux-USB 0.1
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-07-11 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        Catux-USB &eacute;s una distribuci&oacute; que hem creat des de l&#39;associaci&oacute;.  Aquesta &eacute;s especial ja que s&#39;executa des de un Pendrive (tota l&#39;execuci&oacute;) i tamb&eacute; &eacute;s arrencable mitjan&ccedil;ant el Pendrive (si la BIOS ho suporta).  Donem un sistema base que despr&eacute;s l&#39;usuari, mitjan&ccedil;ant apt-gets pot actualitzar, configurar, afegir, treure, etc. paquets conforme les seves necessitats.<br />    <div id="article" class="article_normal">Nota: s&#39;ha publicat un <a href="http://www.catux.org/index.php?contingut=articles&amp;num=74">article m&eacute;s extens</a> sobre Catux-USB que segurament us pot interessar tamb&eacute;.<br /> <br /> <h2>Caracter&iacute;stiques</h2><br /> Anem a veure un rep&agrave;s r&agrave;pid de v&agrave;ries caracter&iacute;stiques de Catux-USB:<br /> <br /> <li>Catux-USB fa servir el reconeixement de maquinari de Knoppix, de manera que no haur&iacute;em de tenir problemes amb targetes de so, de xarxa, targetes gr&agrave;fiques, etc.</li><br /> <li>Es fa servir des d&#39;un Pendrive: la podem executar des de<br /> qualsevol ordinador molt f&agrave;cilment.</li><br /> <li>Porta instal&middot;lat el m&eacute;s b&agrave;sic (X-Window, client de correu, Web, FTP) i nosaltres afegim altres paquets (o tre&iuml;em) com si fos una Debian normal. Suport multiling&uuml;e: catal&agrave;, castell&agrave;, angl&egrave;s (ja sigui en els programes, amb locales; o b&eacute; en les seq&uuml;&egrave;ncies de configuraci&oacute;).</li><br /> <li>Amb tot aix&ograve;, d&#39;una manera molt f&agrave;cil creem una distribuci&oacute; per usos concrets (p.e. seguretat, matem&agrave;tiques, etc).</li><br /> <li>Porta el pegat <a href="http://e2compr.sourceforge.net/">e2compr</a> per comprimir el sistema de fitxers i aix&iacute; tenir m&eacute;s capacitat.</li><br /> <li>Hi ha dos versions (tan sols canvia la mida, &eacute;s per comoditat de la instal&middot;laci&oacute;): per Pendrives de 128 MB i per Pendrives de 256 MB. De totes maneres sempre podem canviar la mida per adaptar-lo millor a les nostres necessitats.</li><br /> <br /> La idea de la distribuci&oacute; &eacute;s tenir-la al Pendrive, amb els paquets que nosaltres desitgem i amb la nostra configuraci&oacute;, ja que &eacute;s com una distribuci&oacute; totalment funcional (&eacute;s a dir, podem escriure-hi de forma normal).<br /> <br /> <br /> <h2>Instal&middot;laci&oacute;</h2><br /> Primerament la baixem de:<br /> <br /> <br /> ftp://ftp.salleurl.edu/pub/Linux/Distributions/<br /> ftp://ftp.caliu.info/pub/distribucions/catux/<br /> <br /> <br /> Aleshores podrem descomprimir-la i desempaquetar-la:<br /> <br /> <br /> gunzip catux-usb_0.1.tar.gz<br /> tar -xvf catux-usb_0.1.tar<br /> <br /> <br /> i copiarem el contingut del directori catux-usb_0.1 al Pendrive, per exemple:<br /> <br /> cp -r catux-usb_0.1/* /mnt/pendrive<br /> <br /> a on /mnt/pendrive &eacute;s la primera partici&oacute; del dispositiu en formato FAT (per exemple, identificador a la taula de particions e, &quot;Sistema&quot; W95 FAT16 (LBA). La distribuci&oacute; no s&#39;executa sobre FAT en s&iacute;, sin&oacute; sobre un fitxer ext2 el qual est&agrave; a una partici&oacute;n FAT. Ja hem comentat que podem canviar la mida del sistema mitjan&ccedil;ant una seq&uuml;&egrave;ncia d&#39;ordres, veure la primera pregunta de la FAQ.<br /> <br /> <br /> <h2>Arrancada</h2><br /> Una vegada fet aix&ograve; introduirem syslinux /dev/sda1 i reiniciarem amb el Pendrive connectat al port USB. Si la nostra BIOS t&eacute; suport per arrencar des de dispositius USB i, a m&eacute;s, est&agrave; configurada per fer-ho ja estarem arrencant la Catux-USB. &Eacute;s possible que la BIOS tingui suport per&ograve; que no estigui configurada (haurem d&#39;entrar a la BIOS i configurar-ho a les opcions d&#39;arrancada).<br /> <br /> Tot i que encara no hi ha massa BIOS capaces d&#39;arrancar des de dispositius<br /> USB la tend&egrave;ncia &eacute;s que les noves sortin ja amb aquesta opci&oacute;.<br /> <br /> En cas que la placa no tingui implementada l&#39;arrancada des de dispositius USB,<br /> podem resoldre aquesta petita inconveni&egrave;ncia gravant un CD amb la imatge ISO que podem trobar a catux-usb_0.1/imatge.iso. Per exemple, podem fer-ho d&#39;aquesta manera:<br /> <br /> cdrecord -v speed=10 dev=0,3,0 -eject -data imatge.iso<br /> <br /> I ara nom&eacute;s necessitem connectar el Pendrive i arrancar mitjan&ccedil;ant el CD-ROM. El CD solament serveix per realitzar l&#39;arrancada, despr&eacute;s tot funciona des del Pendrive, quedant lliure el lector de CD.<br /> <br /> La primera vegada que arranquem el sistema ens demanar&agrave; en quin idioma volem la interf&iacute;cie (catal&agrave;, castell&agrave; o angl&egrave;s) i tamb&eacute; la mida del fitxer que far&agrave; servir com a HOME del nostre usuari.<br /> <br /> <br /> <h2>Accedint a fitxers...</h2><br /> El sistema sencer est&agrave; al fitxer knoppix/knoppix, per&ograve; est&agrave; comprimit mitjan&ccedil;ant el peda&ccedil; <a href="http://e2compr.sourceforge.net/">e2compr</a> de manera que si<br /> volem muntar aquest fitxer des de la nostra distribuci&oacute;, necessitarem aplicar el peda&ccedil; al nostre nucli.<br /> <br /> El fitxer del HOME de l&#39;usuari, que es diu catux-usb.ext2 &eacute;s un fitxer normal tipus ext2, de manera que des de qualsevol distribuci&oacute; podem fer:<br /> <br /> mount -t ext2 -o loop /mnt/pendrive/catux-usb.ext2 /mnt/home_catux <br /> <br /> i accedir als fitxers que l&#39;usuari hagi desat al seu HOME.<br /> <br /> <br /> <h2>Preguntes m&eacute;s freq&uuml;ents</h2><br /> <li><strong>P:</strong> Vull canviar la mida del sistema (aix&ograve; &eacute;s, del fitxer knoppix/knoppix). Com ho puc fer? </li><br /> <li><strong>R:</strong> Primerament has de muntar el Pendrive d&#39;aquesta manera:<br /> <br /> mount -t vfat -o exec /dev/sda1 /mnt/pendrive<br /> <br /> (Voldrem executar uns fitxers del Pendrive i moltes vegades les particions FAT es munten amb els fitxers sense l&#39;execuci&oacute; activada). A continuaci&oacute; farem:<br /> <br /> cd /mnt/pendriveutils/modify_size.sh<br /> <br /> i seguirem les instruccions.<br /> <br /> Cal recordar que si tenim dades al fitxer knoppix/knoppix millor que fem una c&ograve;pia de seguretat. El HOME de l&#39;usuari no es modifica durant aquesta operaci&oacute;.</li><br /> <br /> <li><strong>P:</strong> En algun moment hi veig missatges estranys que comencen amb compress:.... </li><br /> <li><strong>R:</strong> S&oacute;n missatges que genera el peda&ccedil; del nucli: e2compr, aquests es solucionaran a la propera versi&oacute; d&#39;e2compr. No s&oacute;n problem&agrave;tics si no es fan servir quotas al sistema que est&agrave; comprimit (aix&iacute; doncs, a la Catux-USB no donen problemes). </li><br /> <br /> <h2>M&eacute;s informaci&oacute; a:</h2><br /> Podem trobar m&eacute;s informaci&oacute; o ajuda a:<br /> <br /> <li>La plana principal de <a href="http://www.catux.org/catux-usb">Catux-USB</a></li><br /> <li>Aquesta Web/Wiki: <a href="http://catux.org/wiki/index.php/CatuxUSB">http://catux.org/wiki/index.php/CatuxUSB</a></li><br /> <li>La llista de Catux-USB: <a href="http://catux.org/cgi-bin/mailman/listinfo/catux-usb">http://catux.org/cgi-bin/mailman/listinfo/catux-usb</a></li><br /> <br /> Versi&oacute; en castell&agrave; disponible <a href="http://bulma.net/body.phtml?nIdNoticia=2058">aqu&iacute;</a> (<a href="http://www.bulma.net/">Bulma</a>)</div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Varis
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Pels qui no els funcioni al ar Hi ha algun problema amb els moduls usb OHCI, de manera que quan son necesaris per detectar el dispositiu usb no funciona.<p class="comment-author">Escrit al 2006-12-26 01:24:58 per Sachiel</p></li><li class="list-group-item comment">No veig l'imatge.iso No crec que el meu ordinador sigui capaç d'arrencar des d'una CF, així que hauré de gravar el CD d'arranc. Però... on està la imatge? No la veig ni al mirall de salleurl ni caliu.<p class="comment-author">Escrit al 2006-12-26 01:25:33 per Anònim</p></li><li class="list-group-item comment">imatge.iso Hola Andreu,
+
+El fitxer imatge.iso està dins el global amb "tot junt" (dins el .tar.bz2)
+
+Gràcies!<p class="comment-author">Escrit al 2006-12-26 01:26:25 per Anònim</p></li><li class="list-group-item comment">invalid partition table 
+Garf4: Bones, abans que res, felicitats per la pagina i la feina que esteu fent, que es agraida pels que venen a fer un cop dull a la pagina de tan en tan.
+
+Bueno al que anavem, tinc un Disc Dur portàtil de 40Gb USB2.0 que funciona exactament igual k un pendrive i he pensat que aniria genial per posar-hi la catux-USB, el HDD està en FAT32 amb un tamany de cluster de 16K (x informació)
+
+Un cop he seguit totes les passes esmentades en la pagina, de descomprimir, copiar el contingut al HDD, fer la instrucció syslinux i tot. Reinicio (el meu pc te suport per arrancar per USB).
+
+Sembla que comença a iniciar-se ja que intenta fer un broadcast per descobrir un servidor de DHCP i poc despres em diu invalid partition table i alla es queda clavat.
+
+Teniu alguna idea de que podria ser aixo? pot ser que no vagi bé en discs grans tot i ser USB?
+
+Seria de gran ajut poder usar la distribució alla on estudio ja que els pcs no tenen disc dur, el tenen extraible i te l'has de endur de casa.
+
+Esperant resposta Jordi (Garf4)<p class="comment-author">Escrit al 2006-12-26 01:27:02 per Jordi</p></li><li class="list-group-item comment">Modificació configuracio xarxa Abans de tot felicitar-vos per la pagina i la feina que esteu fent.
+
+El motiu de aquest missatge es que he fet anar el linux en la versio del pendrive de 256MB, pero el meu dubte es que si hi ha alguna manera de configurar la connexió de xarxa i que es guardi al pendrive, ja que cada cop que es reinicia el ordinador aquesta configuració es perd i posa la que porta per defecte.
+
+Espero la vostra resposta,salutacions.<p class="comment-author">Escrit al 2006-12-26 01:27:42 per Anònim</p></li><li class="list-group-item comment">Re: Ús de la Catux-USB 0.1 si no es guarda (ops! quin fallo, la veritat) el millor segurament és escriure-ho directament al fitxer de configuració de xarxa de Debian. Posar alguna cosa com:
+
+iface eth1 inet static
+address 192.168.1.4
+netmask 255.255.255.0
+#network
+#broadcast 192.168
+gateway 192.168.1.3
+
+Al fitxer /etc/network/interfaces
+
+Així ja ho tindras...
+
+Fins aviat i gràcies per provar la distribució :)<p class="comment-author">Escrit al 2006-12-26 01:28:31 per cpina</p></li><li class="list-group-item comment">Re: Ús de la Catux-USB 0.1 Hola cpina,
+aquest fitxer ja el vaig trobar i modificar prèviament abans de posar el comentari, el problema es que aquest fitxer si et fixes esta carregat a memòria, es a dir que encara que es modifiqui al apagar l'ordinador sempre es perdrà la configuració que li hem donat.
+Jo trobo que aquest fitxer esta dintre el kernal i cada cop que el ordinador s’encén el posa en memòria, en la qual cosa per poder fer que mantingues la configuració que nosaltres desitgem es tindria que desmuntar el kernal, cosa que no se com es fa, i modificar el fitxer.
+Si algú em pugues guiar una mica o facilitar-me una pàgina en la qual ho expliquessin li agrairia molt,fins aviat.<p class="comment-author">Escrit al 2006-12-26 01:29:01 per Anònim</p></li><li class="list-group-item comment">Re: Ús de la Catux-USB 0.1 he instalat syslinux amb apt-get per fer:
+syslinux /dev/sda1
+pero em diu aixo:
+sh:line1: mcopy: command not found
+que faig?<p class="comment-author">Escrit al 2006-12-26 01:29:36 per Anònim</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

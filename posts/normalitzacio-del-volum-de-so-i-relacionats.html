@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Normalització del volum de so i relacionats
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2011-01-16 05:42:10
+    
+                per
+                
+        jordboal
+    
+            </h3>
+
+            <p>
+                
+        Normalitzar el volum del so vol dir que tots els fitxers de so, normalment cançons, que graves a un CD o DVD seran amb el mateix volum, que a més a més serà prou alt com per a sentir-lo bé, tot i que moltes vegades els CDs de música gravats (cremats) solen tenir el volum més baix que els CDs comercials.
+
+En Línux, l'únic gravador de CDs i DVDs (dits amb molta raó cremaCDs i DVDs, perquè amb les vegades que graven amb errors, has de tornar a gravar el CD o DVD i en llences molts) que conec que normalitzi el so és el <strong>Brasero</strong> (per a l'entorn Gnome). Ara bé, la normalització que fa gairebé no se sent. Per tant, potser és millor fer servir el <strong>GnomeBaker</strong>, o el <strong>K3B</strong> en entorn KDE, que tot i que és més vell i no s'inclou a les distribucions, em sembla que és més fiable.
+
+Però hi ha un programa que és exprés per a normalitzar el so en Línux que es diu <strong>Gnormalize</strong>. Es pot descarregar des d'aquesta pàgina: <a href="http://gnormalize.sourceforge.net/">http://gnormalize.sourceforge.net/</a> o des de qualsevol repositori. Hi ha versions tant per a Ubuntu com per a Fedora, la distribució que faig servir. A més a més, té un interval entre -12 i 12 segons si vols que el volum sigui més baix o més alt. Per cert, el procés que segueix és conversió dels fitxers (tots els d'una carpeta del disc dur) a wav, normalització del so i conversió dels fitxers normalitzats a mp3 a la carpeta que li hàgiu dit.
+
+Si allò que voleu és gravar/enregistrar un so amb el micròfon, fins i tot un que soni des dels mateixos altaveus de l'ordinador, podeu fer-ho amb l'<strong>Audacity</strong> (versió freeworld, que pot llegir i desar en format mp3). Però alerta, que si voleu desar el fitxer us el desarà en format aup i després l'haureu d'exportar a mp3 amb el mateix programa; heu d'anomenar i exportar el fitxer en format mp3 si no voleu haver de fer tants passos. A més a més, aquest programa, com que és un editor de so, permet partir fitxers de so, útil per si heu descarregat amb qualsevol P2P un àlbum sencer en un sol fitxer mp3 (problema a l'hora de reproduir-lo en un radiocasset-CD ja que hi constarà com una sola pista i per saltar d'una cançó a una altra ...); doncs amb l'Audacity podeu seleccionar a l'espectrograma de so els fragments que corresponguin a cada cançó i els anireu desant (exportant directament a mp3, que és més ràpid), i com que probablement serà un fitxer llarg amb un espectrograma comprimit en pantalla, us serà molt més fàcil si cliqueu a Apropa o <em>Zoom</em> i veureu que el silenci que hi ha entre cançó i cançó es veu molt clar. De totes maneres, l'Audacity reprodueix els fitxers de so i podreu confirmar si heu seleccionat bé el principi i el final d'una cançó escoltant-ne el fragment.
+
+Sabent tot això, ja podreu gravar el CD o DVD amb els fitxers que volíeu i amb el so normalitzat, amb el Brasero (crec que millor amb el GnomeBaker) o el K3B. Que tingueu una bona cuina!
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

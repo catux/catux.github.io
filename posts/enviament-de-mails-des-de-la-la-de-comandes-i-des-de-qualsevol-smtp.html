@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Enviament de mails des de la línia de comandes i des de qualsevol SMTP
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2005-01-29 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">nail &eacute;s un programa semblant a mail: entre altres coses permet enviar correus electr&ograve;nics des de la l&iacute;nia de comandes (per tant, f&agrave;cilment automatitzable).<br /> <br /> Per&ograve; nail, a difer&egrave;ncia de mail, suporta especificar-li un servidor SMTP extern, amb SSL o sense, i la configuraci&oacute; d&#39;aquest.<br /> <br /> Per exemple, per enviar mails a vodafone.es no &eacute;s possible fer-ho directament des d&#39;una IP de Telefonica ja que Vodafone utilitza RBL&#39;s i en alguna d&#39;elles hi ha les IP&#39;s de Telefonica.<br /> <br /> En aquest article veurem un &uacute;s b&agrave;sic del nail i com podriem fer-ho servir per enviar a trav&eacute;s del servidor de Google.</span> <h2>Enviar correus des de la l&iacute;nia de comandes</h2> A vegades volem enviar un correu electr&ograve;nic des de la l&iacute;nia de comandes. La manera tradicional &eacute;s fent:<br /> <br /> echo &quot;el cos del correu&quot; | mail -s &quot;el tema&quot; nom@exemple.com<br /> <br /> <br /> Igualment, podem fer:<br /> <br /> mail -s &quot;el tema&quot; nom@exemple.com &lt; fitxer.txt<br /> <br /> O utilitzar un conducte (|) per agafar la sortida d&#39;una comanda.<br /> <br /> Aquest sistema per defecte fa servir el servidor SMTP configurat que hi hagi localment, &eacute;s a dir, un Postfix, Exim, Sendmail, etc.<br /> <br /> Vodafone t&eacute; un servei de notificaci&oacute; de correus electr&ograve;nics al m&ograve;bil que ens pot interessar per fer alguna notificaci&oacute; de forma gratuita (i segurament no 100% fiable).<br /> <br /> Per&ograve; el problema m&eacute;s greu &eacute;s que Vodafone utilitza RBL per intentar evitar l&#39;spam, i una llista que fa servir Vodafone t&eacute; les IP&#39;s de les direccions de Telefonica, per tant si estem utilitzant una ADSL de Telefonica no podem enviar al servidor de mail de Vodafone directament des de la nostra IP.<br /> <br /> <h2>Enviar e-correus amb nail</h2><br /> nail &eacute;s un programa que pot funcionar de forma similar al cl&agrave;ssic mail. <br /> <br /> nail ve amb Debian Woody (sense suport per SSL) i amb Debian Sarge (ja amb suport per SSL).<br /> <br /> Aqu&iacute; el qu&egrave; farem &eacute;s veure com es pot enviar un correu electr&ograve;nic amb nail i utilitzant el servidor de Google. Un man nail ens pot donar idea de totes les opcions que t&eacute; el programa (molt&iacute;ssimes).<br /> <br /> Primerament haurem de fer un fitxer al nostre $HOME/.mailr amb el seg&uuml;ent contingut:<br /> <br /> set smtp=smtp.gmail.com<br /> set smtp-use-starttls<br /> set smtp-auth=login<br /> set smtp-auth-user=lanostraparaulad&#39;entrada<br /> set smtp-auth-password=lanostracontrassenya<br /> set ssl-verify=ignore<br /> <br /> Evidentment on posa &quot;smtp-auth-password&quot; haurem de posar la contrasenya de Google.<br /> A partir d&#39;aquest moment podem utilitzar la comanda nail com si fos la mail:<br /> <br /> echo &quot;hola&quot; | nail -s &quot;bon dia&quot; nomusuari@vodafone.es<br /> <br /> <br /> nail es connectar&agrave; amb el servidor de Google, i Google ser&agrave; qui envia el correu electr&ograve;nic a Vodafone.<br /> <br /> PD: Podr&iacute;em configurar el nostre servidor SMTP perqu&eacute; fes relay (envi&eacute;s) tots els mails a Google, per&ograve; prefereixo tenir jo el control d&#39;enviar mails.<br /> <br /> PD2: m&#39;he posat en contacte alguns cops amb Vodafone per queixar-me d&#39;aquest fet per&ograve; sembla que &eacute;s pol&iacute;tica d&#39;empresa, tot i haver sistemes antispam m&eacute;s &quot;efectius&quot; o sin&oacute; justos (p. ex. Spamassassin) i crec que si m&eacute;s no hauria de ser una opci&oacute; del client, poder utilitzar les llistes RBL o no.
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

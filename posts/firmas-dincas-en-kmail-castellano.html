@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Firmas dinámicas en Kmail (castellano)
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-04-27 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia"><a href="http://kde.org/">KDE</a> es un escritorio muy potente, bien acabado, integrado, etc.<br /> <br /> De todas formas a veces los escritorios carecen (o desconocemos) de facilidad de comunicaci&oacute;n mediante scripts entre las diferentes aplicaciones. No es el caso de KDE, donde en este art&iacute;culo se explica como poner una firma de texto din&aacute;mica en <a href="http://kmail.kde.org/">KMail</a>: aparecer&aacute; la temperatura de una ciudad (recogido mediante <a href="http://kweather.sourceforge.net/">KWeather</a>) y la m&uacute;sica que est&eacute; sonando en <a href="http://amarok.kde.org/">Amarok</a>. Y podr&iacute;amos poner el uptime, carga del sistema, etc. de forma tambi&eacute;n muy f&aacute;cil.<br /> </span><br /> <br /> El objetivo de este escrito es ver como podemos aprovechar que KMail tiene firma (de texto, no cript&oacute;grafica) din&aacute;mica, junto con la potencia de DCop. De esta forma podemos conseguir a&ntilde;adir en la firma de cualquier mail que escribamos con KMail la canci&oacute;n que est&aacute; sonando en amaroK o la temperatura de la ciudad que nos encontremos, entre todo lo que se nos ocurra..<br /> <br /> Para el receptor es simplemente una curiosidad, aunque puede ayudar a ver en qu&eacute; estado de &aacute;nimo estaba el emisor... o curiosidad cuando es entre paises, y unos estan a +17&ordm;C y otros a -17&ordm;C...<br /> <br /> Recordar que con KMail podemos tener diferentes identidades, as&iacute; que podemos poner o no poner la firma de forma f&aacute;cil en funci&oacute;n de la identidad que seamos. Por ejemplo, si es la cuenta del trabajo quiz&aacute;s no deseamos que aparezca la canci&oacute;n y deseamos la firma corporativa de la empresa, en cambio si son mails personales o de ocio no deseamos la firma de la empresa y queremos la canci&oacute;n y temperatura. F&aacute;cil de cambiar.<br /> <br /> Sistema 1<br /> Este sistema es el m&aacute;s b&aacute;sico, aunque tiene al menos un problema: si amaroK o KWeatherService no se est&aacute;n ejecutando, estaremos a&ntilde;adiendo en la firma &quot;Playing: &quot; sin ninguna canci&oacute;n (o &quot;Temperatura:&quot; y sin ninguna temperatura). Lo solucionaremos con el segundo sistema, que es mediante un peque&ntilde;o script en Bash (se podr&iacute;a hacer sin el script, pero no vale la pena).<br /> <br /> Necesitamos tener ejecut&aacute;ndose el Applet KWeather. Para tenerlo, haremos clic con el bot&oacute;n derecho en la barra de tareas (Kicker) y marcaremos &quot;A&ntilde;adir al panel&quot;. Despu&eacute;s &quot;Applet&quot; y &quot;Informe meteorol&oacute;gico&quot;.<br /> <br /> <br /> <img src="http://catux.org/imatges/articles/amarok+kmail/kde01.png" alt="" /><br /> <br /> <br /> Ahora lo tendremos en la barra sin configurar. En su parte izquierda hay un bot&oacute;n con flecha arriba, entraremos en &quot;Men&uacute; Informe meteorol&oacute;gico&quot; y despu&eacute;s en &quot;Configurar KWeather&quot;. En la secci&oacute;n &quot;Servicio de meteorolog&iacute;a&quot; buscaremos la ciudad que nos interese (en el ejemplo, Barcelona). Lo a&ntilde;adimos y salimos.<br /> Presionando con el bot&oacute;n derecho en el Applet, se abre un men&uacute; que pone &quot;KWeather - LEBL&quot;. LEBL es el identificador de la estaci&oacute;n, necesitamos saberlo para despu&eacute;s. Tambi&eacute;n lo podemos encontrar ejecutando en un terminal (Konsole) &quot;dcop KWeatherService WeatherService listStations&quot;.<br /> <br /> Ahora configuraremos KMail para que a&ntilde;ada la firma autom&aacute;tica. Iremos a &quot;Preferencias&quot; - &quot;Configurar KMail&quot;. En la secci&oacute;n &quot;Identidades&quot; haremos clic en &quot;Modificar&quot; (o a&ntilde;adiremos una identidad, etc.) En la pesta&ntilde;a &quot;Firma&quot;, la activaremos (&quot;Habilitar Firma&quot;, y seleccionaremos en la lista desplegable &quot;Salida de un comando&quot;. En el &quot;Especificar comando&quot; escribiremos, en una s&oacute;la l&iacute;nea:<br /> <br /> echo -e &quot;Carles Pina i Estany - carles@pinux.info\nEscuchando: $(dcop amarok player nowPlaying)\nTemperatura en Barcelona: $(dcop KWeatherService WeatherService temperature LEBL)&quot;<br /> <br /> <br /> <img src="http://catux.org/imatges/articles/amarok+kmail/kde02.png" alt="" /><br /> <br /> <br /> Hecho esto, cuando vayamos a escribir un nuevo correo electr&oacute;nico ya aparecer&aacute; la canci&oacute;n y temperatura. Ver que de una forma muy f&aacute;cil es posible a&ntilde;adir textos de otros programas, tambi&eacute;n mediante dcop. Se puede usar el programa &quot;kdcop&quot; para investigar qu&eacute; podemos necesitar, o bien podemos usar el programa &quot;dcop&quot; para ir navegando en las posibilidades de los programas.<br /> <br /> <br /> <img src="http://catux.org/imatges/articles/amarok+kmail/kde03.png" alt="" /><br /> <br /> <br /> Sistema 2<br /> El segundo sistema utiliza un script en Bash para controlar qu&eacute; pasa si dcop no nos puede facilitar la informaci&oacute;n (por ejemplo, porqu&eacute; amaroK no se est&aacute; ejecutando, o KWeather tampoco est&aacute; funcionando). Se podr&iacute;a programar en la casilla dentro del KMail, pero no es legible as&iacute; que se prefiere hacerlo aparte.<br /> <br /> El script es el siguiente:<br /> <br /> #!/bin/bash<br /> <br /> echo &quot;Carles Pina i Estany - carles@pinux.info&quot;<br /> <br /> cancion=$(dcop amarok player nowPlaying) &amp;&amp; echo &quot;Escuchando: $cancion&quot;<br /> temperatura=$(dcop KWeatherService WeatherService temperature LEBL) &amp;&amp; echo &quot;Temperatura: $temperatura&quot;<br /> <br /> Nota: no hace falta redigir la salida de error, ya que KMail s&oacute;lo recoge la salida est&aacute;ndar.<br /> Guardaremos el fichero anterior donde lo deseemos (por ejemplo, en $HOME/bin/kmail_info.sh). Le asignaremos permisos de ejecuci&oacute;n, si lo hacemos desde una consola escribiremos &quot;chmod u+x $HOME/bin/kmail_info.sh&quot;).<br /> <br /> En la casilla de &quot;Especificar comando&quot; de KMail (ya visto en el primer sistema), (configuraci&oacute;n de KMail, etc.) escribiremos &quot;~/bin/kmail_info.sh&quot;.<br /> <br /> <img src="http://catux.org/imatges/articles/amarok+kmail/kde04.png" alt="" /><br /> <br /> <br /> Ver que con este segundo sistema y un poco m&aacute;s de programaci&oacute;n podr&iacute;amos censurar algunas palabras de canciones, a&ntilde;adir otra informaci&oacute;n (uptime, fortunes, &uacute;ltima not&iacute;cia de cierto sitio de aKregator, etc.)<br /> <br /> <br /> <strong>Licencia:</strong> Licencia Creative Commons Reconocimiento-CompartirIgual<br /> <strong>Autor:</strong> Carles Pina i Estany <a href="mailto:carles%20EN%20pinux.info">carles EN pinux.info</a><br /> <strong>Fecha:</strong> 17 de Marzo 2006<br /> Para el <a href="http://wiki.badopi.org/index.php?title=Akademy-es_2006/Concurso_usuarios">concurso de usuarios</a> de <a href="http://wiki.badopi.org/index.php?title=Akademy-es_2006">Akademy-ES 2006</a>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

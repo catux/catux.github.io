@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Connexió a Internet des de Linux utilitzant un Motorola V3
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-01-28 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">En aquest article es veur&agrave; com utilitzar la connectivitat entre un Linux i un tel&egrave;fon Motorola V3. Tan per enviar/rebre les fotos com per connectar-se a Internet. Tot i ser per un tel&egrave;fon en concret, segur que &eacute;s aplicable a molts altres tel&egrave;fons.<br /> <br /> Tamb&eacute; com annex es veu com connectar-se mitjan&ccedil;ant una tarja PCMCIA, de forma molt senzilla tamb&eacute;.<br /> <br /> Molts tenim un m&ograve;dem a la butxaca i no ho sabiem!</span> <br />     <div id="article" class="article_normal"><h2>B&agrave;sic</h2><br /> Fa molt temps que em va arribar el pijo-tel&egrave;fon Motorola V3. A nivell est&egrave;tic pot ser molt petit-maco-..., tot i que a nivell de programari t&eacute; algunes defici&egrave;ncies greus. Aix&ograve; em feia pensar que la connectivitat tampoc estaria massa ben resolta.<br /> <br /> Fins fa unes setmanes no l&#39;havia connectat amb Linux. El proc&eacute;s va ser totalment f&agrave;cil (amb una Debian, aplicable a altres distribucions).<br /> <br /> Es connecta mitjan&ccedil;ant el cable USB que ja ve incl&oacute;s amb el tel&egrave;fon.<br /> <br /> Per qualsevol de les operacions que es veuran cal tenir el m&ograve;dul cdc_acm (modprobe cdc_acm, &eacute;s possible que nom&eacute;s endollant el cable sigui carregat de forma autom&agrave;tica). Si no el tenim l&#39;haurem de seleccionar (per exemple com a m&ograve;dul) a la configuraci&oacute; del Kernel (Device Drivers -&gt; USB Support -&gt; USB Modem (CDC ACM) support).<br /> <br /> <h2>Fotos i m&eacute;s</h2><br /> Per agafar les fotos que es facin amb ell, posar-hi aplicacions Java, modificar configuracions en hexadecimal, etc. es pot fer servir el programa moto4lin (&eacute;s en mode gr&agrave;fic). Ve incl&oacute;s amb Debian, o es pot trobar a la <a href="http://moto4lin.sourceforge.net/">seva p&agrave;gina Web.</a><br /> (Nota: ho he provat com a root, veig que com usuari dona algun problema, fins i tot afegint l&#39;usuari al grup dialout del /dev/ttyACM0)<br /> <br /> Segurament el primer cop caldr&agrave; anar a Settings - Preferences, i escriure el dispositiu del tel&egrave;fon (/dev/ttyACM0). Presionar Update List, seleccionar de la llista el tel&egrave;fon i clicar &quot;Set As AT Device&quot; i &quot;Set As P2K Device&quot;). Despr&eacute;s &quot;OK&quot;.<br /> <br /> Per utilitzar el moto4lin cal presionar a &quot;Update list&quot;, llavors a &quot;Directory&quot; apareixer&agrave; &quot;Phone&quot; amb els directoris del tel&egrave;fon. Per exemple al directori fotos veurem el qu&eacute; hi tenim, i les podem seleccionar i fer &quot;download&quot; amb el but&oacute; dret, eliminar-les, etc.<br /> <br /> <h2>Connexi&oacute; a Internet</h2><br /> El punt extraordinari va ser al provar de connectar-me a Internet. Quasi sense voler ho vaig trobar. &Eacute;s tan f&agrave;cil com utiltizar el pppconfig (del paquet pppconfig) i posar-hi les dades seg&uuml;ents (cada l&iacute;nia &eacute;s una resposta a les preguntes de l&#39;assitent):<br /> <br /> <li>Crear una connexi&oacute;<br /> </li><li>Posar-hi &quot;vodafone&quot;<br /> </li><li>DNS Din&agrave;mic <br /> </li><li>Autenticaci&oacute; PAP<br /> </li><li>Nom de login: wap@wap<br /> </li><li>Contrasenya: wap125<br /> </li><li>Velocitat (deixar-ho per defecte): 115200<br /> </li><li>N&uacute;mero de connexi&oacute;: **99**#1<br /> </li><li>Seleccionar el port a m&agrave;. Posar /dev/ttyACM0<br /> </li><li>Acabat<br /> </li><li>Sortir<br /> <br /> <br /> Llavors des de la l&iacute;nia de comandes es pot fer &quot;pon vodafone&quot; i en breus moments es connectar&agrave; directament. Si estem amb una connexi&oacute; de xarxa tamb&eacute;, abans de connectar-nos, desactivar-la (ifdown eth0).<br /> <br /> Si hi ha problemes es pot utilitzar &quot;tail -f /var/log/messages&quot; per seguir el rastre del qu&eacute; est&agrave; passant.<br /> <br /> El mateix que s&#39;ha fet es pot fer amb Amena i Movistar. El n&uacute;mero de tel&egrave;fon &eacute;s el mateix, ja que &eacute;s connexi&oacute; per GPRS i no a un n&uacute;mero dest&iacute;. Els noms de login i contrasenya he vist que posant &quot;qualsevol cosa&quot; tamb&eacute; funciona, per&ograve; es poden trobar en <a href="http://www.gsmspain.com/config/#inetgprs">aquesta p&agrave;gina Web.</a> La tarificaci&oacute; solen ser, sense &quot;bonos&quot;, uns 2 Euros / MB (aix&iacute; que molt de compte!).<br /> <br /> En algunes Webs comenten de posar una cadena de Inicialitzaci&oacute; diferent (es pot fer a l&#39;apartat Advanced del pppconfig). Per exemple en aquesta <a href="http://www.lacofi.org/006.html#vodafone">p&agrave;gina Web</a> (en castell&agrave;) i en <a href="http://artm-friends.at/rm/bluetooth-gprs-suse10-RAZRv3-rm-HOWTO.txt">aquesta altre</a> (en aquest cas hi posa &#39;AT+cgdcont=1,&quot;IP&quot;,&quot;web.one.at&quot;&#39;, on web.one.at &eacute;s el &quot;Nombre del Punto de Acceso&quot; de la p&agrave;gina <a href="http://www.gsmspain.com/config/#inetgprs">referenciada anteriorment.</a><br /> <br /> El ping &eacute;s una mica alt (uns 300 o 600 ms), i la tarificaci&oacute; &eacute;s alta. Tot i aix&ograve;, millor que res; pot solucionar algun cas de &quot;necessitat de connexi&oacute;&quot;.<br /> <br /> <a name="annex" title="annex"></a><h2>Annex</h2><br /> Seguint amb la l&iacute;nia de connexions mitjan&ccedil;ant telefonia, he provat amb una tarja Novatel Wireless, Merlin UMTS Modem. El model exacte &eacute;s U630. &Eacute;s una tarja d&#39;un pack Amena, que funciona tan amb GPRS com amb 3G.<br /> <br /> El programari incl&oacute;s amb el pack Amena &eacute;s totalment desastr&oacute;s, per&ograve; el bo &eacute;s que &eacute;s pr&agrave;cticament ho fa tot per hardware i no pels drivers.<br /> <br /> En mode r&agrave;pid es pot:<br /> <br /> </li><li>Posar la tarja<br /> </li><li>Tenir carregat el m&ograve;dul serial_cs (modprobe serial_cs)<br /> </li><li>Amb tail -f /var/log/messages veure quin /dev/ttySX s&#39;ha assignat<br /> </li><li>minicom /dev/ttyS0 (si &eacute;s l&#39;assignat)<br /> </li><li>Escriure AT+CPIN=n&uacute;mero_pin. Contestar&agrave; &quot;OK&quot;<br /> </li><li>Sortir del minicom, amb &quot;Control+A X&quot;, Yes<br /> </li><li>Configurar de forma semblant a l&#39;anterior, per&ograve; al dispositiu posar-hi /dev/ttyS0 o el corresponent<br /> <br /> La tarja agafar&agrave; autom&agrave;ticament el tipus de connexi&oacute; que estigui disponible (3G o GPRS). Les velocitats s&oacute;n for&ccedil;a bones.<br /> <br /> L&#39;entrada del PIN es pot desactivar (treient el PIN de la tarja) o b&eacute; posant-ho a la cadena d&#39;inicialitzaci&oacute;.<br /> <br /> Agra&iuml;ments al Jordi que m&#39;ha passat la informaci&oacute; de la tarja PCMCIA (no la tenia a m&agrave; ara).<br /> </li></div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">problemes!!! Hola veig que t\'ho has currat.. amb la 630.. jo ho estic provant amb rh Enterprise 4 av. . en quin So, ho vas probar tu????? 
+
+pd:manu20x@hotmail.com .. aqui tens el meu mail, es que estic molt interesat en que funcioni!!!! gracies!!!
+salutacions!!!<p class="comment-author">Escrit al 2007-05-03 13:34:58 per manux</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Gimp: aclarir fotografies
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-08-31 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Qui fa fotos segurament ha tingut aquest problema alguna vegada: una foto massa fosca. A vegades amb la c&agrave;mera de fotos es pot arreglar d&#39;alguna manera, per&ograve; qu&egrave; passa si no podem fer una altra foto?<br /> <br /> En aquest article es veur&agrave; com fer m&eacute;s clara una foto. Per&ograve; no modificant la brillantor, sin&oacute; d&#39;una manera que normalment d&oacute;na molt m&eacute;s bons resultats.</span><br />    <div id="article" class="article_normal">Tothom qui fa fotos li ha passat alguna vegada un petit problema: &quot;ha quedat fosca&quot; (subexposada, en el m&oacute;n de la fotografia). A vegades es torna a fer la foto (afegint flaix, obrint els llums). A vegades, un cop a l&#39;ordinador, intentem aclarir-la d&#39;alguna manera. Normalment modificant la brillantor i el contrast, sense obtenir grans resultats.<br /> <br /> La foto, augmentant la brillantor queda m&eacute;s clara tota. El que era una mica clar, passa a ser enlluernador, i el que era fosc passa a ser m&eacute;s clar. Per&ograve; hi ha una manera millor d&#39;arreglar la foto, sempre parlant d&#39;un cop feta i no amb la c&agrave;mera.<br /> <br /> Veiem la foto original:<br /> <img src="http://catux.org/imatges/articles/aclarar_foto/WEBoriginal.jpg" alt="" /><br /> (Exemple real tret de <a href="http://catux.org/fotos/index.php?list=20&amp;page=2">galeria de les V Jornades de PL</a>)<br /> <br /> L&#39;obrim amb el Gimp i anem al men&uacute; &quot;Eines&quot; - &quot;Colors&quot; - &quot;Nivell&quot;. All&agrave; apareix un quadre de di&agrave;leg com aquest:<br /> <br /> <img src="http://catux.org/imatges/articles/aclarar_foto/WEBdialeg.png" alt="" /><br /> <br /> Veiem els Nivells d&#39;entrada, que a partir de la meitat s&oacute;n nuls. S&oacute;n els colors m&eacute;s clars, com veiem a la barra inferior. Nom&eacute;s cal moure el triangle dret perqu&egrave; quedi com est&agrave; a la captura de pantalla anterior, &eacute;s a dir, fins on hi ha colors.<br /> <br /> Els nivells de sortida ja s&oacute;n correctes: els volem del negre al blanc. Aix&iacute; modifica els nivells de l&#39;imatge perqu&egrave; hi hagi del m&eacute;s blanc al m&eacute;s negre, i aclareix la imatge de forma coherent.<br /> <br /> La imatge de sortida:<br /> <img src="http://catux.org/imatges/articles/aclarar_foto/WEBmodificat" alt="" /><br /> <br /> <strong>Versi&oacute; un p&egrave;l avan&ccedil;ada</strong><br /> A sota hi ha 3 pinzells, si hi deixem el punter a sobre ens dir&agrave; qu&egrave; &eacute;s cada pinzell. Un &eacute;s per triar un punt negre, gris i blanc. D&#39;aquesta manera, i seleccionant els colors, el Gimp calcula com hauria de ser la foto. A vegades d&oacute;na m&eacute;s bon resultat que el m&egrave;tode anterior.<br /> <br /> <strong>Unes notes</strong><br /> Veiem que hem treballat pel Canal &quot;Valor&quot;. Tamb&eacute; es pot fer de forma separada per cada color.<br /> <br /> Hi ha c&agrave;meres (no s&eacute; si totes) que quan es fa la foto o just despr&eacute;s de fer-la tenen l&#39;opci&oacute; de veure el gr&agrave;fic de nivells, t&iacute;picament desconegut. Ara ja sabem qu&egrave; &eacute;s. Si feu una foto ben fosca est&agrave; tot al comen&ccedil;ament, part negre. Si est&agrave; cremada, la foto, est&agrave; a la part dreta.<br /> <br /> El m&egrave;tode tamb&eacute; ens hauria d&#39;ajudar en el cas que hi hagi una foto &quot;cremada&quot;. No he fet proves en aquest cas.<br /> </div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Re: Gimp: aclarar fotografies El fet que enllacis al meu article vol dir que he monopolitzat Catux o que t'has equivocat? ;)<p class="comment-author">Escrit al 2006-12-29 16:52:23 per Anònim</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Sensors en GNU/Linux
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-07-24 00:00:00
+    
+                per
+                
+        seoman
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">He redactat un petit <a href="http://www.catux.org/index.php?contingut=articles&amp;num=46">article</a> sobre com configurar els sensors de la placa base en el vostre GNU/Linux. Espero que us sigui &uacute;til. </span><br /> <table border="0" cellspacing="2" cellpadding="2" style="width: 95%; text-align: left; margin-left: auto; margin-right: auto"> <tbody> <tr> <td style="vertical-align: top"><div id="article" class="article_normal">En aquest article intentar&eacute; explicar com configurar els sensors de temperatura, voltatge, etc del vostre ordinador, de tal forma que el podreu tenir controlat d&#39;una manera senzilla.<br /> <br /> El primer que haurem de fer es tenir el suport necessari al kernel. Per fer les proves, he utilitzat la versi&oacute; 2.6.7, aix&iacute; que si ho fas en una versio diferent, es probable que les seccions no estiguin ubicades de la mateixa forma.<br /> <br /> Accedim al men&uacute; de configuraci&oacute; del nucli i anem a la secci&oacute; Device Driver. Dins d&#39;aquest, accedim a I2C support. Aqui haurem d&#39;activar com a modul les seg&uuml;ents opcions:<br /> <br /> I2C support<br /> I2C device interface<br /> <br /> I ara, dins de Hardware Sensors Chip support, sel&middot;leccionem els moduls necessaris per a la nostra placa. Si no sabem quins s&oacute;n, els podem sel&middot;lecionar tots i un cop veguem quins s&oacute;n, treiem la resta del nucli. &Eacute;s m&eacute;s que recomanable, tenir activades les opcions de Code maturity level options ja que si no, ens sortiran molt pocs m&ograve;duls disponibles.<br /> <br /> Amb aix&ograve; ja podem anar a compilar el nucli. Per descomptat que tamb&eacute; han d&#39;estar configurades algunes opcions b&agrave;siques com s&oacute;n els moduls cargables del kernel.<br /> <br /> Un cop tingueu els m&ograve;duls del I2C, procedirem a instal&middot;lar el programari necessari per a poder treballar amb els sensors.<br /> <br /> Debian:~# apt-get install lm-sensors<br /> <br /> Per tal de sapiguer quins m&ograve;duls necessitem per a la nostra placa executem:<br />  <br /> Debian:~# sensors-detect<br /> <br /> Ens far&agrave; una serie de preguntes a les que hauriem de contestar que si a totes. Realitzar&agrave; un seguit de proves i us dir&agrave; que heu de fer per tal de que funcionin els moduls. Primer de tot don&agrave; un llistat dels m&ograve;duls per a la teva placa:<br /> <br /> Driver `eeprom&#39; (should be inserted):<br />   Detects correctly:<br />   * Bus `SMBus Via Pro adapter at 5000&#39; (Algorithm unavailable)<br />     Busdriver `i2c-viapro&#39;, I2C address 0x50<br />     Chip `SPD EEPROM&#39; (confidence: 8)<br /> <br /> Driver `lm78&#39; (may not be inserted):<br />   Misdetects:<br />   * ISA bus address 0x0290 (Busdriver `i2c-isa&#39;)<br />     Chip `National Semiconductor LM78&#39; (confidence: 7)<br /> <br /> Driver `it87&#39; (should be inserted):<br />   Detects correctly:<br />   * ISA bus address 0x0290 (Busdriver `i2c-isa&#39;)<br />     Chip `ITE 8705F Super IO Sensors&#39; (confidence: 9)<br /> <br /> Llavors dona una s&eacute;rie d&#39;instruccions per tal de que funcionin b&eacute; els sensors. En el meu cas:<br /> <br /> To make the sensors modules behave correctly, add these lines to<br /> /etc/modules:<br /> <br /> #----cut here----<br /> # I2C adapter drivers<br /> i2c-viapro<br /> i2c-isa<br /> # I2C chip drivers<br /> eeprom<br /> it87<br /> #----cut here----<br /> <br /> Then, run /etc/init.d/module-init-tools<br /> <br /> <br /> To make the sensors modules behave correctly, add these lines to<br /> /etc/modprobe.d/local and run update-modules:<br /> <br /> #----cut here----<br /> # I2C module options<br /> alias char-major-89 i2c-dev<br /> #----cut here----<br /> <br /> <br /> Nom&eacute;s hem de seguir les passes que ens diu. B&agrave;sicament, el que ens diu que fem &eacute;s que es carreguin els m&ograve;duls que necessita al iniciar el sistema.<br /> <br /> El fitxer de configuraci&oacute; esta ubicat a /etc/sensors.conf. Si executem la comanda sensors, ens mostrar&agrave; informaci&oacute; sobre els sensors que ha detectat anteriorment amb la comanda sensors-detect.<br /> <br /> Debian:~# sensors<br /> it87-isa-0290<br /> Adapter: ISA adapter<br /> VCore 1:   +1.68 V  (min =  +1.42 V, max =  +1.56 V)   ALARM<br /> VCore 2:   +1.23 V  (min =  +2.40 V, max =  +2.60 V)   ALARM<br /> +3.3V:     +6.46 V  (min =  +3.12 V, max =  +3.44 V)   ALARM<br /> +5V:       +4.89 V  (min =  +4.72 V, max =  +5.24 V)<br /> +12V:     +12.20 V  (min = +11.36 V, max = +12.60 V)<br /> -12V:      -7.26 V  (min = -12.63 V, max = -11.41 V)   ALARM<br /> -5V:       -4.85 V  (min =  -5.28 V, max =  -4.81 V)<br /> Stdby:     +5.12 V  (min =  +4.72 V, max =  +5.24 V)<br /> VBat:      +0.00 V<br /> fan1:     3924 RPM  (min =    0 RPM, div = 8)<br /> fan2:        0 RPM  (min =  664 RPM, div = 8)           LARM<br /> fan3:        0 RPM  (min =  664 RPM, div = 8)<br /> M/B Temp:    +46&deg;C  (low  =   +15&deg;C, high =   +40&deg;C)   sensor = thermistor<br /> CPU Temp:    -55&deg;C  (low  =   +15&deg;C, high =   +45&deg;C)   sensor = thermistor<br /> Temp3:       -55&deg;C  (low  =   +15&deg;C, high =   +45&deg;C)   sensor = thermistor<br /> <br /> lm90-i2c-0-4c<br /> Adapter: SMBus Via Pro adapter at 5000<br /> M/B Temp:    +53&deg;C  (low  =    +0&deg;C, high =   +70&deg;C)<br /> CPU Temp:  +50.1&deg;C  (low  =  +0.0&deg;C, high = +70.0&deg;C)<br /> M/B Crit:   +104&deg;C  (hyst =   +94&deg;C)<br /> CPU Crit:   +106&deg;C  (hyst =   +96&deg;C)<br /> <br /> <br /> Ar&agrave; ja podem tenir un control m&eacute;s acurat del nostre sistema. I per acabar, una r&agrave;pida explicaci&oacute; de com integrar aix&ograve; a la barra d&#39;estat gkrellm. Si anem a la configuraci&oacute; d&#39;aquest, a la secci&oacute; de sensors dins d&#39;integrats, veurem que tenim varies opcions. En el meu cas hi tinc: &ldquo;Temperaturas&rdquo;, &ldquo;Ventiladores&rdquo; i &ldquo;Voltages&rdquo;. Si cliquem a la fletxa que apunta cap a cadascun de les opcions, se&#39;ns desplegara els diferents sensors que hi ha en cada categoria. Llavors nom&eacute;s tindrem que sel&middot;lecionar la casella del que volem i ja est&agrave;. Si sel&middot;leccionem un sensor i veiem que la temperatura que ens marca es de -55&ordm;, vol dir que aquell sensor no funciona correctament o que tenim una refrigeraci&oacute; de &ldquo;puta mare&rdquo; =P.<br /> <br /> Per acabar, una cosa for&ccedil;a &uacute;til, &eacute;s la de configurar alertes. Per exemple, si detectem una temperatura for&ccedil;a elevada podem fer que ens envii un correu o si detecta que el ventilador de la CPU s&#39;ha parat, doncs parar la maquina, etc.<br /> <br /> Espero que us sigui &uacute;til i que no hagi ficat massa la pota, ja que &eacute;s el meu primer article =P. Qualsevol dubte el podeu enviar a seoman@salles.mine.nu i/o afegirlo com a comentari al article.<br /> <br /> Gr&agrave;cies al Jordi Vilalta (jvprat) i a l&#39;Albert Sellares (Whats_up) per debugar i provar-ho ^^</div></td></tr></tbody></table>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Funciona molt bé 
+Eis seo, molt interessant, està xulo. L'he provat i és força útil. Amb l'ajuda del paquet lshw podreu saber el mòdul q necessitareu per la vostre placa mare.
+
+Sort!<p class="comment-author">Escrit al 2006-12-28 12:43:55 per whats_up</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

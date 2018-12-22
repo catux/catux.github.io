@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Canviar resolució i enviar fotos des del Konqueror (o Gqview)
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-10-24 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Amb aquest article es veur&agrave; com tenir un nou men&uacute; en forma &quot;d&#39;acci&oacute;&quot; dins el Konqueror per canviar la mida de les fotos i enviar-les amb el Kmail amb un sol click.<br /> <br /> &Eacute;s f&agrave;cilment adaptable a altres clients de correu.<br /> <br /> D&#39;aquesta manera no costa enviar les fotos fetes per correu: es previsualitzen al Konqueror, seleccionen les que volem i s&#39;envien f&agrave;cilment canviada la mida.<a href="http://www.catux.org/index.php?contingut=articles&amp;num=122"></a><br /> <br /> Nota: afegida part pel Gqview<br /> Nota2, dia 25: he modificat l&#39;script perqu&egrave; funcioni una mica millor. T&eacute; coses per millorar pero funciona correctament per un &uacute;s habitual.</span> <h2>Introducci&oacute;</h2><br /> Molta gent t&eacute; c&agrave;meres de fer fotos, i sovint es fan fotos que cal enviar despr&eacute;s per correu.<br /> <br /> Enviar les fotos amb la mida de la c&agrave;mera &eacute;s molt poc convenient: tarda massa, els servidors SMTP no accepten adjunts massa grans, el protocol SMTP i POP3 s&oacute;n molt poc adequats per dades bin&agrave;ries, etc.<br /> <br /> Aix&iacute; doncs cal canviar la mida de les fotos si en volem enviar per correu. Normalment seleccionarem les fotos i els hi canviarem la mida amb el Gimp o programes semblants o b&eacute; amb algun &quot;script&quot; que tinguem preparat (paraules m&agrave;giques: convert, ImageMagick). Un cop fet aix&ograve; adjuntarem les fotos amb la mida nova a un mail, i enviarem aquest mail. Una mica pesat.<br /> <br /> En aquest escrit explico com fer tot aix&ograve; amb un pas, utilitzant Konqueror i Kmail (&eacute;s f&agrave;cilment adaptable a altres clients de correu). Seguint aquest article aconseguirem tenir un nou submen&uacute; contextual per les fotos per canviar la mida i enviar-les &quot;amb un click&quot;.<br /> <br /> Al final de tot comento com fer-ho amb Gqview, ja que t&eacute; una part comuna.<br /> <br /> <h2>Recepta</h2><br /> Primer de tot cal tenir instal&middot;lat el programa &quot;convert&quot;. &Eacute;s el que farem servir per modificar la resoluci&oacute;. Amb Debian el programa convert est&agrave; dins el paquet imagemagick, aix&iacute; que si fem servir Debian haurem d&#39;instal&middot;lar el &quot;imagemagick&quot;. <br /> <br /> Abans de continuar assegureu-vos que si escriviu &quot;convert&quot; a un terminal no surt &quot;Command not found&quot; o semblant, sin&oacute; l&#39;ajuda d&#39;un programa.<br /> <br /> Ara seguirem els passos seg&uuml;ents des d&#39;un terminal (per exemple, Konsole). Hi ha molt &quot;codi&quot;, a sota. No us espanteu: nom&eacute;s cal fer copiar-enganxar i llegir quan cal engengar un editor com kedit.<br /> <br /> <h3>Configuraci&oacute; general</h3><br /> <br /> #Anar al directori HOME<br /> cd<br /> <br /> #Fa un nou directori<br /> mkdir bin<br /> <br /> cd bin<br /> <br /> <br /> I ara fem un altre nou fitxer:<br /> kedit enviar.sh<br /> I hi posem a dins (sense els guions de comen&ccedil;ament i final):<br /> <br /> --------------------------------<br /> #!/bin/bash<br /> <br /> TEMPORAL=~/fotos_temp22323 #qualsevol directori que no existeixi<br /> mkdir &quot;$TEMPORAL&quot;<br /> <br /> until [ -z &quot;$1&quot; ]<br /> do<br />         nomfit=$(basename &quot;$1&quot;)<br />         convert -resize 800x800 &quot;$1&quot; &quot;$TEMPORAL/$nomfit&quot;<br />         attach=&quot;$attach --attach $TEMPORAL/$nomfit&quot;<br />         shift<br /> done<br /> <br /> <br /> kmail -s &quot;Fotos&quot; --composer --body &quot;Hola, envio les fotos parlades&quot; $attach --nofork<br /> rm -rf &quot;$TEMPORAL&quot;<br /> --------------------------------<br /> <br /> <br /> I per acabar, posem els permisos d&#39;execuci&oacute; al fitxer:<br /> <br /> #permisos correctes<br /> chmod u+x bin/enviar.sh<br /> <br /> <br /> <br /> <h3>Configuraci&oacute; pel Konqueror</h3><br /> <br /> #Fem el directori:<br /> mkdir ~/.kde/share/apps/konqueror/servicemenus <br /> <br /> #Entra al directori<br /> cd ~/.kde/share/apps/konqueror/servicemenus<br /> <br /> #Fem un fitxer nou de nom enviarFotos.desktop<br /> kedit enviarFotos.desktop <br /> <br /> <br /> Dins el fitxer hi enganxem el seg&uuml;ent (sense els guions de comen&ccedil;ament/final):<br /> <br /> --------------------------------<br /> [Desktop Entry]<br /> ServiceTypes=image/jpeg<br /> Actions=enviarFotos<br /> <br /> [Desktop Action enviarFotos]<br /> Name=Canviar mida i enviar fotos<br /> Icon=background<br /> Exec=~/bin/enviar.sh %U<br /> --------------------------------<br /> <br /> <br /> Ara engeguem un nou Konqueror (millor tancar els que teniem) i veurem que si fem click amb el bot&oacute; dret als fitxers JPEG al submen&uacute; &quot;Accions&quot; hi ha &quot;Canviar mida i enviar fotos&quot;. Si s&oacute;n moltes tardar&agrave;, i al final s&#39;obre un Kmail llest per escriure el dest&iacute; i el text que desitgem.<br /> <br /> El nou men&uacute; del Konqueror:<br /> <img src="http://catux.org/imatges/articles/mida-enviar/mida-enviar1.png" alt="" /><br /> <br /> <h3>Configuraci&oacute; Gqview</h3><br /> Encara m&eacute;s f&agrave;cil que amb el Konqueror. Un cop es t&eacute; el fitxer ~/bin/enviar.sh creat i amb permisos d&#39;execuci&oacute; (ja s&#39;ha fet amb els passos anteriors) nom&eacute;s cal engegar el gqview, anar a Edita - Prefer&egrave;ncies - Editors i a la primera columna afegir &quot;Enviar per email&quot; i a la segona alguna cosa tipus &quot;/home/carles/bin/enviar.sh&quot;. Llavors es poden seleccionar fotos amb el gqview i anar a Edita - Enviar per email. F&agrave;cil!<br /> <br /> El mail resultant:<br /> <img src="http://catux.org/imatges/articles/mida-enviar/mida-enviar2.png" alt="" /><br /> <br /> El resultat &eacute;s el mateix per Konqueror que per Gqview.<br /> <br /> <h2>Divers</h2><br /> <br /> <div id="article" class="article_normal"><li>He conegut els serveis de men&uacute;s gr&agrave;cies a <a href="http://developer.kde.org/documentation/tutorials/dot/servicemenus.html">aquesta Web</a><br /> </li><li>Estic provant KDE (no el KMail) gr&agrave;cies al &quot;pesat&quot; del meu germ&agrave; (Pinucset). Aix&iacute; que li dedico l&#39;article :-) (aix&ograve; s&iacute;, ell em diu pas a pas com posar les coses perqu&egrave; siguin com amb l&#39;Icewm :-) )</li></div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

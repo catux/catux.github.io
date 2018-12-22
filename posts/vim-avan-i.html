@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Vim avançat I
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-08-19 00:00:00
+    
+                per
+                
+        whats_up
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Avui m&#39;estava esperant que es compil&eacute;s el kernel en el meu futur 200, quan m&#39;he posat a escriure aix&ograve;. Ha estat degut a que el seoman l&#39;altre dia estava fent servir el &quot;vertical split&quot; del vim, quan jo ho vaig veure, em va caure tot al terra ;).<br /> <br /> Aquest article intenta ser un recull de cosetes no tan b&agrave;siques i &uacute;tils que incorpora el vim.<br /> </span><br /> <table border="0" cellspacing="2" cellpadding="2" style="width: 95%; text-align: left; margin-left: auto; margin-right: auto"> <tbody> <tr> <td style="vertical-align: top"><div id="article" class="article_normal">Primer de tot voldria recomanar que per comen&ccedil;ar amb el vim,podeu executar la comanda vimtutor ja que &eacute;s un dels llocs on jo vaig comen&ccedil;ar.<br /> <br /> Podeu trobar un resum de les coses b&agrave;siques <a href="http://www.catux.org/index.php?contingut=articles&amp;num=1&amp;PHPSESSID=751898708297926758697a0fde71ced1">aqu&iacute;</a><br /> <br /> En aquest article intentar&eacute; mostrar caracter&iacute;stiques interessants que he descobert recentment, per&ograve; penseu que n&rsquo;existeixen molt&iacute;ssimes m&eacute;s que ho s&oacute;n tant o m&eacute;s.<br /> <br /> NOTA: Les comandes que comencen per &quot;:comanda&quot;, han de ser executades des de dins del vim, les que no ho posa, s&oacute;n des de qualsevol shell.<br /> <br /> <h2>Comandes senzilles per&ograve; sovint desconegudes</h2><br /> //Per fer un &quot;reundo&quot;<br /> ctrl +r <br /> <br /> //Per veure les propietats del fitxer que estem editant <br /> ctrl +g <br /> <br /> //Per anar al final del fitxer<br /> shift +G <br /> <br /> //Buscar cap avall <br /> / paraula<br /> <br /> //Buscar cap amunt <br /> ? paraula<br /> <br /> //Per anar d&rsquo;un par&egrave;ntesis a un altre (es sol utilitzar per codi font)<br /> % <br /> <br /> //Per executar una comanda al int&egrave;rpret d&rsquo;ordres<br /> :!comanda <br /> <br /> //Inserir el contingut de fitxers <br /> :r fitxer<br /> <br /> <br /> <h3>Reempla&ccedil;ar</h3><br /> //Per reempla&ccedil;ar la primera ocurr&egrave;ncia de &quot;thee&quot; per &quot;the&quot; de la l&iacute;nia <br /> :s/thee/the <br /> <br /> //Per reempla&ccedil;ar totes les ocurr&egrave;ncies de &quot;thee&quot; per &quot;the&quot; de la finia <br /> :s/thee/the/g <br /> <br /> //Per reempla&ccedil;ar totes les ocurr&egrave;ncies de &quot;thee&quot; per &quot;the&quot; de la l&iacute;nia 4 a la l&iacute;nia 9 <br /> :4,9s/thee/the/g <br /> <br /> //Per reempla&ccedil;ar totes les ocurr&egrave;ncies de &quot;thee&quot; per &quot;the&quot; del fitxer <br /> :%s/thee/the/g <br /> <br /> <h2>Opcions de configuraci&oacute;</h2><br /> Totes aquestes opcions poden anar al fitxer de configuraci&oacute; del vim que es troba al home de l&#39;usuari ~/.vimrc<br /> <br /> //Per no diferenciar entre maj&uacute;scules i min&uacute;scules <br /> :set ic <br /> <br /> //Per fer que les l&iacute;nies llargues continu&iuml;n a sota <br /> :set wrap <br /> <br /> <img src="http://www.catux.org/imatges/articles/vim/wrap.jpeg" alt="" /><br /> <br /> //Per fer que no continu&iuml;n <br /> :set nowrap <br /> <br /> <img src="http://www.catux.org/imatges/articles/vim/nowrap.jpeg" alt="" /><br /> <br /> //Per a qu&egrave; numeri totes les l&iacute;nies <br /> :set number <br /> <br /> <img src="http://www.catux.org/imatges/articles/vim/number.jpeg" alt="" /><br /> <br /> //Per canviar els colors en funci&oacute; del teu color de fons <br /> :set bg=dark <br /> <br /> <img src="http://www.catux.org/imatges/articles/vim/bgdark.jpeg" alt="" /><br /> <br /> :set bg=light <br /> <br /> <img src="http://www.catux.org/imatges/articles/vim/bglight.jpeg" alt="" /><br /> <br /> //Per a que et proposi la paraula que vols escriure (mira segons el tros que portes escrit, quina &eacute;s m&eacute;s probable que repeteixis)<br /> ctrl +n <br /> ctrl +p <br /> i si vols ampliar els fitxers on buscar-les (per mirar a tots el ph?) <br /> :ctags *.ph? <br /> <br /> <img src="http://www.catux.org/imatges/articles/vim/propsta.jpeg" alt="" /><br /> <br /> //Per tallar la pantalla horitzontalment <br /> :split <br /> <br /> <img src="http://www.catux.org/imatges/articles/vim/split.jpeg" alt="" /><br /> <br /> //Per tallar-la verticalment <br /> :vs <br /> <br /> <img src="http://www.catux.org/imatges/articles/vim/vs.jpeg" alt="" /><br /> <br /> //Per canviar el cursor entre els talls<br /> ctrl +w w <br /> <br /> //Per tancar tots els talls menys al que s&rsquo;est&agrave; actualment<br /> :only <br /> <br /> //Per buscar difer&egrave;ncies entre fitxers<br /> vimdiff main.pl main2.pl&quot; <br /> <br /> <img src="http://www.catux.org/imatges/articles/vim/vimdiff.jpeg" alt="" /><br /> <br /> //Per obrir dos arxius alhora <br /> vim arxiu1 arxiu2 <br /> <br /> //Per passar de l&rsquo;un  a l&rsquo;altre <br /> :next <br /> :previous <br /> <br /> <br /> //Per obrir un arxiu tenint un vim obert<br /> :e main2.pl <br /> <br /> //Per canviar a 4 la mida del tabulador  (&Eacute;s la cosa m&eacute;s &uacute;til del mon :P)<br /> :retab 4 <br /> <br /> //Posar colors <br /> :syntax on <br /> <br /> <br /> Podeu trobar una extensa refer&egrave;ncia a: <a href="http://vimdoc.sourceforge.net/">http://vimdoc.sourceforge.net/ </a></div></td></tr></tbody></table>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Incompatibilitat de la comanda 
+Bones,
+
+M'he estat mirant l'article, perquè sóc fan del Vim. He trobar interessant la opció de poder activar la rodeta del mouse per poder veure el contingut dels fitxers, però m'he adonat que llavors no puc enganxar el contingut d'una sel·lecció amb el botó que tinc a la rodeta. És normal? A algú també li passa?
+
+Merci i fins aviat<p class="comment-author">Escrit al 2006-12-28 14:38:01 per marc</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

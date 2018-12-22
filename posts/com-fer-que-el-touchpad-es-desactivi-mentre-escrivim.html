@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Com fer que el touchpad es desactivi mentre escrivim
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-07-04 00:00:00
+    
+                per
+                
+        franhp
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Per tots es ben conegut que els usuaris novells en l&#39;&uacute;s de portatils, solen acabar farts del touchpad, aquesta esp&eacute;cie de ratol&iacute; t&agrave;ctil que sempre es toca sense voler, destrossant tota la nostra feina. Doncs b&eacute;, hi ha un petit truc per poder-lo deshabilitar permanentment, o millor, desactivar-lo nom&eacute;s quan estiguem escrivint. <br /></span><br />    <div id="article" class="article_normal">Moltes vegades ens hem trobat que tota la nostra feina ha sigut destrossada a causa d&#39;haver posat el canell on no tocava i no haver-se fixat a temps. Aix&ograve; te soluci&oacute;! <br /> Abans de tot, hem de tocar la configuraci&oacute; de les X. Al fitxer /etc/X11/xorg.conf , sota l&#39;&uacute;ltim &quot;Option&quot; de la secci&oacute; del nostre &quot;synaptics touchpad&quot;, escrivim Option &quot;SHMConfig&quot; &quot;on&quot; i el desem.<br /> <br /> Ara podem fer dues coses:<br /> - Desactivar-lo permanentment<br /> $synclient  TouchpadOff=1<br /> $synclient  TouchpadOff=0 per desactivar-ho<br /> <br /> Pot semblar una miqueta pesat haver-ho de fer cada cop que ho necessitem, doncs existeix un dimoni que es preocupa d&#39;aix&ograve; i fa que nom&eacute;s es desactivi quan toquem el teclat.<br /> -Desactivar-lo quan s&#39;utilitzi el teclat<br /> $syndaemon -i 1.0 <br /> $syndaemon -i 1.0 -d  per fer-ho en mode dimoni<br /> <br /> <br /> Font: http://www.debuntu.org/2006/06/25/70-how-to-disabling-your-touchpad-while-typing/</div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Re: Com fer que el touchpad es Hauria de quedar així (aquest és el meu cas)
+
+Section "InputDevice"
+Identifier "Synaptics Touchpad"
+Driver "synaptics"
+Option "SendCoreEvents" "true"
+Option "Device" "/dev/psaux"
+Option "Protocol" "auto-dev"
+Option "HorizScrollDelta" "0"
+Option "SHMConfig" "on"
+EndSection<p class="comment-author">Escrit al 2006-12-29 16:44:53 per Anònim</p></li><li class="list-group-item comment">Re: Com fer que el touchpad es Jo ho he intentat i me diu:
+Can't access shared memory area. SHMConfig disabled?
+
+i he posat el SHMConfig on toca... alguna idea?<p class="comment-author">Escrit al 2006-12-29 16:46:33 per sebastia</p></li><li class="list-group-item comment">Jo també estic amb el mateix cas que sebastià...ja no sé que fer ni que provar...<p class="comment-author">Escrit al 2007-04-16 15:41:09 per Lluís</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

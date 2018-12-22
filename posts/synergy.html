@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Synergy
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2008-01-23 21:15:55
+    
+                per
+                
+        Mecatxis
+    
+            </h3>
+
+            <p>
+                
+        Un nou article de <a href="http://debaday.debian.net/">Deb a Day</a> tradu&iuml;t a la web de Catux: Synergy: compartint el teclat i el ratol&iacute;.<p>Synergy: compartint el teclat i el ratol&iacute;.</p><p><br />Publicat per Carles Pina el 16 de&nbsp; del 2007 a <a href="http://debaday.debian.net/">http://debaday.debian.net</a>  sota llic&egrave;ncia <a href="http://www.opencontent.org/openpub/">Open Publication License</a> </p><p><br />L&#39;usuari necessita moltes&nbsp; vegades fer servir dos ordinadors a l&#39;hora, fins i tot amb sistemes operatius diferents, i els dos a la mateixa taula. Una de les coses m&eacute;s molestes &eacute;s haver de disposar d&#39;un teclat i un ratol&iacute; per cadascun d&#39;ells, sobretot per l&#39;espai que ocupen.</p><p><br />Una de les primeres coses que se&#39;t poden acudir &eacute;s fer servir un teclat i un ratol&iacute; per accedir als altres ordinadors amb algun programa tipus VNC, ssh, FreeNX,... per&ograve; hi ha vegades que t&#39;estimes m&eacute;s fer servir l&#39;altre ordinador directament, perqu&egrave; podem disposar de dos monitors (molt c&ograve;mode), ja sigui per feines de disseny gr&agrave;fic, jocs, una sensaci&oacute; m&eacute;s propera de l&#39;interf&iacute;cie d&#39;usuari, etc. &Eacute;s d&#39;aix&ograve; que parlarem aqu&iacute;.</p><p>&nbsp;</p><h2>What is synergy?</h2><p>Sinergy &eacute;s un programa client-servidor multi-plataforma disenyat per fer servir el mateix teclat i ratol&iacute; en diferents ordinadors d&#39;una mateixa xarxa.</p><p><br />Com es fa servir? (&eacute;s a dir, com fem el canvi d&#39;un ordinador a un altre): L&#39;&uacute;s b&agrave;sic consisteix simplement a moure el punter del ratol&iacute; des d&#39;una pantalla a una altra, tenint en compte que a vegades cal arribar a les cantonades de la pantalla per coses com ara tancar una finestra fent servir la x que hi ha a la part superior dreta. De tota manera, sempre tenim l&#39;opci&oacute; de configurar una drecera de teclat per canviar d&#39;una pantalla a una altra.</p><p>&nbsp;</p><h2>Configuraci&oacute;</h2><p>La configuraci&oacute; &eacute;s for&ccedil;a senzilla: has de definir la disposici&oacute; de les pantalles (quina pantalla hi ha a la dreta, quina a l&#39;esquerra, a dalt o a baix)</p><p>&nbsp;</p><p>Per exemple, si tenim dos ordinadors, un que es diu &ldquo;sobretaula&rdquo; i un altre que es diu &ldquo;portatil&rdquo; i volem fer servir el ratol&iacute; de &ldquo;sobretaula&rdquo; (el qual per tant actuar&agrave; com a server), escriurem la seg&uuml;ent configuraci&oacute; al fitxer <span class="code">/etc/synergy.conf</span>,&nbsp; o el que hagem indicat si hem emprat l&#39;opci&oacute; <span class="moscode">&ndash;config PATH_TO_CONFIG</span>.</p><p><br /><span class="code">section: screens<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sobretaula:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; portatil:<br />end<br /><br />section: links<br />sobretaula:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; right = portatil<br />portatil:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left = sobretaula<br />end</span></p><p>&nbsp;</p><p>Els noms dels ordinadors han de ser els mateixos que la comanda <span class="code">hostname</span> ens dona.<br />Llavors, a l&#39;ordinador que actua com a servidor executarem per llegir la configuraci&oacute; de <span class="code">/etc/</span>:<br /><span class="code">$ synergys</span></p><p>O per llegir la configuraci&oacute; desada al nostre directori d&#39;usuari<br /><span class="code">$ synergys --config ~/.synergy.conf</span></p><p>Llavors a cada ordinador client:<br /><span class="code">$ synergyc SERVER_IP</span></p><p>Si tenim algun problema, en podem fer un seguiment amb:<br /><span class="code">$ synergyc -f SERVER_IP</span></p><p>&nbsp;</p><h2>Information</h2> <p>Al lloc del <a href="http://synergy2.sourceforge.net/">projecte</a>  podeu trobar una molt bona documentaci&oacute;.</p><p><br />Synergy no ofereix una connexi&oacute; segura, per&ograve; podem fer servin un tunel VPN oSSH per evitar que algun altre de la xarxa capturi les nostres sessions. Vegeu la p&agrave;gina de <a href="http://synergy2.sourceforge.net/security.html">securetat</a>  al web del projecte.</p><p><br />Podeu tamb&eacute; provar el paquet <a href="http://packages.debian.org/quicksynergy">quicksynergy</a> , que &eacute;s una interf&iacute;cie gr&agrave;fica per synergy.</p><p><br />Synergy &eacute;st&agrave; disponible per Debian i Ubuntu des de fa temps.</p><p><br />Moltes gr&agrave;cies a en <a href="http://franhp.wordpress.com/">Fran Hermoso</a>  per la seva correcci&oacute; i millora del text en angl&egrave;s i a en Peral per fer-me descobrir synergy.</p>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Notícies, Últimes notícies
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

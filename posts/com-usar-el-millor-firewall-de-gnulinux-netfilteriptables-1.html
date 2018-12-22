@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Com usar el millor firewall de GNU/Linux: NETFILTER/IPTABLES (1)
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2005-01-06 00:00:00
+    
+                per
+                
+        whats_up
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">En aquest article s&#39;explica com utilitzar l&#39;iptables d&#39;una manera pr&agrave;cticament pr&agrave;ctica :P. Est&agrave; ple d&#39;exemples per tal que s&#39;aprengui provant les diferents comandes que hi apareixen.<br /> <br /> L&#39;objectiu de l&#39;article &eacute;s servir de refer&egrave;ncia, i que un cop llegit, sigui inmediat el fet d&#39;utilitzar aquesta magn&iacute;fica eina que es troba en els nuclis linux.<br /> <br /> Si l&#39;article t&eacute; &egrave;xit, en far&eacute; un segon ampliant el contingut d&#39;aquest primer.</span> <br />    Els kernels linux des de fa for&ccedil;a temps incorporen un molt bon gestor de paquets, el qual podem usar com a firewall. Aquest gestor va canviar al passar de la branca 2.2.x a la 2.4.x, va passar de dir-se ipchains a dir-se iptables. A part de canviar-se el nom, tamb&eacute; va canviar la nomenclatura de les comandes per configurar-lo (entre altres coses :P).<br /> <br /> Aquest article intento explicar com funciona i com es configura a un nivell for&ccedil;a b&agrave;sic i pr&agrave;ctic. Em baso amb el kernel 2.6.x, tot i que tot el qu&egrave; dir&eacute; aqu&iacute; tamb&eacute; funcionar&agrave; en els 2.4.x. Intento simplificar la realitat per tal de donar un &uacute;s pr&agrave;ctic a l&#39;iptables a tota aquella gent que va perduda en el tema.<br /> <br /> <h2>Comencem!</h2><br /> <br /> <strong>Una mica de teoria</strong><br /> <br /> Quan un paquet arriba a la nostra m&agrave;quina, aquest ha de passar per una s&egrave;rie de &ldquo;capes&rdquo; fins arribar al seu dest&iacute;. <br /> <br /> Depenent de les accions que volem fer, classifiquem les diferents capes en taules. Les taules que estan creades per defecte s&oacute;n 3: filter, nat i mangle.<br /> - filter &eacute;s la taula per defecte<br /> - nat &eacute;s la taula de tots els paquets que creen una nova connexi&oacute; <br /> - mangle &eacute;s una taula destinada a la modificaci&oacute; del contingut de paquets<br /> <br /> A cada &ldquo;capa&rdquo; es poden fer unes quantes accions amb els paquets: es pot acceptar i permetre que el paquet continu&iuml; el seu cam&iacute;, es pot denegar, enrutar cap a una altre xarxa, modificar, redirigir, etc...<br /> <br /> Veiem un exemple del cam&iacute; que segueixen els paquets.<br /> Suposem que ens estan intentant establir una connexi&oacute; ssh al nostre pc, els passos que seguirien els paquets serien els seg&uuml;ents:<br /> <br /> -Al crear-se qualsevol connexi&oacute; s&#39;envien uns paquets, aquests paquets entrarien a la primera capa, que s&#39;anomena PREROUTING, all&agrave; podr&iacute;em fer algo amb ells. En cas que no establim res a fer-hi, s&#39;aplicar&agrave; la pol&iacute;tica per defecte, que si no es canvia &eacute;s acceptar-los.<br /> <br /> -Despr&eacute;s, un cop acceptats, passarien a estar a la &ldquo;capa&rdquo; INPUT, on tamb&eacute; podr&iacute;em acceptar-lo, denegar-lo, etc.., si no hi fem res, s&#39;aplicar&agrave; la pol&iacute;tica per defecte, i el paquet arribar&agrave; a la seva destinaci&oacute;.<br /> <br /> -Finalment els paquets arriben al dimoni sshd, i &eacute;s ell qui se&#39;n cuida de contestar-los.<br /> <br /> -Tots els paquets enviats pel nostre servidor sshd passaran a la capa OUTPUT, on com a cada capa, tenim un gran feix de possibilitats.<br /> <br /> -Ja per acabar, els paquets arriben a la capa POSTROUTING, on quan surtin d&#39;ella, finalment deixaran el nostre sistema.<br /> <br /> Les &ldquo;capes&rdquo; m&eacute;s utilitzades, s&oacute;n les seg&uuml;ents:<br /> <br /> -PREROUTING: Aqu&iacute; arriben els paquets just quan es crea la connexi&oacute;. &Eacute;s aqu&iacute; on es decideix si el paquet ser&agrave; per aquesta m&agrave;quina, o l&#39;hem de redirigir.<br /> <br /> -INPUT: Aqu&iacute; arriben els paquets que no han estat redirigits. &Eacute;s aqu&iacute; on es sol especificar si tanquem o obrim algun port concret.<br /> <br /> -OUTPUT: Aqu&iacute; arriben els paquets que genera la nostre m&agrave;quina. Si volgu&eacute;ssim que nom&eacute;s es pogu&eacute;s navegar per p&agrave;gines web, afegir&iacute;em aqu&iacute; una entrada.<br /> <br /> -POSTROUTING: Aqu&iacute; arriben els paquets que estan apunt de sortir de la m&agrave;quina.<br /> <br /> -FORWARD: Aqu&iacute; arribaran els paquets que no s&oacute;n per la nostra m&agrave;quina. Per exemple si estem fent de routers, la majoria de paquets que ens arribaran no aniran destinats cap a nosaltres.<br /> <br /> <h2>A la pr&agrave;ctica</h2><br /> <br /> Com sempre val m&eacute;s una imatge que mil paraules. Aqu&iacute; intentar&eacute; posar els exemples m&eacute;s t&iacute;pics explicant qu&egrave; fan, amb un exemple del resultat aconseguit. Espero que aix&ograve; ajudi a entendre-ho millor.<br /> <br /> La primera cosa que hem d&#39;aprendre a fer &eacute;s mirar com tenim les regles iptables.<br /> <br /> Aqu&iacute; llistem quines regles tenim a la taula, com podem veure no en tenim cap. L&#39;opci&oacute; -L &eacute;s la que ens llista el contingut de la taula, l&#39;opci&oacute; -v ens amplia l&#39;informaci&oacute; (ens diu els ports, les interf&iacute;cies, etc.) i l&#39;opci&oacute; -n fa que no intenti fer una resoluci&oacute; inversa de les ip&#39;s.<br /> <br /> root@laptop:/home/whats# iptables -L -v -n<br /> Chain INPUT (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> <br /> <br /> Si el qu&egrave; volem &eacute;s llistar una taula (ex: la taula nat), l&#39;&uacute;nic que fem &eacute;s afegir el -t nat :<br /> <br /> root@laptop:/home/whats# iptables -L -v -n -t nat<br /> Chain PREROUTING (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain POSTROUTING (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> <br /> La segona cosa a aprendre &eacute;s canviar la pol&iacute;tica per defecte. Per exemple podem canviar la pol&iacute;tica per defecte de tots els paquets que es creen en la nostre m&agrave;quina i intenten sortir.<br /> <br /> Afegim com a pol&iacute;tica per defecte bloquejar els paquets:<br /> <br /> root@laptop:/home/whats# iptables -P OUTPUT DROP<br /> <br /> <br /> Ara podem provar de fer un ping i veurem que no ens retorna res:<br /> <br /> root@laptop:/home/whats# ping -c 3 www.wekk.net<br /> PING salles.mine.nu (81.36.105.12): 56 data bytes<br /> <br /> --- salles.mine.nu ping statistics ---<br /> 3 packets transmitted, 0 packets received, 100% packet loss<br /> <br /> <br /> No ens ha retornat res perqu&egrave; els nostres paquets no han arribat a sortir. Ara podem llistar com tenim la cosa i veurem que s&#39;han bloquejat 3 paquets a la &ldquo;capa&rdquo; OUTPUT:<br /> <br /> root@laptop:/home/whats# iptables -L -v -n<br /> Chain INPUT (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain OUTPUT (policy DROP 3 packets, 252 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> <br /> Per tornar a deixar la pol&iacute;tica per defecte a acceptar-ho tot podem fer:<br /> <br /> root@laptop:/home/whats# iptables -P OUTPUT ACCEPT<br /> root@laptop:/home/whats# iptables -L -v -n<br /> Chain INPUT (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain OUTPUT (policy ACCEPT 3 packets, 252 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> <br /> Si volem &ldquo;netejar&rdquo; les estad&iacute;stiques dels paquets acceptats, denegats, etc, podem executar iptables -Z, que el qu&egrave; fa &eacute;s posar a zero tots els comptadors.<br /> <br /> root@laptop:/home/whats# iptables -Z<br /> <br /> root@laptop:/home/whats# iptables -L -v -n<br /> Chain INPUT (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> <br /> Si el qu&egrave; volem netejar s&oacute;n les regles d&#39;una taula que hem anat entrant haurem d&#39;executar:<br /> <br /> root@laptop:/home/whats# iptables -t filter -F<br /> <br /> <br /> On filter &eacute;s la taula a buidar.<br /> <br /> Ara que ja hem comen&ccedil;at a veure de que va la cosa, comencem a tocar les opcions m&eacute;s interessants :). Suposem que tenim un servidor de p&agrave;gines web a la nostre m&agrave;quina, i que la volem protegir molt a trav&eacute;s del firewall, far&iacute;em el seg&uuml;ent:<br /> <br /> Posar&iacute;em que la pol&iacute;tica per defecte de tots els paquets d&#39;entrada es deneguin:<br /> <br /> root@laptop:/home/whats# iptables -P INPUT DROP<br /> <br /> <br /> Un cop fet aix&ograve; si intentem navegar o fer qualsevol cosa, veurem que no podem fer-ho perqu&egrave; totes les respostes a les nostres peticions no ens arriben al haver fet que tots els paquets que ens entren a la m&agrave;quina es bloquegin. <br /> Per evitar aix&ograve; podem entrar una regla que accepti tots els paquets que no siguin per crear una connexi&oacute;, per tan aix&iacute; aconseguirem que les connexions que iniciem nosaltres funcionin i les que inici&iuml;n les altres persones cap a nosaltres, seran denegades.<br /> Si ho volem fer podem executar: <br /> <br /> root@laptop:/home/whats# iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT<br /> <br /> <br /> El qu&egrave; fem en aquesta comanda, &eacute;s usar opcions que es troben dins d&#39;un m&ograve;dul de l&#39;iptables. Concretament el m&ograve;dul &eacute;s l&#39;state, i estem passant les opcions &ndash;state ESTABLISHED i RELATED. Diem que tots aquests paquets els accepti.<br /> <br /> Si ara volem que la gent pugui accedir al nostre servidor web, haurem d&#39;obrir el port 80 (tamb&eacute; obrir&iacute;em el 443 si usem ssl) qu&egrave; &eacute;s el que correspon als servidors web.<br /> <br /> L&#39;opci&oacute; -p &eacute;s imprescindible si volem dir el port a obrir, ja que haurem d&#39;especificar a quin protocol pertany el port que volem obrir. En el nostre cas &eacute;s el protocol tcp<br /> <br /> root@laptop:/home/whats# iptables -A INPUT -p tcp --dport 80 -j ACCEPT<br /> root@laptop:/home/whats# iptables -L -v -n<br /> Chain INPUT (policy DROP 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br />     0     0 ACCEPT     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0           tcp dpt:80<br /> <br /> Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)<br />  pkts bytes target     prot opt in     out     source               destination<br /> <br /> <br /> Una cosa que ens interessar&agrave; fer si tenim un linux com a router, &eacute;s que faci nat cap a ip&#39;s de dintre la xarxa. Fer-ho amb l&#39;iptables &eacute;s molt senzill, nom&eacute;s cal executar la seg&uuml;ent comanda per a redirigir el trafic del port 80 cap a la m&agrave;quina local 192.168.0.111<br /> <br /> root@laptop:/home/whats# iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to 192.168.0.111:80<br /> <br /> <br /> Una altre cosa interessant pot ser denegar tots els paquets del protocol icmp per tal de que no es pugui saber l&#39;estat de la nostre m&agrave;quina. Si ho fem, entre altres coses la nostre m&agrave;quina deixar&agrave; de retornar el ping.<br /> <br /> root@laptop:/home/whats# iptables -A INPUT -p icmp -j DROP<br /> <br /> <br /> Per a poder fer que la nostre m&agrave;quina enruti totes les peticions de la xarxa local(192.168.1.0/24) a trav&eacute;s de la nostre connexi&oacute; per modem (ppp0), podem executar el seg&uuml;ent.<br /> <br /> root@laptop:/home/whats# iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -o ppp0 -j MASQUERADE <br /> <br /> <br /> Un cop fet aix&ograve; nom&eacute;s ens caldr&agrave; activar el reenviament de paquets del nucli. Ho podem fer fent &ldquo;echo 1 &gt; /proc/sys/net/ipv4/ip_forward&rdquo;<br /> <br /> Per a estar informat sobre les connexions que fa una determinada ip a la nostre m&agrave;quina, podr&iacute;em fer el seg&uuml;ent:<br /> <br /> root@laptop:/home/whats# iptables -p tcp -s 64.4.21.221 -j LOG<br /> <br /> <br /> Un cop executada la comanda, podrem veure els logs juntament amb els logs del kernel. Per exemple en debian woody estan a /var/log/kern.log<br /> <br /> Una cosa for&ccedil;a &uacute;til quan deneguem tot el tr&agrave;fic entrant a la nostre m&agrave;quina, &eacute;s afegir una regla que accepti tot el tr&agrave;fic que entri per la interf&iacute;cie loopback, per tal de fer que les aplicacions locals tinguin acc&eacute;s a tots els serveis. Per fer-ho &eacute;s suficient executar:<br /> <br /> root@laptop:/home/whats# iptables -A INPUT -i lo -j ACCEPT<br /> <br /> <br /> Amb totes aquestes cosetes que ja sabem, ara podem passar a fer coses m&eacute;s interessants com seria acceptar tot el tr&agrave;fic que prov&eacute; de la nostra m&agrave;quina i que va destinat cap al port 441 udp entrant per l&#39;interf&iacute;cie eth0<br /> <br /> root@laptop:/home/whats# iptables -A INPUT -i eth0 -p udp -s www.wekk.net &ndash;dport 441 -j ACCEPT<br /> <br /> <br /> <h2>Altres</h2><br /> <br /> <strong>Algunes coses interessants a comentar:</strong><br /> <br /> -Quan activeu una pol&iacute;tica restrictiva en el vostre firewall, tots els detectors d&#39;escanejos tipus scanlogd, courtney, etc, deixen de funcionar ja que a partir d&#39;ara nom&eacute;s rebran els intents de connexi&oacute; dels ports que hem deixat oberts.<br /> Si esteu interessats en seguir estant informats de la gent que us escaneja la m&agrave;quina, podeu instal&middot;lar-vos el programa psad <a href="http://www.cipherdyne.com/psad/">http://www.cipherdyne.com/psad/</a> el qual el qu&egrave; fa &eacute;s analitzar tots els logs de l&#39;iptables en busca de connexions iniciades i tallades r&agrave;pidament, o connexions que no acaben de crear-se entre altres coses.<br /> <br /> -Una lectura molt recomanada &eacute;s el manual 8 de l&#39;iptables. Podeu fer-ho executant:<br /> <br /> whats@laptop:~$ man 8 iptables<br /> <br /> <br /> -Un enlla&ccedil; tamb&eacute; molt recomanable per aconseguir molta informaci&oacute; sobre l&#39;iptables, &eacute;s la p&agrave;gina oficial: <a href="http://www.netfilter.org/">http://www.netfilter.org</a><br /> <br /> -Per tal de fer efectius els canvis cada vegada que iniciem la m&agrave;quina podem executar la seg&uuml;ent comanda:<br /> Debian:<br /> <br /> /etc/init.d/iptables save active<br /> <br /> Redhad/Fedora<br /> <br /> /etc/init.d/iptables save<br /> <br /> <br /> Un cop fet aix&ograve;, ens haurem d&#39;assegurar que cada vegada que s&#39;inicia el sistema s&#39;executa l&#39;script. Executarem el seg&uuml;ent:<br /> Debian:<br /> <br /> update-rc.d iptables defaults<br /> <br /> Redhat/Fedora:<br /> <br /> chkconfig iptables on
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Servidor
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Re: Com usar el millor firewal Només volia felicitarte per el article, es concis, i sobretot útil, si fas una segona part no dubtare en llegirmela. Jo personalment, a tot aquell que vulgui fer servir iptables recomano creac un script, aixi es mes facil cambiar coses com interfices o regles. Felicitats altre vegada.<p class="comment-author">Escrit al 2006-12-28 23:35:20 per Anònim</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

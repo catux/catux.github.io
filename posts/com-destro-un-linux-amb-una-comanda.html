@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Com destroçar un linux amb una comanda
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-12-21 00:00:00
+    
+                per
+                
+        whats_up
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Ja que estem en &egrave;poques nadalenques on &quot;tot &eacute;s felicitat&quot; ;), us convido a dir la vostra forma predilecta de destrossar un linux executant una sola comanda.<br /> <br /> No es val el &quot;<strong>rm -rf /</strong>&quot; perqu&egrave; la &uacute;nica persona que pot usar-la &eacute;s el nostre president (o sin&oacute; demaneu-li a en chernu ;p)<br /> <br /> La meva proposta &eacute;s la seg&uuml;ent (us demano originalitat!):<br /> <br /> <strong>dd if=/dev/zero of=/dev/hda count=512 bs=1</strong></span>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Notícies, Últimes notícies
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Re: Com destroçar un linux amb Una forma bonica de carregar-se l'accès a linux es fer fdisk /MBR ... o el que es casi el mateix, haver d'instal.lar hasefroch.
+
+
+Bon nadal a tots!!<p class="comment-author">Escrit al 2006-12-28 16:53:22 per laura</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb Jo acabo de pensar una altra manera:
+
+yes > /dev/sda
+
+(canviant sda per el vostre disc dur o partició)
+
+bon nadal !!!<p class="comment-author">Escrit al 2006-12-28 16:56:16 per mark</p></li><li class="list-group-item comment">Molt útil Re: Com destroçar un linux amb<p class="comment-author">Escrit al 2006-12-28 16:57:46 per Anònim</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb mark: quina rabia, anava a pensar la forma més curta de fer-ho i no m'en ve cap de més curta que yes :-)
+
+Posats a dir, si cas:
+dd if=/dev/urandom of=/dev/hda bs=512
+
+Per cert, whats_up, que lo teu "només" destrossa el MBR i no tot Linux...<p class="comment-author">Escrit al 2006-12-28 16:58:58 per cpina</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb badblocks -svw /dev/hda<p class="comment-author">Escrit al 2006-12-28 17:00:22 per Anònim</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb Pinux: si ho fas, ja no tornes a iniciar el sistema... ;)
+
+(No volia posar algo molt destructiu en portada...)<p class="comment-author">Escrit al 2006-12-28 17:01:57 per whats_up</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb whats_up: en tot cas _no_ és destroçar un linux.
+És com dir: vaig a destrossar un edifici, i trabar la porta. No?<p class="comment-author">Escrit al 2006-12-28 17:02:33 per cpina</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb jejejeje
+
+però ja fas bé whats, que si poses alguna cosa molt destructiva en portada, segur que hi ha algú que es dedica a fer-ho indiscriminadament ;-D<p class="comment-author">Escrit al 2006-12-28 17:05:12 per mark</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb 
+mkswap /dev/hda1, la gràcia està en que hda1 no sigui la partició de swap. xD<p class="comment-author">Escrit al 2006-12-28 17:06:18 per Liwy</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb En proposo una altre, amb aquesta podeu obtenir més espai als vostres directoris :)
+
+find / -type f -exec rm {} \;<p class="comment-author">Escrit al 2006-12-28 17:06:53 per whats_up</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb 
+find / -fstype vfat -or -fstype ntfs -exec rm {} \;
+Recupera espai també, selectivament.<p class="comment-author">Escrit al 2006-12-28 17:07:29 per cpina</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb 
+jejejejj, jejjej
+
+M'agrada molt més aquest! :P<p class="comment-author">Escrit al 2006-12-28 17:08:02 per whats_up</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb Us heu oblidad la pitjor de les guarrades:
+
+mkfs.msdos /dev/hdxy
+
+donat que hdxy es on esta la particio del sistema<p class="comment-author">Escrit al 2006-12-28 17:08:45 per miquel</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb El millor és el badblocks, et deixa el disc dur nou del tot (ni particions).<p class="comment-author">Escrit al 2006-12-28 17:10:45 per Anònim</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb Res de res. Això és fa entrant a la BIOS i formatant del disc dur a baix nivell.
+
+Segurísim que no podeu recuperar la informació.
+
+Bon Nadal. :D<p class="comment-author">Escrit al 2006-12-28 17:13:00 per Kenoby</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb Hola,
+
+Ja que ho dius, eduKenoby, pots dir-me quina és l'opció que formateja a baix nivell d'entre les opcions de la BIOS?<p class="comment-author">Escrit al 2006-12-28 17:15:51 per Anònim</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb No totes les bios porten l'opció.....
+
+Per cert Pinux, he trobat una comanda encara més curta q fa q no arrenqui el linux, q diguesim... li para el cor :P
+
+> /sbin/init
+
+Sort!<p class="comment-author">Escrit al 2006-12-28 17:16:34 per whats_up</p></li><li class="list-group-item comment">Re: Com destroçar un linux amb 
+Jejejejeje molt bones totes, pero jo en conec una de pitjor.....Es podria anomenar la comanda "terminator" i es mooolt facil.
+Bueno mes que comanda seria "comando", per que es tracta de un tio que conec que si li deixas 5 minuts devant del ordinador segur que no torna mai mes a arrencar. "He sido yo....????".....
+A mes es una "comanda" multiplataforma serveix per tots el sistemas operatius.<p class="comment-author">Escrit al 2006-12-28 17:17:31 per camelout</p></li><li class="list-group-item comment">Quines coses L'article que més comentaris ha tingut en aquesta web és precisament un article que parla de com destrossar el linux !!!
+
+Suposo que totes aquestes comandes si les executa un usuari normal no deu passar res, oi ?
+
+El proper article sobre com destrossar el Win XP !!! (si els virus no arriben abans clar).<p class="comment-author">Escrit al 2006-12-28 17:18:03 per Anònim</p></li><li class="list-group-item comment">Destrossar rapidament vaja vaja xD aixo pinta molt be ^_^
+jo mel vai carregar un al seu dia xD
+
+amb esta comanda:
+
+fsck /dev/hda1
+i quan me va dir que \"era perillos\" li vaig donar al \"yes\" i llavorens... adios muy bunenas ó_ò
+
+neh dona igual n_n
+
+igualment, bon nadal (tot i no se la epoca xD)<p class="comment-author">Escrit al 2007-10-07 22:40:50 per Katsuro</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

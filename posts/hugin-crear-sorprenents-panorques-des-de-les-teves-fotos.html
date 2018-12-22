@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Hugin: Crear sorprenents panoràmiques des de les teves fotos
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2007-07-25 20:00:25
+    
+                per
+                
+        Mecatxis
+    
+            </h3>
+
+            <p>
+                
+        <p>   	 	 	 	 	 	 	 	 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 		TD P { margin-bottom: 0cm } 	--> 	  </p><p class="western">Aquest &eacute;s el primer art&iacute;cle&nbsp; d&#39;una s&egrave;rie que anirem publicant. Els art&iacute;cles d&#39;aquesta s&egrave;rie seran traduccions de <a href="http://debaday.debian.net/">http://debaday.debian.net</a>. Aquesta web fa art&iacute;cles sobre aplicacions que podem trobar a la seva distribuci&oacute;.</p><p class="western">Escollirem art&iacute;cles d&#39;aplicacions que trobem que poden ser d&#39;inter&eacute;s per l&#39;usuari general de GNU/Linux, els traduirem i els penjarem al nostre web.</p><p class="western">Aqu&iacute; teniu el primer, el Hugin o com enganxar les fotos per fer panor&agrave;miques.</p><p class="western">&nbsp;</p><p class="western">&nbsp;</p><p class="western">&nbsp;</p>   	 	 	 	 	 	 	 	 	<!-- 		@page { margin: 2cm } 		P { margin-bottom: 0.21cm } 		TD P { margin-bottom: 0cm } 	--> 	  <p class="western">Publicat per Tincho el juliol del 2007 a <a href="http://debaday.debian.net/">http://debaday.debian.net</a><a href="http://debaday.debian.net/2007/07/15/hugin-create-amazing-panoramas-from-your-photos/"> </a>sota llic&egrave;ncia <a href="http://www.opencontent.org/openpub/">Open Publication License</a></p> <p class="western">A la  <a href="http://debconf7.debconf.org/">DebConf7</a>, vaig tenir l&#39;oportunitat de visitar uns quants llocs bonics al llarg de l&#39;avinguda. Alguns s&oacute;n molts dif&iacute;cils de fotografiar amb una c&agrave;mera com&uacute;, especialment quan intentes fer captures d&#39;un paisatge d&#39;un tur&oacute; o la sensaci&oacute; que produeix una cambra d&#39;un castell &ndash; amb les parets cobertes de quadres i ornaments extravagants-. Has d&#39;acabar fent moltes fotos, per&ograve; mai pot assemblar-se a la realitat.</p> <p class="western">Dona la casualitat que fa un temps vaig estar buscant coses sobre processament d&#39;imatges, i vaig trobar alguns algoritmes per enganxar moltes fotos fer-ne un mosaic. Pero encar li faltava una mica d&#39;implementaci&oacute;. Llavors, alg&uacute; de la taula del hacklab de DebConf7 em va donar una idea: el hugin era la soluci&oacute;!</p> <p class="western">He d&#39;admetre-ho: els primers intents van ser frustrants. Una pila de temps perduda intentant ajustar les imatges i en resultat &eacute;s un collage d&#39;imatges sense sentit. Per tant us recomano que llegiu el <em>preci&oacute;s </em><span style="font-style: normal">manual (i els tutorials). El manual no &eacute;s gaire &uacute;til, per&ograve; hi ha una pila de tutorials a la web.</span></p> <p class="western"><span style="font-style: normal">El proc&eacute;s, doncs, &eacute;s m&eacute;s o menys aquest: carrega les imatges, indica-li els punts on han de coincidir (punts de control), optimitza, previsualitza, ajusta els punts de control i anar repetint fins a aconseguir-ho. La col&middot;locaci&oacute; dels punts de control ser&agrave; la que determini com es barregen les imatges; per&ograve; la feina m&eacute;s cr&iacute;tica &eacute;s recordar-se de fer servir l&#39;optimitzador abans de fer la vista pr&egrave;via o no podr&agrave;s veure els canvis correctament! <a href="http://hugin.sourceforge.net/tutorials/overview/en.shtml">Aqu&iacute;</a> podeu trobar un petit tutorial que explica la operaci&oacute; b&agrave;sica</span></p> <p class="western"><br /><br /> </p> <table border="0" cellspacing="0" cellpadding="2" width="576" height="104"> 	 	 	 	<tbody><tr> 		<td width="212"> 			<p class="western"><a name="image223" title="image223"></a><a href="http://debaday.debian.net/wp-content/uploads/2007/07/hugin-file_list.png"><font color="#000080"><img src="http://debaday.debian.net/wp-content/uploads/2007/07/hugin-file_list.thumbnail.png" border="1" alt="File list" width="96" height="74" align="left" /></font></a><br /> 			</p> 		</td> 		<td width="195"> 			<p class="western"><a name="image224" title="image224"></a><a href="http://debaday.debian.net/wp-content/uploads/2007/07/hugin-control_points.png"><font color="#000080"><img src="http://debaday.debian.net/wp-content/uploads/2007/07/hugin-control_points.thumbnail.png" border="1" alt="Control point setting" width="96" height="74" align="left" /></font></a><br /> 			</p> 		</td> 		<td width="223"> 			<p class="western"><a name="image225" title="image225"></a><a href="http://debaday.debian.net/wp-content/uploads/2007/07/hugin-stitcher_preview.png"><font color="#000080"><img src="http://debaday.debian.net/wp-content/uploads/2007/07/hugin-stitcher_preview.thumbnail.png" border="1" alt="Preview" width="128" height="91" align="left" /></font></a><br /> 			</p> 		</td> 	</tr> </tbody></table> <table border="0" cellspacing="0" cellpadding="2" width="574" height="17"> 	 	 	 	<tbody><tr> 		<td width="215"> 			<p class="western">Llista de fitxers i controls b&agrave;sics</p> 		</td> 		<td width="191"> 			<p class="western">Posant els punts de control</p> 		</td> 		<td width="222"> 			<p class="western">Vista pr&egrave;via de la imatge final</p> 		</td> 	</tr> </tbody></table> <p style="margin-bottom: 0cm" class="western"><br /> </p> <p style="margin-bottom: 0cm" class="western">Hi ha algunes eines opcionals que potser voldr&agrave;s instal&middot;lar amb hugin:</p> <p class="western"><br /><br /> </p> <p class="western">autopano-sift</p> <p class="western">	Una eina que automatitza la part m&eacute;s avorrida de la feina de crear una panor&agrave;mica: posar els punts de control.</p> <p class="western">	Nota: haur&agrave;s de canviar el nom de l&#39;executable a les prefer&egrave;ncies del hugin per &ldquo;autopanog&rdquo;, per que el que ve per defecte est&agrave; equivocat. A vegades funciona be, altres haur&agrave;s d&#39;afegir punts de control manualment o l&iacute;nies horitzontals/verticals, altres vegades no funciona.</p> <dl><dt class="western">binfmt-support  	</dt><dd class="western"> 	Com que autopano-sift corre en entorn mono, necessitar&agrave;s aix&ograve; 	per executar-lo com un binari normal</dd><dt class="western"> 	enblend  	</dt><dd class="western"> 	Reempla&ccedil;ar-la per l&#39;eina que ve amb hugin per ajuntar les 	imatges, per que tindreu millors resultats</dd><dd class="western"> 	<br /> 	</dd><dd class="western" style="margin-left: 0cm"> 	Un problema important que he tingut &eacute;s que el hugin m&#39;ha 	demanat un &ldquo;factor d&#39;escap&ccedil;ament&rdquo; que &eacute;s 	proporcional a la mida del sensor de la c&agrave;mera, per&ograve; 	que no he trobat en lloc cap documentaci&oacute; que expliqui qu&egrave; 	vol dir. Si et trobes amb aquest problema, has d&#39;aconseguir la mida 	diagonal del CCD de la c&agrave;mera en mm i calcular 43.3/diagonal. 	Si vols informacio sobre el tema, a <a href="http://www.dpreview.com/learn/?/key=sensor%20sizes">aquesta 	p&agrave;gina</a> trobar&agrave;s una bona explicaci&oacute; sobre 	les mides dels CCD&#39;s.  Al mateix lloc, trobar&agrave;s la informaci&oacute; 	de la majjoria de c&agrave;meres. So no poses el valor correcte, 	probablement no aconseguiras un bon resultat.</dd><dd class="western" style="margin-left: 0cm"> 	Et recomano que llegeixis tamb&eacute; <a href="http://exolucere.ca/articles/create-panorama">aquest 	art&iacute;cle</a>, que explica com ferservir autopano-sift i el 	canvi de l&#39;eina d&#39;ajuntar imatges, o d&oacute;na algunes bones 	pistes. Fes alguns experiments i et sorprendran els resultats!</dd></dl> <p style="margin-bottom: 0.5cm" class="western"> <br /><br /> </p> <p style="margin-bottom: 0.5cm" class="western">I per acabar un exempre d&#39;una panor&agrave;mica de 360&ordm; que he creat amb 23 fotos que vaig de des del cap d&#39;amunt del  <a href="http://en.wikipedia.org/wiki/Arthur%27s_Seat,_Edinburgh">Arthur&rsquo;s Seat hill</a> a Edinburgh. Els punts de control els vaig posar amb autopano-sift, i despr&eacute;s vaig afegir algunes l&iacute;nies horitzontals per posar l&#39;horitz&oacute; al seu lloc, i algunes de verticals pel mon&ograve;lit. La uni&oacute; final est&agrave; feta amb enblend, i el toc final es retallar-la i convertir-la a JPEG ambel GIMP i copiar-hi les cap&ccedil;aleres EXIF amb jhead.</p> <p style="margin-bottom: 0.5cm" class="western"><a href="http://debaday.debian.net/wp-content/uploads/2007/07/00387_pano_small.jpg"><font color="#000080"><img src="http://debaday.debian.net/wp-content/uploads/2007/07/00387_pano_small.jpg" border="1" alt="Arthur&#39;s Seat Hill panorama" width="569" height="59" align="bottom" /></font></a></p> <p style="margin-bottom: 0.5cm" class="western">Hugin est&agrave; disponible a de Debian des de Etch, i a Ubuntu des de Edgy.</p>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Varis
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

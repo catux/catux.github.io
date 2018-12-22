@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Com instal·lar programari
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2010-09-30 03:38:25
+    
+                per
+                
+        Sachiel
+    
+            </h3>
+
+            <p>
+                
+        <p><em>Un article de <a href="http://www.how-to-linux.net/install-software">How To Linux</a> traduït a la web de Catux.</em></p>
+<div class="post-bodycopy clearfix" />
+<p>Acabes d'instal·lar el teu Linux, i tot i que té un munt d'aplicacions instal·lades, vols instal·lar noves aplicacions com per exemple alguns jocs, un reproductor de vídeo més xulo o un client de twitter. Per fer-ho, tens tres opcions:</p>
+<p> </p>
+
+<p> </p>
+<ul>
+<li>Instal·lar amb el codi font (la manera "tradicional, més complicada)</li>
+<li>Instal·lar amb paquets (simple i efectiva)</li>
+<li>Altres tipus d'instal·lacions</li>
+</ul>
+</div>
+<div class="post-bodycopy clearfix">
+<h2>Instal·lar amb el codi font</h2>
+<p>Per entendre com és una instal·lació utilitzant el codi font, ho compararem amb cuinar. Si vols menjar:</p>
+<ol>
+<li>Aconsegueixes els ingredients.</li>
+<li>Aconsegueixes una recepta.</li>
+<li>Cuines els ingredients seguint la recepta.</li>
+<li>Ja tens el menjar preparat per ser engolit!</li>
+</ol>
+<p>Amb el programari, el procés seria:</p>
+<ol>
+<li>Aconsegueixes el codi font.</li>
+<li>Aconsegueixes els instruccions de configuració i compilació.</li>
+<li>Compiles el codi font seguint les instruccions.</li>
+<li>Ja tens el programari preparat per executar-se!</li>
+</ol>
+<p><img src="images/stories/cuinar-menjar-vs-compilar-programari.png" border="0" alt="COmparació del procés de cuinar amb el de compilar" title="COmparació del procés de cuinar amb el de compilar" width="680" height="409" /></p>
+<p>Les fonts i les instruccions de configuració i compilació normalment les subministra el desenvolupador del programari. Per exemple, mentre estàs navegant descobreixes en una pàgina web un nou programa que t'agradaria provar. Si te'n vas a la secció de descàrrega, segurament trobis un arxiu comprimit amb tot el necessari per instal·lar-lo, incloses les instruccions per "cuinar-lo" (compilar-lo).</p>
+<p>Avantatges:</p>
+<ul>
+<li>Obtens la versió més recent del programa.</li>
+<li>Durant l'etapa de compilació, de manera opcional pors personalitzar el programa. Pots habilitar funcionalitats extres o desactivar les que no necessitis. És com afegir una mica de sal o de pebre al teu plat preferit.</li>
+</ul>
+<p>Inconvenients:</p>
+<ul>
+<li>És un procés una mica tediós, ja que has de buscar tu mateix les fonts i les instruccions, i després compilar-ho.</li>
+<li>Potser necessites instal·lar abans alguna altre cosa (dependències) per poder compilar el programa.</li>
+</ul>
+<p>Si ets un usuari experimentat o amb ganes d'aprendre, potser que prefereixis instal·lar alguns programes a partir del codi font. Si no, segurament optaràs per instal·lar el programari a partir de paquets.</p>
+</div>
+<div class="post-bodycopy clearfix">
+<h2>Instal·lar amb paquets</h2>
+<p>Si instal·lar a partir del codi font es com cuinar el teu propi àpat, instal·lar utilitzant paquets és com demanar menjar a domicili. Però gratis.</p>
+<p>Repetint la analogia amb el món del menjar (no us entra gana?), quan demanes menjar fas:</p>
+<ol>
+<li>Truques al restaurant.</li>
+<li>Demanes si tenen el menjar que vols.</li>
+<li>Si el tenen, fas la comanda.</li>
+<li>El menjar t'arriba preparat a casa, llest per fer-hi queixalada.</li>
+</ol>
+<p>Instal·lar programari amb un gestor de paquets consisteix en:</p>
+<ol>
+<li>Executar el gestor de paquets.</li>
+<li>Buscar el programari per nom, o descripció, paraules clau, etc.</li>
+<li>Executar la opció de instal·lar-lo.</li>
+<li>I el programa automàticament es descarrega i s'instal·la, preparat per funcionar.</li>
+</ol>
+<p><img src="images/stories/menjar-domicili-vs-gestor-paquets.png" border="0" alt="Utilitzar un gestor de paquets és com demanar menjar a domicili" title="Utilitzar un gestor de paquets és com demanar menjar a domicili" /></p>
+<p>Per tant, en comptes de buscar i descarregar el codi font i les instruccions, només has d'utilitzar el gestor de paquets. El gestor de paquets que hauries d'utilitzar depèn de la teva distribució de Linux, perquè cada una utilitza un format de paquets o un gestor diferent.</p>
+<table border="0">
+<caption>Exemples de gestors de paquets<br /> </caption> <thead> 
+<tr>
+<th>Distribució</th> <th>Format del paquet<br /></th> <th>Gestor de paquets per defecte*</th>
+</tr>
+</thead> <tfoot> 
+<tr>
+<td>*Mostra només les interfícies gràfiques que l'usuari utilitzarà per defecte, no les versions per línia de comandes.</td>
+</tr>
+</tfoot> 
+<tbody>
+<tr>
+<td>Ubuntu</td>
+<td>DEB</td>
+<td>Synaptic</td>
+</tr>
+<tr>
+<td>Fedora</td>
+<td>RPM</td>
+<td>Package Manager for GNOME</td>
+</tr>
+<tr>
+<td>Linux Mint</td>
+<td>DEB</td>
+<td>Synaptic</td>
+</tr>
+<tr>
+<td>OpenSUSE</td>
+<td>RPM</td>
+<td>YaST2</td>
+</tr>
+</tbody>
+</table>
+<p>Sí, és tan fàcil com sona. El gestor de paquets sap d'on ha de treure el programari "pre-cuinat" (d'uns llocs anomenats repositoris), i fa tots els passos necessaris en lloc teu. Funcionen tant bé que són la forma recomanada d'instal·lar programari en moltes distribucions, per sobre de la instal·lació manual, ja que és més fàcil mantenir la coherència del sistema i el seu manteniment. A vegades el gestor de paquets pot no saber d'on treure el programari que tu vols (no es troba als seus repositoris), però en aquest cas pots afegir-li nous repositoris o descarregar directament el paquet de la pàgina de l'autor (això passa per exemple amb l'Skype). En qualsevol cas, segurament estarà explicat a la web del programari com fer-ho, i és un procés bastant sencill, així que no et preocupis :).</p>
+<p>Avantatges:</p>
+<ul>
+<li>Molt fàcil, només uns quants clics i el programa està instal·lat i funcionant.</li>
+<li>Si el programa necessita d'altres programes per funcionar (dependències), el gestor de paquets s'en cuida i les instal·la automàticament.</li>
+</ul>
+<p>Inconvenients:</p>
+<ul>
+<li>No pots personalitzar i optimitzar el programa. Però normalment ja estan compilats amb la major part dels extres, per poder fer contents a la majoria dels usuaris.</li>
+<li>Probablement la versió instal·lada no serà la versió més nova i recent.</li>
+</ul>
+<h2>Altres instal·lacions</h2>
+<p>No és molt comú, però a vegades et pots trobar amb altres maneres d'instal·lar programari en Linux. No entrarem en detall, però val la pena un petita descripció per que estiguis preparat quan en trobis en aquesta situació.</p>
+</div>
+<div class="post-bodycopy clearfix">
+<h3>No necessiten instal·lació</h3>
+<p>En alguns casos,el programa no necessita instal·lar res. Simplement descomprimeixes una pila de fitxers que formen el programa, i executar el fitxer principal (normalment està explicat al fitxer README que acompanya al programa).</p>
+<h3>Instal·lació personalitzada</h3>
+<p>Algun programari inclou el seu propi instal·lador. Per tant, has d'executar aquest instal·lador en comptes del gestor de paquets, que et guiarà pel procés d'instal·lació. Aquesta és la manera a la que estan més acostumats els usuaris de Windows, on cada programa sol venir amb un assistent d'instal·lació.</p>
+</div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Iniciació
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

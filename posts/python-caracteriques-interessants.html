@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Python: característiques interessants
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2007-07-27 22:39:42
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <p>Python &eacute;s un llenguatge de programaci&oacute; molt entenedor, per&ograve; que a la vegada t&eacute; caracter&iacute;stiques que el fan molt interessant.</p><p><br />A vegades un es pot quedar amb la part m&eacute;s superficial del llenguatge. De fet, amb aquesta part, ja es pot fer tot, per&ograve; conv&eacute; tenir a m&agrave; &quot;m&eacute;s pot&egrave;ncia&quot; ja sigui per fer tasques de forma m&eacute;s f&agrave;cil com per entendre codi d&#39;altra gent.</p><p><br />Aqu&iacute; es fa una petita enumeraci&oacute; de caracter&iacute;stiques/sintaxis que no s&oacute;n molt naturals de llegir, o que podem descon&egrave;ixer que Python t&eacute; aix&ograve;.</p>Python &eacute;s un llenguatge de programaci&oacute; molt entenedor, per&ograve; que a la vegada t&eacute; caracter&iacute;stiques que el fan molt interessant.<br />A vegades un es pot quedar amb la part m&eacute;s superficial del llenguatge. De fet, amb aquesta part, ja es pot fer tot, per&ograve; conv&eacute; tenir a m&agrave; &quot;m&eacute;s pot&egrave;ncia&quot; ja sigui per fer tasques de forma m&eacute;s f&agrave;cil com per entendre codi d&#39;altra gent.<br /><br />Aqu&iacute; es fa una petita enumeraci&oacute; de caracter&iacute;stiques/sintaxis que no s&oacute;n molt naturals de llegir, o que podem descon&egrave;ixer que Python t&eacute; aix&ograve;.<br /><br /><h2>map</h2>Igual que Lisp: executa una funci&oacute; sobre cada element de la llista.<br /><span class="code">&gt;&gt;&gt; import math<br />&gt;&gt;&gt; l=[1,2,3,4,5,6]<br />&gt;&gt;&gt; map(math.sqrt,l)</span><br /><br />O un altre exemple:<br /><span class="code">&gt;&gt;&gt; import string<br />&gt;&gt;&gt; a=[&quot;hola&nbsp; &quot;,&quot;&nbsp;&nbsp; bon dia&nbsp;&nbsp; &quot;]<br />&gt;&gt;&gt; map(string.strip,a)<br />[&#39;hola&#39;, &#39;bon dia&#39;]<br /></span><br />(aplica una funci&oacute; sobre cada element de la llista)<br /><br /><h2>yield</h2>Retorna el valor, per&ograve; es pot seguir executant la funci&oacute; amb .next()<br /><span class="code">#!/usr/bin/python<br /><br />def comptador():<br />&nbsp;&nbsp;&nbsp; i=0<br /><br />&nbsp;&nbsp;&nbsp; for i in xrange(5):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print &quot;Abans yield&quot;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yield i*i<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print &quot;Despres yield&quot;<br /><br />a=comptador()<br />print a.next()<br />print a.next()<br />print a.next()<br />print a.next()<br />print a.next()<br /></span><br />Mant&eacute; l&#39;estat de les variables. &eacute;s el qu&egrave; fa servir, per exemple, xrange (range retorna una llista i punt, xrange retorna element a element i &eacute;s molt m&eacute;s &ograve;ptim per fer coses tipus for i in xrange(1,100)<br /><br />&lt;H2&gt;Comprehension lists&lt;/H2&gt;<br />(http://www.secnetix.de/~olli/Python/list_comprehensions.hawk)<br /><br />B&agrave;sicament: executa un bucle sobre una llista, permet posar una condici&oacute; if i fer operacions sobre l&#39;element que retorna de la llista. Retorna una nova llista.<br /><br />Exemple 1:<span class="code"><br />&gt;&gt;&gt; V = [2**i for i in xrange(13)]<br />&gt;&gt;&gt; M = [x for x in xrange(10) if x % 2 == 0]<br />&gt;&gt;&gt; print V<br />[1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096]<br />&gt;&gt;&gt; print M<br />[0, 2, 4, 6, 8]<br /></span><br /><br />Tamb&eacute; pot ser una mica m&eacute;s embolicat:<br /><span class="code">&gt;&gt;&gt; V = [(2**i,i) for i in xrange(13)]<br />&gt;&gt;&gt; print V<br />[(1, 0), (2, 1), (4, 2), (8, 3), (16, 4), (32, 5), (64, 6), (128, 7), (256, 8), (512, 9), (1024, 10), (2048, 11), (4096, 12)]<br /></span><br /><br /><h2>Closures</h2>Recomano llegir almenys el primer par&agrave;graf, per entendre qu&egrave; s&oacute;n les closures:<br />http://en.wikipedia.org/wiki/Closure_(computer_science)<br /><br />Tamb&eacute; &eacute;s for&ccedil;a interessant la discusi&oacute;:<br />http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-talk/67618<br /><br />Una petita explicaci&oacute;: les closures s&oacute;n quan una funci&oacute; pot accedir a l&#39;entorn (variables, objectes, etc.) de la funci&oacute; que el crida. Mal utilitzat pot ser molt dolent: trenca les regles b&agrave;siques d&#39;encapsulaci&oacute; de la programaci&oacute; imperativa i de la programaci&oacute; orientada a objectes. Per aix&ograve; jo no recomanaria, en general, fer-les servir.<br /><br />Les closures tenen un moment que s&oacute;n molt famoses (segurament perqu&egrave; estan molt al dia a Ruby). Per&ograve; les closures aporten poc respecte a tenir una classe. Podem llegir-ne opinions a aquest &lt;A href=&quot;http://listas.aditel.org/archivos/python-es/2007-July/022870.html&quot;&gt;email&lt;/A&gt;, o b&eacute; &lt;A href=&quot;http://listas.aditel.org/archivos/python-es/2007-July/022872.html&quot;&gt;aquest.&lt;/A&gt;<br /><br />Tinc pendent de donar-hi algunes voltes m&eacute;s. <br /><br /><h2>Decorators</h2>(http://technofreakatchennai.wordpress.com/2007/03/08/decorators-in-python/)<br /><br />Inicialment permeten una cosa for&ccedil;a simple: afegir, a algunes funcions, un codi previ i posterior a la crida de la funci&oacute;. Per&ograve; permet, evidentment, que el codi &quot;previ&quot; i &quot;posterior&quot; sigui f&agrave;cil de posar i treure. El codi &eacute;s codi Python normal i pot modificar par&agrave;metres, el codi en s&iacute; mateix, fer logs, etc. qualsevol cosa.<br /><br />&Eacute;s com un wrapper, per&ograve; permet posar varis decoradors apilats. Tamb&eacute; &eacute;s possible fer-ho a classes: aix&iacute; enlloc de tenir N classes heredant d&#39;altres classes per tenir totes les combinacions necessaries nom&eacute;s cal afegir decoradors. <br /><span class="code">#!/usr/bin/python<br /><br />def NomDecorador(fn): #Rep el nom de la funcio que se li passa<br />&nbsp;&nbsp;&nbsp; def _inner(x): #Es crida amb el primer parametre que se li havia passat<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print &quot;Has cridat amb parametre %d pero el crido amb %d&quot; %(x,x+1)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; fn(x+1)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print &quot;Codi despres de la funcio&quot;<br />&nbsp;&nbsp;&nbsp; return _inner<br /><br />@NomDecorador<br />def myfunc(x):<br />&nbsp;&nbsp;&nbsp; print &quot;I got&quot;, x<br /><br />myfunc(5)<br /></span><br /><br /><h2>Convertir una tupla a arguments</h2>L&#39;operador * ens permet convertir una tupla a diferents par&agrave;metres a la crida d&#39;una funci&oacute;, o rebre N par&agrave;metres.<br /><span class="code">#!/usr/bin/python<br /><br />def rebre(primer,*altres):<br />&nbsp;&nbsp;&nbsp; print &quot;Primer&quot;,primer<br />&nbsp;&nbsp;&nbsp; for i in altres:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; print &quot;Opc:&quot;,i<br /><br />rebre(1,2,5,2)<br />rebre(1,*(6,8,5,2)) #com si fos rebre(1,6,8,5,2)<br /></span><br />Veure com l&#39;exemple &eacute;s doble :-) (i per tant poc pedag&ograve;gic): per un costat tenim l&#39;operador &quot;*&quot; per rebre N elements (a la l&iacute;nia &quot;def rebre&quot;) i per l&#39;altre costat tenim com enviar la tupla com si fossin arguments normals, veure &uacute;ltima l&iacute;nia.
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

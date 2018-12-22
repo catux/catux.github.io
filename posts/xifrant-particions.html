@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Xifrant particions
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-07-17 00:00:00
+    
+                per
+                
+        whats_up
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Els sistemes de xifrat s&oacute;n cada vegada m&eacute;s importants. El fet d&#39;haver de protegir les nostres dades fa que haguem de rec&oacute;rrer a m&egrave;todes de xifrat, per tal que en cas de caure en males mans no pugui ser utilitzada. <br /> <br /> Jo ja portava un temps amb la intenci&oacute; de mirar-me com fer-ho, i ara aprofitant que he acabat els ex&agrave;mens, m&#39;he pres un descans i he comen&ccedil;at a buscar com poder estar tranquil deixant les meves dades a casa quan jo no hi s&oacute;c :P <br /> <br /> Aqu&iacute; explicar&eacute; com xifrar una una partici&oacute; per tal de que si mai us robessin el disc dur o alg&uacute; aconsegu&iacute;s acc&eacute;s f&iacute;sic a la vostra m&agrave;quina, els fos &quot;impossible&quot; arribar a accedir al vostre contingut.<br /> </span><div id="article" class="article_normal"><h2>ALGUNS CONCEPTES:</h2><br /> Una &quot;device-mapper&quot; &eacute;s, per definir-ho d&#39;una forma gen&egrave;rica, una nova infraestructura(dm-crypt) que ens permet crear capes virtuals sobre dispositius de blocs. Amb aquesta eina podem arribar a fer moltes coses amb els nostres dispositius, com ara tractar dues particions com si fossin una sola, o la que tractarem que &eacute;s afegir-les-hi una capa de xifratge.<br /> <br /> En concret nosaltres crearem un nou dispositiu de blocs a /dev  en el que tot el que hi escriurem es xifrar&agrave; i tot el que hi llegim es desxifrar&agrave; autom&agrave;ticament.<br /> <br /> Muntarem el nostre sistema de fitxers de forma usual, per&ograve; si no entrem la nostra contrasenya, no podrem accedir a les nostres dades.<br /> <br /> En principi fer tot aix&ograve; amb el dm-crypt, &eacute;s for&ccedil;a millor que el sistema que utilitza el cryptoloop (tal com diu el propi mantenidor) per forces raons:<br /> <br /> -Es suporta el muntatge d&#39;arxius<br /> -No pateix els errors de programaci&oacute; del loop.c que, en no tenir mantenidor, se&#39;n troben forces<br /> -dm-crypt no dep&egrave;n de cap aplicaci&oacute; especial (util-linux)<br /> -dm-crypt usa mempool, la qual cosa el fa molt m&eacute;s estable i segur<br /> <br /> En definitiva, una &quot;device-mapper&quot; forma part de la nova tecnologia del nucli.<br /> <br /> Aqu&iacute; podeu trobar totes les defici&egrave;ncies del cryptoloop (<a href="http://lwn.net/Articles/67216/">http://lwn.net/Articles/67216/</a>)<br /> <br /> <br /> <h2>SUPORT DEL NUCLI:</h2><br /> <br /> Aquestes noves caracter&iacute;stiques es van afegir a la versi&oacute; 2.6.4 de linux, per tant necessiteu aquesta versi&oacute; o una de superior per a poder-les fer servir. <br /> <br /> Les opcions que hem d&#39;activar s&oacute;n:<br /> <br /> Primer haurem d&#39;activar la opci&oacute; que fa que ens mostri les opcions en desenvolupament:<br /> <br /> Code maturity level options ---&gt; Prompt for development and/or incomplete code/drivers<br /> <br /> Despr&eacute;s activar el device-mapper i el suport per xifrar-lo:<br /> <br /> Device Drivers ---&gt; Multi-device support (RAID and LVM) ---&gt;<br /> [*] Multiple devices driver support (RAID and LVM)<br />  Device mapper support<br />  Crypt target support<br /> <br /> Ara nom&eacute;s ens faltar&agrave; activar els algoritmes de xifrat:<br /> <br /> Cryptographic options ---&gt;<br /> Els podeu activar tots, va molt a gustos. Jo us recomano el nou &quot;AES cipher algorithms&quot;, ja que es comporta molt b&eacute; amb x86, treballa for&ccedil;a r&agrave;pid i dona un alt nivell de xifrat.<br /> <br /> Tot i aix&ograve;, potser us interessen algunes refer&egrave;ncies per acabar-vos de decidir :)<br /> <a href="http://www.saout.de/tikiwiki/tiki-index.php?page=UserPageChonhulio">http://www.saout.de/tikiwiki/tiki-index.php?page=UserPageChonhulio</a><br /> <br /> <br /> <h2>EINES D&#39;USUARI:</h2><br /> <br /> Doncs com sempre agra&iuml;m tenir una vida &quot;tant f&agrave;cil&quot; els que usem Debian i podem instal&middot;lar els dos paquets necessaris via apt-get :)<br /> <br /> Instal&middot;lem les aplicacions d&#39;usuari per al device-mapper:<br /> <br /> apt-get install dmsetup<br /> <br /> <br /> I una aplicaci&oacute; per tal que la nostra contrasenya faci millor la seva feina ;)<br /> <br /> apt-get install hashalot<br /> <br /> <br /> Per acabar podem descarregar-nos un fitxer que ens permetr&agrave; crear els nostres dispositius amb m&eacute;s facilitat:<br /> <a href="http://www.catux.org/arxius/cryptsetup.sh">cryptsetup.sh</a> <br /> o tamb&eacute; podeu fer:<br /> <br /> apt-get install cryptsetup<br /> <br /> <br /> <br /> <h2>CREACI&Oacute; DELS DISPOSITIU DM-CRYPT</h2><br /> <br /> Primer de tot haurem de triar una partici&oacute;, suposem /dev/hda5 (ha d&#39;estar desmuntada!)<br /> <br /> executem:<br /> <br /> root@wekk.net:~# sh cryptsetup.sh -c aes -h ripemd160 -y -b `blockdev --getsize /dev/hda5` create cryptdev1 /dev/hda5<br /> Enter passphrase:<br /> <br /> <br /> El que fa &eacute;s crear-nos un dispositiu anomenat cryptdev1 (/dev/mapper/cryptdev1) utilitzant l&#39;algoritme &quot;aes&quot; (podeu consultar els que suporta el vostre nucli amb cat /proc/crypto que seran els que heu afegit vosaltres abans :P), la contrasenya ser&agrave; entrada usant l&#39;algoritme hash de tipus &ldquo;ripemd160&quot; (no tinc cap prefer&egrave;ncia respecte a quina cal fer servir...)<br /> <br /> Un cop fet aix&ograve; ja disposareu del vostre dispositiu xifrat!, el formatarem ....<br /> <br /> root@wekk.net:~# mkreiserfs /dev/mapper/cryptdev1<br /> <br /> i el muntem:<br /> <br /> root@wekk.net:~# mount /dev/mapper/cryptdev1 /mnt/crypto<br /> <br /> i ja disposem de la nostra partici&oacute; xifrada!<br /> <br /> A partir d&#39;ara cada vegada que tornem a iniciar la m&agrave;quina haurem de crear el dispositiu. Si ens equivoquem al posar la contrasenya, quan intentem muntar el sistema rebrem un bonic missatge:<br /> <br /> root@wekk.net:~# sh cryptsetup.sh -c aes -h ripemd160 -y -b `blockdev --getsize /dev/hda5` create cryptdev1 /dev/hda5<br /> Enter passphrase: (la posem malament)<br /> <br /> root@wekk.net:~# mount /dev/mapper/cryptdev1 /mnt/crypto<br /> mount: you must specify the filesystem type<br /> <br /> (podem veure que amb la contrasenya erronia, no la podem muntar)<br /> <br /> Ja tenim les dades protegides de tot perill!<br /> <br /> eliminem el dispositiu, i tornem a posar la contrasenya.<br /> <br /> root@wekk.net:~# sh cryptsetup.sh remove cryptdev1<br /> root@wekk.net:~# sh cryptsetup.sh -c aes -h ripemd160 -y -b `blockdev --getsize /dev/hda5` create cryptdev1 /dev/hda5<br /> Enter passphrase:<br /> <br /> root@wekk.net:~# mount /dev/mapper/cryptdev1 /mnt/crypto<br /> <br /> <br /> <br /> <h2>CONFIGURACI&Oacute; A L&#39;ARRENCADA:</h2><br /> <br /> Si us interessa fer que cada vegada que us arrenca l&#39;ordinador es munti la partici&oacute;, podeu fer-ho aix&iacute;:<br /> <br /> <br /> #!/bin/bash<br /> <br /> case $1 in<br /> start)<br /> echo -n &quot;Iniciant dm-crypt, entra la contrasenya:&quot;<br /> /usr/local/sbin/cryptsetup.sh -c aes -h ripemd160 -b `blockdev --getsize /dev/hda5` create cryptdev1 /dev/hda5<br /> /bin/mount /dev/mapper/cryptdev1 /mnt/crypt/<br /> echo &quot;Fet!&quot;<br /> ;;<br /> <br /> <br /> <br /> <br /> stop)<br /> echo -n &quot;Eliminant dm-crypt... &quot;<br /> /bin/umount /mnt/crypt/<br /> /usr/local/sbin/cryptsetup.sh remove cryptdev1<br /> echo &quot;Fet!&quot;<br /> ;;<br /> *)<br /> <br /> echo &quot;$0 start|stop&quot;<br /> esac<br /> <br /> <br /> <br /> <br /> Aquesta seq&uuml;&egrave;ncia fa que, si amb 10 segons no s&#39;ha escrit la contrasenya, arrenqui de manera normal. <br /> <br /> <br /> root@wekk.net:~# cp cryptdev /etc/init.d/<br /> <br /> root@wekk.net:~# chmod 755 /etc/init.d/cryptdev<br /> <br /> root@wekk.net:~# update-rc.d cryptdev defaults<br /> Adding system startup for /etc/init.d/cryptdev ...<br /> /etc/rc0.d/K20cryptdev -&gt; ../init.d/cryptdev<br /> /etc/rc1.d/K20cryptdev -&gt; ../init.d/cryptdev<br /> /etc/rc6.d/K20cryptdev -&gt; ../init.d/cryptdev<br /> /etc/rc2.d/S20cryptdev -&gt; ../init.d/cryptdev<br /> /etc/rc3.d/S20cryptdev -&gt; ../init.d/cryptdev<br /> /etc/rc4.d/S20cryptdev -&gt; ../init.d/cryptdev<br /> /etc/rc5.d/S20cryptdev -&gt; ../init.d/cryptdev<br /> <br /> <br /> I a partir d&#39;ara cada vegada que arranqueu, us demanar&agrave; la contrasenya per poder muntar despr&eacute;s la partici&oacute;.<br /> <br /> El que es podria fer per estalviar-nos la contrasenya, &eacute;s passar-li l&#39;opci&oacute; &ldquo;-d arxiu&ldquo; al cryptsetup.sh, per tal d&#39;usar la clau dins &ldquo;d&#39;arxiu&rdquo; per a xifrar la partici&oacute; amb l&#39;algoritme triat. Aquesta clau es podria en un dispositiu d&#39;aquests dispositius usb que estan tant de moda, i aix&iacute; aconseguirem que si no hi ha el dispositiu posat, el pc no arranqui o simplement no es munti la partici&oacute; xifrada.<br /> <br /> <br /> Una altra cosa molt interessant de fer, &eacute;s que la swap tamb&eacute; sigui xifrada. D&#39;aquesta manera aconseguim estar segurs que a la part del disc que s&#39;ha usat com a mem&ograve;ria, tampoc hi han dades sensibles.<br /> <br /> Proveu de fer la prova i mirar que hi ha actualment a la partici&oacute; swap executant:<br /> strings /dev/hdc3  (on hdc3 &eacute;s la partici&oacute; de la swap)<br /> segur que us endureu alguna desagradable sorpresa.<br /> <br /> Per fer-ho haurem de treure del nostre /etc/fstab la l&iacute;nia que activa la swap<br /> <br /> /dev/hda6 none swap sw 0 0<br /> <br /> <br /> i afegirem aquesta altra seq&uuml;&egrave;ncia amb el nom de cryptswap<br /> <br /> <br /> #!/bin/bash<br /> <br /> case $1 in<br /> start)<br /> #Iniciant swap-crypt<br /> /usr/local/sbin/cryptsetup.sh -c aes -h ripemd160 -d /dev/random -b `blockdev --getsize /dev/hda6` create cryptswap /dev/hda6<br /> /sbin/mkswap /dev/mapper/cryptswap<br /> /sbin/swapon /dev/mapper/cryptswap<br /> ;;<br /> <br /> stop)<br /> #Iniciant swap-crypt<br /> /sbin/swapoff /dev/mapper/cryptswap<br /> /usr/local/sbin/cryptsetup.sh -c aes -h ripemd160 -d /dev/random -b `blockdev --getsize /dev/hda6` create cryptswap /dev/hda6<br /> <br /> ;;<br /> *)<br /> <br /> echo &quot;$0 start|stop&quot;<br /> esac<br /> <br /> <br /> <br /> <br /> root@wekk.net:~# cp cryptswap /etc/init.d/<br /> <br /> root@wekk.net:~# chmod 755 /etc/init.d/cryptswap<br /> <br /> root@wekk.net:~# update-rc.d cryptswap defaults<br /> Adding system startup for /etc/init.d/cryptswap ...<br /> /etc/rc0.d/K20cryptswap -&gt; ../init.d/cryptswap<br /> /etc/rc1.d/K20cryptswap -&gt; ../init.d/cryptswap<br /> /etc/rc6.d/K20cryptswap -&gt; ../init.d/cryptswap<br /> /etc/rc2.d/S20cryptswap -&gt; ../init.d/cryptswap<br /> /etc/rc3.d/S20cryptswap -&gt; ../init.d/cryptswap<br /> /etc/rc4.d/S20cryptswap -&gt; ../init.d/cryptswap<br /> /etc/rc5.d/S20cryptswap -&gt; ../init.d/cryptswap<br /> <br /> <br /> <br /> Ara per acabar d&#39;assegurar les vostres dades sensibles que havien estat emmagatzemades de forma insegura al vostre disc, una bona acci&oacute; a dur a terme &eacute;s esborrar de forma segura tot el vostre disc.<br /> Podeu utilitzar <a href="http://dban.sourceforge.net/">aquest</a> cd live.<br /> <br /> Dons ja ho sabeu, si feu tot aix&ograve;, ja podreu anar a dormir tranquils ;)!!<br /> <br /> <h3>Refer&egrave;ncies: <a href="http://www.saout.de/misc/dm-crypt/">http://www.saout.de/misc/dm-crypt/</a></h3></div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Nou article: Acceleració a les ATI en Debian
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-07-28 00:00:00
+    
+                per
+                
+        EliziR
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Si tens una ATI i li vols ficar acceleraci&oacute; sota Debian (tant unstable, testing o estable), aqu&iacute; podr&agrave;s trobar un article de com posar-li.<br /> <br /> La veritat &eacute;s que fa temps que tinc la ATI, per&ograve; fins ara gaireb&eacute; no havia probat d&#39;instalar-li l&#39;acceleraci&oacute; (i &eacute;s que s&#39;acosta la Game-party!!!).<br /> <br /> Espero que alg&uacute; se&#39;n pugui beneficiar, i no nom&eacute;s jo :P</span> <h2>0 - Introducci&oacute;</h2><br /> Si teniu una ATI, segurament comprendreu que &eacute;s una mica complicat ficar-li acceleraci&oacute; sota GNU/Linux. I un dels motius &eacute;s precisament que la mateixa casa, no d&oacute;na gaire suport ni facilitats per a controladors de GNU/Linux (nVidia no fa tant que va comen&ccedil;ar a implicar-s&#39;hi m&eacute;s). Per aix&ograve;, explicar&eacute; com ho vaig fer jo per configurar l&rsquo;acceleraci&oacute; de la meva ATI Radeon 9600 sota Debian.<br /> Aquest article no solament explica com fer-ho per la 9600, sin&oacute; que serveix per a:<br /> <br /> <strong>ATI Radeon 8500, 9000, 9100, 9200, 9500, 9600, 9700, 9800, Mobility M9, M9+, M10 i la ATI FireGL 8700, 8800, E1, E2, X1, X2, Z1</strong><br /> <br /> Per cert, &eacute;s indiferent quin tipus de Debian tingueu instal&bull;lat (unstable, testing o stable), ja que en les seq&uuml;&egrave;ncies, es detecta autom&agrave;ticament quina versi&oacute; de l&#39;XFree86 es posseeix, i es baixa els corresponents controladors per compilar.<br /> <br /> Aquest article, s&#39;ha creat mentre els controladors d&#39;ATI estaven per la versi&oacute; 3.9 (26/05/2004), aix&iacute; que fins que no surti la nova versi&oacute;, no sabrem si continua funcionant... Entre d&#39;altres coses, pel canvi de llic&egrave;ncia de les <a href="http://www.xfree86.org/">XFree86</a>, que far&agrave; que no superi la filosofia de Debian, i a partir de la versi&oacute; 4.3, Debian treballar&agrave; amb altres projectes. Ja veurem!!! (espero que no sigui poc despr&eacute;s de fer l&#39;article...).<br /> <br /> No us espanteu si l&#39;article &eacute;s llarg. Ho &eacute;s perqu&egrave; he ficat molt codi entremig, no perqu&egrave; sigui complicat (no us podreu queixar, us ho he deixat bastant mastegat).<br /> <br /> <br /> <br /> <h2>1 - Requeriments del sistema</h2><br /> Primer de tot, us recomanaria dues coses. La primera, que traieu totes les altres proves per instal&bull;lar l&#39;acceleraci&oacute;, ja que poden crear problemes durant aquesta instal&bull;laci&oacute;. I la segona, que feu una c&ograve;pia de seguretat de l&#39;arxiu /etc/X11/XF86Config-4, ja que &eacute;s l&#39;arxiu que cont&eacute; la vostra configuraci&oacute; actual de les &quot;X&quot;. Aix&iacute; si falla alguna cosa, podreu recuperar la vostra configuraci&oacute; f&agrave;cilment. I com que us he dit que us ho havia deixat mastegadet...:<br /> <br /> root@tarat:~# cp /etc/X11/XF86Config-4 /etc/X11/XF86Config-4.anterior<br /> <br /> Una cosa molt important, &eacute;s la versi&oacute; del gcc, ja que ha de ser la mateixa versi&oacute; amb la qual s&#39;ha compilat el nucli. Si voleu saber les versions de cadascun:<br /> <br /> root@tarat:~# gcc --version<br /> root@tarat:~# cat /proc/version<br /> <br /> Pel que fa al nucli, ha de tenir suport per a l&#39;AGP (s&ograve;col on es posa la targeta de v&iacute;deo). I per als nuclis 2.6.x, no n&#39;hi ha prou amb el m&ograve;dul agpgart, sin&oacute; que tamb&eacute; s&#39;ha de tenir activat l&#39;espec&iacute;fic per a cada placa mare (via-agp, nvidia-agp, ...).<br /> <br /> &Eacute;s evident, que tamb&eacute; es necessiten les fonts del nucli. Aix&iacute; que si encara no t&#39;atreveixes a baixar-te el &quot;full&quot;, pots provar d&#39;instal&bull;lar-te-les via apt-get. &Eacute;s una cosa que no he fet mai =) Per&ograve; he sentit que no va tant malament, encara que deu portar molta brossa innecess&agrave;ria... Podeu optar per algun dels seg&uuml;ents:<br /> <br /> root@tarat:~# apt-get install kernel-source-2.x.y<br /> <br /> O<br /> <br /> root@tarat:~# apt-get install kernel-image-2.x.y-.....<br /> <br /> Jo t&#39;animo a que vagis a <a href="http://www.kernel.org/">www.kernel.org</a> i t&#39;animis a compilar :P<br /> <br /> Una de les opcions m&eacute;s a tenir en compte al kernel s&oacute;n (exemples extrets del kernel de linux 2.6.10):<br /> <br /> Secci&oacute; Loadable module support (&eacute;s essencial donar suport pel m&ograve;duls):<br /> <br /> <br /> [*] Enable loadable module support<br /> [*] __Module unloading<br /> [ ] ____Forced module unloading<br /> [ ] __Module versioning support (EXPERIMENTAL)<br /> [ ] __Source checksum for all modules<br /> [*] __Automatic kernel module loading<br /> <br /> <br /> Secci&oacute; Device Drivers/Character devices:<br /> <br /> <br />      [ ] Non-standard serial port support <br />      ____Serial drivers  ---&gt; <br />      [*] Legacy (BSD) PTY support<br />      (256) Maximum number of legacy PTY in use<br />      {*} Parallel printer support <br />      [ ] __Support for console on line printer  <br />      { } Support for user-space parallel port device drivers<br />      { } Texas Instruments parallel link cable support  <br />      ____IPMI  ---&gt;<br />      ____Watchdog Cards  ---&gt;<br />      { } Intel/AMD/VIA HW Random Number Generator support <br />      {*} /dev/nvram support     <br />      {*} Enhanced Real Time Clock Support<br />      { } Double Talk PC internal speech card support<br />      { } Siemens R3964 line discipline  <br />      { } Applicom intelligent fieldbus card support<br />      { } Sony Vaio Programmable I/O Control Device support (EXPERIMENTAL)<br />      ____Ftape, the floppy tape device driver  ---&gt;<br />      {*} /dev/agpgart (AGP Support)    <br />      { } __ALI chipset support    <br />      { } __ATI chipset support  <br />      { } __AMD Irongate, 761, and 762 chipset support       <br />      { } __AMD Opteron/Athlon64 on-CPU GART support  <br />      { } __Intel 440LX/BX/GX, I8xx and E7x05 chipset support<br />      { } __Intel i865 chipset support <br />      {*} __NVIDIA nForce/nForce2 chipset support<br />      { } __SiS chipset support  <br />      { } __Serverworks LE/HE chipset support<br />      { } __VIA chipset support<br />      { } __Transmeta Efficeon support<br />      [ ] Direct Rendering Manager (XFree86 4.1.0 and higher DRI support)<br />      { } ACP Modem (Mwave) support<br />      { } RAW driver (/dev/raw/rawN) (OBSOLETE)    <br />      [ ] HPET - High Precision Event Timer (NEW)<br />      { } Hangcheck timer<br /> <br /> <br /> On hi ha seleccionat NVIDIA nForce/nForce2 chipset support, s&#39;ha de posar el vostre xipset corresponent (i no cal ficar suport per a DRI).<br /> <br /> De vegades hi ha gent que conf&oacute;n la secci&oacute; Device Drivers/Graphics support, on no cal especificar la nostra targeta, amb ficar els VESA ja n&#39;hi ha prou:<br /> <br />      <br />      [*] Support for frame buffer devices                           <br />      { } __Cirrus Logic support                                     <br />      { } __Permedia2 support                                        <br />      { } __CyberPro 2000/2010/5000 support <br />      [ ] __Chips 69000 display support      <br />      [ ] __IMS Twin Turbo display support    <br />      { } __VGA 16-color graphics support   <br />      [*] __VESA VGA graphics support   <br />      { } __Hercules mono graphics support         <br />      { } __nVidia Riva support    <br />      { } __Matrox acceleration    <br />      { } __ATI Radeon display support (Old driver)<br />      { } __ATI Radeon display support     <br />      { } __ATI Rage128 display support    <br />      { } __ATI Mach64 display support        <br />      { } __SiS acceleration                     <br />      { } __NeoMagic display support         <br />      { } __IMG Kyro support                   <br />      { } __3Dfx Banshee/Voodoo3 display support  <br />      { } __3Dfx Voodoo Graphics (sst1) support<br />      { } __Trident support                 <br />      { } Virtual Frame Buffer support (ONLY FOR TESTING!)<br />      ____Console display driver support  ---&gt; <br />      ____Logo configuration  ---&gt;<br /> <br /> <br /> Faran falta alguns paquets addicionals, que en un moment o altre de la instal&bull;laci&oacute; es faran servir. Aix&iacute; que suggereixo que s&#39;instal&bull;lin abans. De tota manera els comentar&eacute; al llarg de l&#39;article quan s&#39;hagin de fer servir.<br /> <br /> wget - Serveix per poder baixar arxius d&#39;Internet<br /> debhelper - &Eacute;s un paquet que cont&eacute; utilitats pel debian/rules<br /> dpkg-dev - Eines per descomprimir, construir i pujar paquets de Debian<br /> rpm - S&#39;utilitza per poder treballar amb paquets .rpm<br /> bzip2 - Eina per comprimir/descomprimir arxius .bz2<br /> kernel-package - Per satisfer algunes depend&egrave;ncies<br /> tar - Eina per a empaquetar arxius<br /> vim - Fant&agrave;stic editor d&#39;arxius<br /> <br /> (Si veieu que en fa falta algun m&eacute;s, si us plau envieu-me un correu electr&ograve;nic)<br /> <br /> Per instal&bull;lar-los ara:<br /> <br /> root@tarat:~# apt-get install wget debhelper dpkg-dev rpm bzip2 kernel-package tar vim<br /> <br /> <br /> <br /> <h2>2 - Baixem les fonts del controlador</h2><br /> La veritat &eacute;s que ja existeixen alguns controladors pre-compilats i que ens estalvien alguns passos, per&ograve; he preferit que... B&eacute;, per alguna cosa fem servir Debian no??? :P Primer, millor que creem un directori buit per treballar, per exemple que es digui &quot;/usr/src/ati&quot;:<br /> <br /> root@tarat:~# mkdir /usr/src/ati<br /> root@tarat:~# cd /usr/src/ati<br /> root@tarat:/usr/src/ati#<br /> <br /> Llavors, ja podem baixar aquests dos paquets i els fiquem dins el directori:<br /> <br /> <a href="http://www.catux.org/arxius/fglrx-installer_3.9.0-5.dsc">fglrx-installer_3.9.0-5.dsc</a><br /> <a href="http://www.catux.org/arxius/fglrx-installer_3.9.0-5.tar.gz">fglrx-installer_3.9.0-5.tar.gz</a><br /> <br /> Ara, descomprimim utilitzant: (per fer-ho, es necessita tenir instal&bull;lat el paquet dpkg-dev)<br /> <br /> root@tarat:/usr/src/ati# dpkg-source -x fglrx-installer_3.9.0-5.dsc<br /> dpkg-source: extracting fglrx-installer in fglrx-installer-3.9.0<br /> root@tarat:/usr/src/ati#<br /> <br /> Aix&ograve; (segons la versi&oacute; de les fonts), ens crea un directori anomenat fglrx-installer-3.9.0. Ara ens disposarem a utilitzar una seq&uuml;&egrave;ncia, que ens mirar&agrave; la versi&oacute; del nostre XFree86, i es baixar&agrave; els seus controladors de la p&agrave;gina oficial d&rsquo;ATI. El que passa &eacute;s que hi ha un petit problema amb la seq&uuml;&egrave;ncia ;_( i far&agrave; que es baixin els paquets i al final ens donar&agrave; un error, per&ograve; &eacute;s molt f&agrave;cil de solucionar, aix&iacute; que no us espanteu!<br /> <br /> Per fer-ho, entrem al directori creat i fem: (necessitarem el paquet wget per baixar-los, el debhelper, que &eacute;s un conjunt de programes pel debian/rules i l&#39;rpm, que s&oacute;n utilitats per a treballar aquest tipus de paquets, i el bzip2 que &eacute;s un sistema de compressi&oacute;/descompressi&oacute; d&#39;arxius)<br /> <br /> root@tarat:/usr/src/ati# cd fglrx-installer-3.9.0<br /> root@tarat:/usr/src/ati/fglrx-installer-3.9.0# debian/rules binary<br /> wget http://www2.ati.com/drivers/linux/fglrx-4.3.0-3.9.0.i386.rpm<br /> --03:35:09--  http://www2.ati.com/drivers/linux/fglrx-4.3.0-3.9.0.i386.rpm<br />            =&gt; `fglrx-4.3.0-3.9.0.i386.rpm&#39;<br /> Resolent www2.ati.com... 195.53.49.18, 195.53.49.8<br /> Conectant a www2.ati.com[195.53.49.18]:80... conectat.<br /> HTTP: Petici&oacute; enviada, esperant resposta... 200 OK<br /> Longitud:4,285,357 [audio/x-pn-realaudio-plugin]<br /> <br /> 100%[================================================================================&gt;] 4,285,357      4.65K/s    ETA 00:00<br /> <br /> 03:50:24 (4.58 KB/s) - `fglrx-4.3.0-3.9.0.i386.rpm&#39; guardat [4285357/4285357]<br /> wget http://www2.ati.com/drivers/linux/Linux_390.html<br /> --03:50:24--  http://www2.ati.com/drivers/linux/Linux_390.html<br />            =&gt; `Linux_390.html&#39;<br /> Resolent www2.ati.com... 195.53.49.8, 195.53.49.18<br /> Conectant a www2.ati.com[195.53.49.8]:80... conectat.<br /> <br /> HTTP: Petici&oacute; enviada, esperant resposta... 200 OK<br /> Longitud:15,753 [text/html]<br /> <br /> 100%[================================================================================&gt;] 15,753        20.65K/s<br /> <br /> 03:50:26 (20.61 KB/s) - `Linux_390.html&#39; guardat [15753/15753]<br /> dh_testdir<br /> rpm2cpio fglrx-4.3.0-3.9.0.i386.rpm | cpio -i -d --no-preserve-owner<br /> 24099 blocks<br /> # unpack binaries<br /> rm -f usr/X11R6/bin/fireglcontrol.qtstatic.*<br /> <br /> bzip2 -d -v usr/X11R6/bin/*.bz2<br />   usr/X11R6/bin/fireglcontrol.qt2.gcc2.96.bz2: done<br />   usr/X11R6/bin/fireglcontrol.qt3.gcc3.2.bz2:  done<br /> chmod a+x usr/X11R6/bin/fireglcontrol.*<br /> # move licenses away from binary dir<br /> if [ ! -d usr/share/doc/fglrx ]; then \<br />   mkdir -p usr/share/doc/fglrx; \<br />   mv usr/X11R6/bin/LICENSE.* usr/share/doc/fglrx; \<br /> fi<br /> # remove exec bit from files that don&#39;t deserve it<br /> find usr/X11R6/include \<br />      usr/X11R6/lib \<br />      usr/share usr/src opt -type f | xargs chmod -x<br /> find lib -not -name &quot;*.sh&quot; -type f | xargs chmod -x<br /> find lib      -name &quot;*.sh&quot; -type f | xargs chmod +x<br /> touch build-stamp<br /> dh_testdir<br /> dh_testroot<br /> dh_clean -k<br /> dh_installdirs<br /> # Create the directories to install into<br /> dh_installdirs -pfglrx-4.3.0-driver \<br />         usr/X11R6 \<br />         usr/X11R6/bin \<br />         usr/X11R6/lib \<br />         usr/X11R6/lib/modules<br /> dh_installdirs -pfglrx-4.3.0-driver-dev \<br />         usr/X11R6 \<br /> <br />         usr/X11R6/include \<br />         usr/X11R6/lib \<br />         usr/include<br /> dh_installdirs -pfglrx-4.3.0-kernel-src \<br />         usr/src/modules/fglrx-4.3.0-3.9.0 \<br />         usr/src/modules/fglrx-4.3.0-3.9.0/debian<br /> dh_installdirs -A -pfglrx-4.3.0-control-qt2 -pfglrx-4.3.0-control-qt3 \<br />         usr/X11R6 \<br />         usr/X11R6/bin \<br />         usr/share \<br />         usr/share/applnk \<br />         usr/share/gnome \<br />         usr/share/icons \<br />         usr/share/pixmaps<br /> dh_installdirs -pfglrx-4.3.0-sources \<br />         usr/src<br /> dh_install<br /> dh_install -pfglrx-4.3.0-driver &quot;usr/X11R6/bin/fgl*&quot;      &quot;usr/X11R6/bin&quot;<br /> dh_install -pfglrx-4.3.0-driver &quot;usr/X11R6/lib/*.so*&quot;     &quot;usr/X11R6/lib&quot;<br /> dh_install -pfglrx-4.3.0-driver &quot;usr/X11R6/lib/modules/*&quot; &quot;usr/X11R6/lib/modules&quot;<br /> dh_install -pfglrx-4.3.0-driver-dev &quot;usr/X11R6/lib/*.a&quot;   &quot;usr/X11R6/lib&quot;<br /> dh_install -pfglrx-4.3.0-driver-dev &quot;usr/X11R6/include/*&quot; &quot;usr/X11R6/include&quot;<br /> dh_install -pfglrx-4.3.0-driver-dev &quot;usr/include/*&quot;       &quot;usr/include&quot;<br /> dh_install -pfglrx-4.3.0-kernel-src \<br /> lib/modules/fglrx/build_mod/*.c            \<br />         lib/modules/fglrx/build_mod/*.h            \<br />         lib/modules/fglrx/build_mod/*.sh           \<br />         lib/modules/fglrx/build_mod/lib*           \<br />         lib/modules/fglrx/build_mod/2.6.x/Makefile \<br />         usr/src/modules/fglrx-4.3.0-3.9.0<br /> dh_install -pfglrx-4.3.0-kernel-src &quot;debian/changelog&quot; &quot;usr/src/modules/fglrx-4.3.0-3.9.0/debian&quot;<br /> dh_install -pfglrx-4.3.0-kernel-src \<br />         debian/copyright       \<br />         debian/compat          \<br />         module/rules           \<br />         module/dirs.template   \<br />         usr/src/modules/fglrx-4.3.0-3.9.0/debian<br /> sed &#39;s/#XVERS#/4.3.0/&#39; \<br /> &lt; module/control.template \<br />         &gt; debian/fglrx-4.3.0-kernel-src/usr/src/modules/fglrx-4.3.0-3.9.0/debian/control.template<br /> (cd debian/fglrx-4.3.0-kernel-src/usr/src/modules/fglrx-4.3.0-3.9.0; for file in /usr/src/ati/fglrx-installer-3.9.0/debian/patches-3.9.0/[0-9]*-*; do patch -i $file -p0; done)<br /> patching file make.sh<br /> patching file Makefile<br /> patching file firegl_public.c<br /> patching file firegl_public.h<br /> patching file agpgart_be.c<br /> patching file firegl_public.c<br /> (cd debian/fglrx-4.3.0-kernel-src/usr/src &amp;&amp; tar czf fglrx-4.3.0-3.9.0.tar.gz modules --remove-files &amp;&amp; rm -r modules)<br /> # TODO: unpack into debian/tmp and use dh_movefiles<br /> install usr/X11R6/bin/fireglcontrol.qt2.gcc2.96 \<br />         debian/fglrx-4.3.0-control-qt2/usr/X11R6/bin/fireglcontrol<br /> if [ -f usr/X11R6/bin/fireglcontrol.qt3.gcc3.2 ]; then \<br /> <br />         install usr/X11R6/bin/fireglcontrol.qt3.gcc3.2 \<br />                 debian/fglrx-4.3.0-control-qt3/usr/X11R6/bin/fireglcontrol; fi<br /> dh_install -A -pfglrx-4.3.0-control-qt2 -pfglrx-4.3.0-control-qt3 &quot;usr/share/gnome/*&quot;       &quot;usr/share/gnome&quot;<br /> dh_install -A -pfglrx-4.3.0-control-qt2 -pfglrx-4.3.0-control-qt3 &quot;usr/share/icons/*&quot;       &quot;usr/share/icons&quot;<br /> dh_install -A -pfglrx-4.3.0-control-qt2 -pfglrx-4.3.0-control-qt3 &quot;usr/share/pixmaps/*&quot;     &quot;usr/share/pixmaps&quot;<br /> dh_install -A -pfglrx-4.3.0-control-qt2 -pfglrx-4.3.0-control-qt3 &quot;opt/kde3/share/applnk/*&quot; &quot;usr/share/applnk&quot;<br /> dh_install -pfglrx-4.3.0-sources &quot;usr/src/*&quot; &quot;usr/src&quot;<br /> dh_installdocs Linux_390.html<br /> dh_installdocs -pfglrx-4.3.0-driver usr/share/doc/fglrx/LICENSE.*<br /> dh_installdocs -pfglrx-4.3.0-driver usr/share/doc/fglrx/*.html<br /> #dh_installdocs -pfglrx-4.3.0-sources usr/share/doc/fglrx/LICENSE.*<br /> dh_installchangelogs<br /> dh_link<br /> dh_compress<br /> dh_makeshlibs<br /> dh_installdeb<br /> dh_gencontrol -- -VXVERSION=4.3.0 -VXVERSIONMAX=4.3.99<br /> (cd debian/fglrx-4.3.0-driver/DEBIAN; \<br /> for file in preinst postinst prerm postrm; do \<br />         mv -f $file $file.tmp; \<br />         sed -e &#39;s/fglrx-driver/fglrx-4.3.0-driver/g&#39; &lt; $file.tmp &gt; $file; \<br />         rm -f $file.tmp; \<br />         chmod +x $file; \<br /> done)<br /> dh_md5sums<br /> <br /> if [ -f usr/X11R6/bin/fireglcontrol.qt3.gcc3.2 ]; then \<br />         dh_builddeb; else \<br />         dh_builddeb -Nfglrx-4.3.0-control-qt3; fi<br /> dpkg-deb: s&#39;est&agrave; construint el paquet &laquo;fglrx-4.3.0-driver&raquo; en &laquo;../fglrx-4.3.0-driver_3.9.0-5_i386.deb&raquo;.<br /> dpkg-deb: l&#39;script `preinst&#39; t&eacute; permisos err&ograve;nies 711 ( ha de ser &gt; =0555 i 0775 )<br /> dh_builddeb: command returned error code 512<br /> make: *** [binary] Error 1<br /> root@tarat:/usr/src/ati/fglrx-installer-3.9.0#<br /> <br /> Tranquils! Ja us havia avisat de l&#39;error. Com molt b&eacute; diu la mateixa seq&uuml;&egrave;ncia, &eacute;s un error conseq&uuml;&egrave;ncia d&rsquo;un problema de permisos. I &eacute;s curi&oacute;s perqu&egrave; si els canvieu i torneu a executar debian/rules binary, tornar&agrave; a dir el mateix. Deu ser que entremig els deu canviar ella mateixa. Aix&iacute; que canviarem els permisos, i continuarem la seq&uuml;&egrave;ncia des del punt on ha donat l&rsquo;error (al final de tot). Farem (des del mateix directori):<br /> <br /> root@tarat:/usr/src/ati/fglrx-installer-3.9.0# chmod 0555 ./debian/fglrx-4.3.0-driver/DEBIAN/* <br /> <br /> I ara, seguirem amb el que li quedava per fer a la seq&uuml;&egrave;ncia(generar els paquets):<br /> <br /> root@tarat:/usr/src/ati/fglrx-installer-3.9.0# dh_builddeb<br /> dpkg-deb: s&#39;est&agrave; construint el paquet &laquo;fglrx-4.3.0-driver&raquo; en &laquo;../fglrx-4.3.0-driver_3.9.0-5_i386.deb&raquo;.<br /> dpkg-deb: s&#39;est&agrave; construint el paquet &laquo;fglrx-4.3.0-driver-dev&raquo; en &laquo;../fglrx-4.3.0-driver-dev_3.9.0-5_i386.deb&raquo;.<br /> dpkg-deb: s&#39;est&agrave; construint el paquet &laquo;fglrx-4.3.0-kernel-src&raquo; en &laquo;../fglrx-4.3.0-kernel-src_3.9.0-5_i386.deb&raquo;.<br /> dpkg-deb: s&#39;est&agrave; construint el paquet &laquo;fglrx-4.3.0-control-qt2&raquo; en &laquo;../fglrx-4.3.0-control-qt2_3.9.0-5_i386.deb&raquo;.<br /> dpkg-deb: s&#39;est&agrave; construint el paquet &laquo;fglrx-4.3.0-control-qt3&raquo; en &laquo;../fglrx-4.3.0-control-qt3_3.9.0-5_i386.deb&raquo;.<br /> dpkg-deb: s&#39;est&agrave; construint el paquet &laquo;fglrx-4.3.0-sources&raquo; en &laquo;../fglrx-4.3.0-sources_3.9.0-5_i386.deb&raquo;.<br /> root@tarat:/usr/src/ati/fglrx-installer-3.9.0#<br /> <br /> Els paquets s&oacute;n:<br /> <br /> fglrx-xxx-driver_3.9.0-5_i386.deb<br /> fglrx-xxx-driver-dev_3.9.0-5_i386.deb<br /> fglrx-xxx-kernel-src_3.9.0-5_i386.deb<br /> fglrx-xxx-control-qt2_3.9.0-5_i386.deb<br /> fglrx-xxx-control-qt3_3.9.0-5_i386.deb (nom&eacute;s per a XFree86 4.3)<br /> fglrx-xxx-sources_3.9.0-5_i386.deb<br /> <br /> (&quot;xxx&quot; &eacute;s la teva versi&oacute; de XFree86)<br /> <br /> <br /> <br /> <h2>3 &ndash; Instal&bull;lar els paquets i compilar el m&ograve;dul del nucli</h2><br /> Dels paquets que ens ha baixat/creat, nom&eacute;s utilitzarem els necessaris per tenir acceleraci&oacute;, els altres s&oacute;n eines auxiliars. I aquests paquets s&oacute;n:<br /> <br /> <br /> <li>fglrx-xxx-driver-dev_3.9.0-5_i386.deb</li><br /> <li>fglrx-xxx-kernel-src_3.9.0-5_i386.deb</li><br /> <br /> El paquet fglrx-xxx-driver-dev_3.9.0-5_i386.deb cont&eacute; cap&ccedil;aleres i la llibreria est&agrave;tica libfglrx_gamma.a, i nom&eacute;s el necessites si desenvolupes aplicacions espec&iacute;fiques d&#39;ATI OpenGL.<br /> <br /> Els paquets fglrx-xxx-control-qtX_3.9.0-5_i386.deb instal&bull;len un tauler de control, i poden ser &uacute;tils per a configuracions de multi-monitor (si la teva targeta de v&iacute;deo ho permet).<br /> <br /> I el paquet fglrx-xxx-sources_3.9.0-5_i386.deb cont&eacute; codi font del tauler de control. S&oacute;n paquets que no es fan servir gaire.<br /> <br /> Per instal&bull;lar aquests dos paquets, farem:<br /> <br /> root@tarat:/usr/src/ati/fglrx-installer-3.9.0# cd ..<br /> root@tarat:/usr/src/ati# dpkg -i fglrx-4.3.0-driver_3.9.0-5_i386.deb<br /> S&#39;est&agrave; seleccionant el paquet fglrx-4.3.0-driver previament no seleccionat.<br /> (S&#39;est&agrave; llegint la base de dades ... hi ha 46150 fitxers i directoris instal&bull;lats actualment.)<br /> S&#39;est&agrave; desempaquetant fglrx-4.3.0-driver (de fglrx-4.3.0-driver_3.9.0-5_i386.deb) ...<br /> Adding `diversion of /usr/X11R6/lib/libGL.so.1.2 to /usr/share/fglrx/diversions/libGL.so.1.2 by fglrx-4.3.0-driver&#39;<br /> S&#39;est&agrave; configurant fglrx-4.3.0-driver (3.9.0-5) ...<br /> <br /> root@tarat:/usr/src/ati# dpkg -i fglrx-4.3.0-kernel-src_3.9.0-5_i386.deb<br /> (S&#39;est&agrave; llegint la base de dades ... hi ha 46282 fitxers i directoris instal&bull;lats actualment.)<br /> S&#39;est&agrave; preparant per a reempla&ccedil;ar fglrx-4.3.0-kernel-src 3.9.0-5 (fent servir fglrx-4.3.0-kernel-src_3.9.0-5_i386.deb) ...<br /> S&#39;est&agrave; desempaquetant el reempla&ccedil; de fglrx-4.3.0-kernel-src ...<br /> S&#39;est&agrave; configurant fglrx-4.3.0-kernel-src (3.9.0-5) ...<br /> root@tarat:/usr/src/ati#<br /> <br /> Per cert, si en instal&bull;lar el fglrx-xxx-kernel-src_3.9.0-5_i386.deb teniu problemes de depend&egrave;ncies, en principi instal&bull;lant el paquet kernel-package ja n&#39;hi hauria d&rsquo;haver prou. I llavors haureu de tornar a instal&bull;lar-lo amb la mateixa comanda.<br /> <br /> Despr&eacute;s d&#39;instal&bull;lar els paquets: (suposo que tindreu el tar oi???)<br /> <br /> root@tarat:/usr/src/ati# cd ..<br /> root@tarat:/usr/src# tar -xzvpf fglrx-4.3.0-3.9.0.tar.gz<br /> modules/<br /> modules/fglrx-4.3.0-3.9.0/<br /> modules/fglrx-4.3.0-3.9.0/Makefile<br /> modules/fglrx-4.3.0-3.9.0/agpgart_be.c<br /> modules/fglrx-4.3.0-3.9.0/agp.h<br /> modules/fglrx-4.3.0-3.9.0/libfglrx_ip.a.GCC2<br /> modules/fglrx-4.3.0-3.9.0/libfglrx_ip.a.GCC3<br /> modules/fglrx-4.3.0-3.9.0/firegl_public.c<br /> modules/fglrx-4.3.0-3.9.0/firegl_public.h<br /> modules/fglrx-4.3.0-3.9.0/agp_backend.h<br /> modules/fglrx-4.3.0-3.9.0/make.sh<br /> modules/fglrx-4.3.0-3.9.0/i7505-agp.c<br /> modules/fglrx-4.3.0-3.9.0/nvidia-agp.c<br /> modules/fglrx-4.3.0-3.9.0/agp3.c<br /> modules/fglrx-4.3.0-3.9.0/debian/<br /> modules/fglrx-4.3.0-3.9.0/debian/rules<br /> modules/fglrx-4.3.0-3.9.0/debian/changelog<br /> modules/fglrx-4.3.0-3.9.0/debian/compat<br /> modules/fglrx-4.3.0-3.9.0/debian/dirs.template<br /> modules/fglrx-4.3.0-3.9.0/debian/control.template<br /> modules/fglrx-4.3.0-3.9.0/debian/copyright<br /> modules/fglrx-4.3.0-3.9.0/agpgart.h<br /> root@tarat:/usr/src#<br /> <br /> Ja falta poc!!! Despr&eacute;s de descomprimir, podr&iacute;em fabricar el m&ograve;dul de v&agrave;ries maneres. Per&ograve; jo us recomanaria fer-ho de la seg&uuml;ent, per no embolicar-nos gaire:<br /> <br /> root@tarat:/usr/src# cd modules/fglrx-4.3.0-3.9.0/<br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# ./make.sh<br /> ATI module generator V 2.0<br /> ==========================<br /> initializing...<br /> cleaning...<br /> patching &#39;highmem.h&#39;...<br /> <br /> skipping patch for &#39;drmP.h&#39;, not needed<br /> skipping patch for &#39;drm_os_linux.h&#39;, not needed<br /> assuming new VMA API since we do have kernel 2.6.x...<br /> doing Makefile based build for kernel 2.6.x and higher<br /> make -C /usr/src/linux-2.6.7 SUBDIRS=/usr/src/modules/fglrx-4.3.0-3.9.0 modules<br /> make[1]: Entering directory `/usr/src/linux-2.6.7&#39;<br />   CC [M]  /usr/src/modules/fglrx-4.3.0-3.9.0/agp3.o<br />   CC [M]  /usr/src/modules/fglrx-4.3.0-3.9.0/nvidia-agp.o<br />   CC [M]  /usr/src/modules/fglrx-4.3.0-3.9.0/agpgart_be.o<br />   CC [M]  /usr/src/modules/fglrx-4.3.0-3.9.0/i7505-agp.o<br />   CC [M]  /usr/src/modules/fglrx-4.3.0-3.9.0/firegl_public.o<br />   LD [M]  /usr/src/modules/fglrx-4.3.0-3.9.0/fglrx.o<br />   Building modules, stage 2.<br />   MODPOST<br />   CC      /usr/src/modules/fglrx-4.3.0-3.9.0/fglrx.mod.o<br />   LD [M]  /usr/src/modules/fglrx-4.3.0-3.9.0/fglrx.ko<br /> make[1]: Leaving directory `/usr/src/linux-2.6.7&#39;<br /> build succeeded with return value 0<br /> done.<br /> ==============================<br /> You must copy fglrx.ko to /lib/modules/2.6.7/misc<br /> and then call &#39;depmod -ae&#39; in order to install the built module.<br /> ==============================<br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0#<br /> <br /> Si llegiu el final (si sabeu una mica d&#39;angl&egrave;s), us diu el que s&#39;ha de fer. &Eacute;s q&uuml;esti&oacute; de copiar l&#39;arxiu fglrx.ko a la corresponent carpeta del nostre nucli (a mi em marca el 2.6.7 perqu&egrave; &eacute;s el que estic fent servir). Jo ho he fet de la seg&uuml;ent manera:<br /> <br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# cp fglrx.ko /lib/modules/2.6.7/kernel/drivers/video/aty/(o un altre dins de &quot;drivers&quot;)<br /> <br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# depmod -ae<br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# update-modules<br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0#<br /> <br /> L&#39;update-modules potser no cal, per&ograve; millor ser previsors.<br /> <br /> B&eacute;, ara arriba el punt culminant. Si tot ha anat m&eacute;s o menys b&eacute;, el m&ograve;dul que hem creat, es carregar&agrave;. Mirem-ho:<br /> <br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# modprobe fglrx<br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0#<br /> <br /> Ueeeeeeeeee!!!!!!! No d&oacute;na cap error!!! Perfecte. Aix&ograve; vol dir que ho hem fet b&eacute;. Si no heu tingut problemes fins ara, per&ograve; el modprobe no pot trobar el m&ograve;dul, assegureu-vos de que heu instal&bull;lat b&eacute; el paquet del m&ograve;dul del nucli, observeu la vostra sortida del dmesg, i mireu l&rsquo;error <a href="http://bugs.debian.org/248624">#248624</a>, i si us plau, deixeu-hi tota la vostra informaci&oacute; possible relacionada. No us puc dir res m&eacute;s que aix&ograve; :( Si alg&uacute; s&rsquo;hi troba que m&#39;ho comuniqui, encara que &eacute;s molt poc com&uacute; que passi. Per&ograve; si us d&oacute;na algun error amb el contingut &quot;unresolved symbol dev_base_R863b01ad&quot;, significa que el m&ograve;dul ha estat compilat amb &quot;CONFIG_MODVERSIONS=yes&quot;, per&ograve; el nucli que esteu fent servir no. En principi nom&eacute;s &eacute;s error al compilar el nucli. Assegureu-vos que compliu els requisits de l&#39;apartat &quot;Requeriments del sistema&quot;, i si no us en sortiu, digueu-m&#39;ho i intentar&eacute; ajudar-vos (per&ograve; primer intenteu-ho eh... jjejeje).<br /> <br /> B&eacute;, ara funciona, per&ograve; si reiniciem el PC, el m&ograve;dul encara hi ser&agrave; per&ograve; no estar&agrave; carregat. Aix&iacute; que podem fer-ho de la manera que m&#39;agrada a mi perqu&egrave; cada cop que s&#39;engegui el sistema el carregui:<br /> <br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# echo &quot;fglrx&quot; &gt;&gt; /etc/modules<br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0#<br /> <br /> <br /> <br /> <h2>4 - Configurar l&#39;XF86Config-4</h2><br /> Sobretot, no utilitzeu la comanda fglrxconfig per configurar-lo. Primer proveu de modificar l&#39;/etc/X11/XF86Config-4, i si no funciona llavors feu-ho. Feu-me cas! I si l&#39;heu de fer servir, espero que tal com us he dit al principi hagueu fet una c&ograve;pia de seguretat d&#39;aquest arxiu, ja que la comanda fglrxconfig el sobreescriu. fglrxconfig seria &uacute;til per a obtenir &quot;dual-head&quot;, per&ograve; per poca cosa m&eacute;s. Si penseu que li he agafat mania, l&#39;heu encertat. Encara que jo l&#39;he hagut de fer servir... :(<br /> <br /> Per editar l&#39;arxiu de configuraci&oacute;, utilitzarem el meu estimat vim:<br /> <br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# vim /etc/X11/XF86Config-4<br /> <br /> Si no sabeu fer servir el vim, als articles de <a href="http://www.catux.org/">Catux</a> n&#39;hi ha un que &eacute;s una petita guia que us ajudar&agrave;.<br /> <br /> Nom&eacute;s tocarem les l&iacute;nies que ara us posar&eacute; (sigueu molt escrupolosos):<br /> <br /> Section &quot;Module&quot;<br />   ...<br />   Load &quot;glx&quot;<br />   Load &quot;dri&quot;<br />   ...<br />   # Carrega &quot;extmod&quot; per&ograve; omet l&#39;extensi&oacute; DGA<br />   SubSection &quot;extmod&quot;<br />     Option &quot;omit xfree86-dga&quot;<br />   EndSubSection<br />   ...<br /> EndSection<br /> <br /> Section &quot;Device&quot;<br />   Identifier &quot;ATI&quot;<br />   Driver     &quot;fglrx&quot; # Aix&ograve; &eacute;s el m&eacute;s important<br /> <br /> # Si les X refusen la teva resoluci&oacute;, i la pantalla<br /> # hi arriba, descomenta aix&ograve;.<br />   #Option &quot;NoDDC&quot;<br /> <br /> <br /> # === Video Overlay for the Xv extension ===<br />   Option &quot;VideoOverlay&quot; &quot;on&quot;<br /> # === OpenGL Overlay ===<br /> # Nota: Si l&#39;OpenGL Overlay est&agrave; activat, el Video Overlay<br /> #       es deshabilitar&agrave; autom&agrave;ticament<br />   Option &quot;OpenGLOverlay&quot; &quot;off&quot;<br /> # === Use internal AGP GART support? ===<br /> # Si l&#39;acceleraci&oacute; OpenGL no treballa, posa &quot;yes&quot; aqu&iacute;<br /> # i deshabilita el driver agpgart del kernel.<br />   Option &quot;UseInternalAGPGART&quot; &quot;no&quot;<br /> EndSection<br /> <br /> <br /> Section &quot;Screen&quot;<br />   Identifier &quot;your screen&quot;<br />   Device     &quot;ATI&quot;<br />   Monitor    &quot;your monitor&quot;<br />   DefaultDepth 24<br />   SubSection &quot;Display&quot;<br />     Depth 24<br />     Modes &quot;1280x960&quot; # aix&ograve; nom&eacute;s &eacute;s un exemple,<br />                      # utilitza la teva resol&bull;luci&oacute; de pantalla<br />   EndSubSection<br /> EndSection<br /> <br /> Section &quot;DRI&quot;<br />   Mode 0666<br /> EndSection<br /> <br /> Ara, s&#39;haurien de reiniciar les &quot;X&quot;. Tant podem fer-ho amb el  PC com nom&eacute;s les &quot;X&quot;. Si volem reiniciar les &ldquo;X&rdquo;:<br /> <br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# /etc/init.d/kdm restart (o gdm, wdm, xdm... depenent de quin fem servir)<br /> <br /> I si no s&#39;arranquen les &quot;X&quot;, &eacute;s q&uuml;esti&oacute; d&#39;anar jugant amb la configuraci&oacute; del XF86Config-4, com ara resolucions de pantalla, refrescs verticals i horitzontals, alguna errada de sintaxis... Pel vim, recomanaria fer aix&ograve;, que va b&eacute; per aquests errors:<br /> <br /> root@tarat:~# echo &quot;syntax on&quot; &gt; /root/.vimrc<br /> <br /> O sin&oacute;, parar les &quot;X&quot; i provar d&#39;arrencar amb la comanda startx i observar l&#39;error que d&oacute;na:<br /> <br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# /etc/init.d/kdm restart (o gdm, wdm, xdm... depenent de quin fem servir)<br /> <br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# startx<br /> <br /> Una altra opci&oacute; seria observar el registre del XF86Config-4:<br /> <br /> root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# cat /var/log/XFree86.0.log<br /> <br /> Despr&eacute;s de jugar una mica, segurament haurem pogut aconseguir una bona configuraci&oacute; de les &quot;X&quot; i s&#39;hauran pogut arrencar. Per&ograve; si no &eacute;s aix&iacute;, aquest cop us deixar&eacute; que utilitzem la comanda fglrxconfig... Nom&eacute;s s&#39;hauran de seguir uns petits passos que et va indicant.<br /> <br /> Quan ja haguem pogut arrencar les &quot;X&quot;, comprovem que l&#39;acceleraci&oacute; OpenGL funciona teclejant:<br /> <br /> root@tarat:~# fglrxinfo<br /> <br /> I si surt:<br /> <br /> root@tarat:~# fglrxinfo<br /> display: :0.0  screen: 0<br /> OpenGL vendor string: ATI Technologies Inc.<br /> OpenGL renderer string: RADEON 9600 Generic<br /> OpenGL version string: 1.3 (X4.3.0-3.9.0)<br /> <br /> Molt b&eacute;! En canvi si surt una cosa similar per&ograve; amb &quot;MESA&quot;, d&#39;acceleraci&oacute; no en tens...<br /> <br /> Tamb&eacute; podem comprovar-ho amb:<br /> <br /> root@tarat:~# glxinfo<br /> <br /> Si heu arribat aqu&iacute; amb l&rsquo;acceleraci&oacute; activada, molt ben fet! I sin&oacute;, us recomano que seguiu mirant els de &quot;El Gran Hermano&quot;...<br /> <br /> <br /> <h2>00 - Conclusions</h2><br /> Si no t&#39;est&agrave; b&eacute;, haver-te comprat una nVidia ;)<br /> La veritat &eacute;s que aquest article l&#39;he fet per egoisme. L&#39;he fet per recordar-ho jo, i tenir-ho penjat a Internet perqu&egrave; no sigui tant f&agrave;cil d&rsquo;esborrar.<br /> No &eacute;s una conclusi&oacute;, per&ograve; si et carregues el teu maquinari seguint aquest article, qui se&#39;n fa responsable &eacute;s en Rupert (el de Ximian).<br /> Qu&egrave; m&eacute;s dir... Ah s&iacute;... Visca GNU/Linux!<br /> <br /> Agra&iuml;ments a en whats per algun &quot;petit&quot; consell :D
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Nucli
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">No ho aconsegueixo ! 
+Tenc un error durant la construcció del mòdul:
+
+ATI module generator V 2.0
+==========================
+initializing...
+Error:
+XFree86 drm includes at /usr/src/kernel-headers-2.6.7-1-686/drivers/char/drm do not fit this driver.
+This driver is designed to only work with X4.1.0 or higher.
+You can match this by getting Linux kernel 2.4.8 or higher.
+
+
+La cosa és que tenc kernel 2.6.7 (precompilat), i X4.3...
+
+No aconsegueixo compilar el mòdul. Ja em passava amb altres tutorials.
+Alguna idea, suggerència, ajuda ???<p class="comment-author">Escrit al 2006-12-28 13:18:41 per time2sail</p></li><li class="list-group-item comment">Ho has fet exactament igual? No se pas com ho deus haber fet pq has penjat el comentari a les 13:41 i a akesta hora encara no estaven penjats els arxius per a poder-lo portar a terme. ;P (La confiança fa fastic)
+
+Prova de desinstalar totes les proves que has anat fent i tornar a instalar-ho seguint "pe a pa" l'article anterior i aviam si et torna a dir el mateix....
+
+Llavors tb asegurat que el xfree que tens és "de sèrie", ha de ser algo aixi:
+
+albert@p4:~$ dpkg -l |grep xfree
+ii xfree86-common 4.3.0-7 X Window System (XFree86) infrastructure
+ii xserver-xfree8 4.3.0-7 the XFree86 X server
+
+avegades la gent s'instal·la versions com xserver-xfree86-dbg i llavors és possible k no funcionin del tot bé.
+
+Sort!<p class="comment-author">Escrit al 2006-12-28 13:19:28 per whats_up</p></li><li class="list-group-item comment">Re: No ho aconsegueixo ! I d'on as tret els arxius:
+
+fglrx-installer_3.9.0-5.dsc
+fglrx-installer_3.9.0-5.tar.gz
+
+Si encara no estan penjats? D'algun altre lloc? Bé, són bastant comuns...
+
+Poder és que et falten o fallen els paquets "patch", o "make", pot ser?
+
+root@tarat:/home/elizir# dpkg -l patch
+
+Si fica "ii" està instal·lat. No crec que faci falta tenir instal·lat l'"alien".
+
+Jo apostaria que poder el teu kernel no l'has compilat tu. M'equivoco? :S I ja has baixat els kernel-sources/headers? Apostaria que és això. Pots probar de fer això per si no et troba el kernel:
+
+root@tarat:/home/elizir# ln -s /usr/src/linux-2.6.7/ /usr/src/linux
+
+Pots probar amb això, i sino va bé, tornau a dir. Poder si as fet moltes altres probes hi han incompatibilitats però crec que és això del kernel.
+
+Sort!<p class="comment-author">Escrit al 2006-12-28 13:20:36 per Elizir</p></li><li class="list-group-item comment">He buscat per internet 
+I he trobat els arxius del tutorial. Amb el mateix nom. De fet, ja havia seguit un tuto amb aquestes mateixes instruccions (sense gaire explicació, hehe, ni en català!!! xD ) amb els mateixos resultats:
+que no tenc cap versió compatible amb l'Xfree... ( ????? )
+
+Provaré el que m'heu dit, i llavors us tornaré a comentar coses.
+I sí, seguia les instruccions de pe a pa...
+El que també pot passar, es que tengui una versió diferent del gcc que el que es va usar per compilar el kernel. Com puc fer que facin "match" les dues versions, tenint en compte que el meu kernel és precompilat ???
+
+Gràcies !!!<p class="comment-author">Escrit al 2006-12-28 13:21:37 per time2sail</p></li><li class="list-group-item comment">M'oblidava ! Els headers ja els tenia, i l'enllaç també el vaig fer fa molt.
+
+Ara falta comprovar lo que diu el what's, perquè el Xfree el vaig descarregar i instalar amb l'apt-get, fa bastant, i amb el markitus ! xD
+( i el what's ja sap que amb el markitus... tot es possible !!! ) xD
+
+Fins ara<p class="comment-author">Escrit al 2006-12-28 13:22:31 per time2sail</p></li><li class="list-group-item comment">RE: he buscat per internet Massa que ho se k amb el markitus tot és possible... ;P
+
+Dons per mirar amb quina versió del gcc està compilat el teu kernel, pots fer això:
+
+albert@p4:~$ cat /proc/version
+Linux version 2.6.7 (root@p4) (gcc versió 3.3.3 (Debian 20040314)) #13 SMP Tue Jul 27 01:07:13 CEST 2004
+
+(Per cert, si vinc per l'aniversari de l'anna, et puc ajudar i donar-hi un cop d'ull aviam que t'hi passa :P )
+
+
+Sort!<p class="comment-author">Escrit al 2006-12-28 13:23:14 per whats_up</p></li><li class="list-group-item comment">hehe Pos també és cert ! A veure si concretam coses, perquè serà aquest cap de setmana ( dissabte ). Marxam dimarts !!!. Si pots contacta pel MSN, ( encara que jo no m'hi passo gaire xDDD )<p class="comment-author">Escrit al 2006-12-28 13:24:44 per time2sail</p></li><li class="list-group-item comment">Genial! Eiiii! Ja era hora de que algu fes un tutorial de la nostra estimada ati en català!!! ;) Bé aquest comentari només és per donar les gràcies als companys de CATUX i donar suport moral si més no! VISCA CATUX!!!<p class="comment-author">Escrit al 2006-12-28 13:25:23 per PaNiTuX</p></li><li class="list-group-item comment">Si algú té problemes.... Si algú té problemes, o l'article queda desfassat, podeu provar d'anar a : http://xoomer.virgilio.it/flavio.stanchina/debian/fglrx-installer.html#install . Aquesta web va ser la nostre referencia a l'hora de posar els drivers.<p class="comment-author">Escrit al 2006-12-28 13:26:11 per whats_up</p></li><li class="list-group-item comment">Noves versions dels drivers de Ha sortit una nova versió dels drivers d'ATI per Linux =) La 3.12.0.
+
+En el pròxims dies probaré com van i actualitzaré l'article. Encara que, de l'aricle, només s'hauran de canviar els paquets que s'han de baixar al principi de tot (fglrx-installer_3.9.0-5.dsc i fglrx-installer_3.9.0-5.tar.gz).
+
+<a href="http://www.ati.com/support/drivers/linux/radeon-linux.html?type=linux&prodType=graphic&prod=productsLINUXdriver&submit.x=6&submit.y=4">Aquí teniu el link</a>
+
+Fins aviat!!!<p class="comment-author">Escrit al 2006-12-28 13:27:20 per Elizir</p></li><li class="list-group-item comment">Re: Noves versions dels driver No penseu que he suat... És que encara hi han alguns petits problemes amb aquesta versió.
+
+No patiu que aniré probant :)<p class="comment-author">Escrit al 2006-12-28 13:28:01 per EliziR</p></li><li class="list-group-item comment">Controladors fglrx per a XFree Algu te els paquets per a la Xfree 4.1.0.1 per a una debian woody r2
+no tinc internet a casa i no ho puc fer com dius:
+
+
+
+podeu passarme els paquets o enviarmels a Maxs666@hotmail.com
+fglrx-xxx-driver-dev_3.9.0-5_i386.deb
+fglrx-xxx-kernel-src_3.9.0-5_i386.deb
+per a les Xfree 4.1.0.1 si teniu els altres tambe. GRACIES!!!!!
+
+Maxs Snake.<p class="comment-author">Escrit al 2006-12-28 13:28:45 per Anònim</p></li><li class="list-group-item comment">Problemes amb el driver de ATI He seguit les intruccions pas a pas, i sembla que tot funciona, pero a l'hora de cambiar de les X a la consola o de tancar les X, l'ordinador es penja.
+
+He llegit pagines on diu que el driver no funciona be amb el framebuffer, i l'he eliminat, pero segueix igual.
+
+Si algu em pot sap perque hem passa aixo i hem pot ajudar...
+
+Gracies<p class="comment-author">Escrit al 2006-12-28 13:29:26 per Anònim</p></li><li class="list-group-item comment">Re: Controladors fglrx per a X Ja has mirat que no estiguin als CD's? Poder no els tens tots, però crec que el paquet del xserver-xfree86 està al primer.
+
+El problema que hi ha és que aquest paquest té algunes dependències, i aquestes en tenen d'altres. Per això, segurament tindràs el CD de Woody, i executant la comanda:
+
+# apt-cdrom add
+
+Afegiràs tots els paquets del CD a disposició de l'apt-get. Llavors només seria fer un:
+
+# apt-get install xserver-xfree86
+
+Tot això sense necessitar internet.
+
+I si no hi han els paquets, quan tinguis accés a internet, pots anar a la pàgina de paquets de Debian, i des d'allà els podràs descarregar (ja et diu les dependències i demés). La pàgina és:
+
+http://packages.debian.org/stable/x11/xserver-xfree86
+
+Tot i això, em sembla que amb fer ho primer que he dit ja faràs. I sinó, torna-ho a dir! =)<p class="comment-author">Escrit al 2006-12-28 13:30:00 per Anònim</p></li><li class="list-group-item comment">Re: Problemes amb el driver de Bé, a mi de vegades també em fa el tontu... =)) El què em fa és que quan canvio a consola i torno a les X, hi han algunes línies que no hi haurien de ser, però marxen quan hi passes alguna cosa per sobre.
+
+Aviam si els d'ATI es fiquen més en món de GNU/Linux (com en el d'altres sistemes operatius).
+
+Però a què et refereixes exactament quan dius "el driver no funciona be amb el framebuffer, i l'he eliminat"? Què has eliminat?
+
+No crec que et pugui ajudar amb això que dius que el PC es queda penjat quan fas això amb les X, no m'hi he trobat mai. L'únic que et puc dir és (si no ho has fet), és que miris els logs en què pot haber informació (fixan-te amb l'hora possible de la fallida):
+
+/var/log/XFree86.0.log
+/var/log/syslog
+
+No sé què més dir-te, poden ser mil coses. En el què segurament et podré ajudar és en treure l'acceleració ;_(
+
+Si tens gaires problemes més i et va millor, pots enviar-me algun mail, que el trobaràs a la secció "Llistar usuaris". Això va per tu i per tothom!<p class="comment-author">Escrit al 2006-12-28 13:31:17 per Anònim</p></li><li class="list-group-item comment">Re: Acceleració 3D a les ATI e Hola he seguit el teu article pas per pas i la veritat es va molt be. el meu problema ve a l'ultim pas avans de configurar l'xfreeconfig-4,
+exactament en el moment de fer el modprobe fglrx, em surt un missatge d'error que es el seguent.
+fglrx: unknown symbol pci_find_class.
+espero la resposta d'algu que em pugui ajudar.
+gracies.<p class="comment-author">Escrit al 2006-12-28 13:31:54 per Anònim</p></li><li class="list-group-item comment">Re: Acceleració 3D a les ATI e Bones.
+
+M'equivoco si penso que ho has probat amb un kernel 2.6.10? És que ja m'hi habia trobat, i pel què vaig buscar en aquell moment va ser que era un bug.
+
+Una de les coses que vaig trobar van ser que això es podia sol·lucionar amb un patch, que es pot trobar a:
+
+http://www.pissflitsche.net/scripts/agpgart_be.patch
+
+En principi és baixar aquest patch i ficar-lo a "/usr/src/ati/fglrx-installer-3.9.0/lib/modules/fglrx/build_mod" o depenent de la carpeta corresponent que es tingui.
+
+Llavors:
+# patch -p0 < agpgart_be.patch
+
+Després d'això, tornar a seguir aquest article pel pas que diu "root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# ./make.sh" (per construir el mòdul).
+
+Bé, tant si et funciona com si no, et demanaria que ho diguessis, aviam com t'ha anat =)
+
+(La resposta ha sigut ràpida perquè en aquesta pàgina hi ha el servei de que quan es fica un comentari, al seu autor s'envia un correu ;) )<p class="comment-author">Escrit al 2006-12-28 13:32:34 per Elizir</p></li><li class="list-group-item comment">Re: Acceleració 3D a les ATI e Veig que el comentari no ha entrat del tot :S És que aquests dies s'està tocant molt el codi de la pàgina, coses que es pot apreciar en alguns detalls de format.
+
+Bé, després de fer el "patch -p0", pots tornar a seguir l'article pel punt de "root@tarat:/usr/src/modules/fglrx-4.3.0-3.9.0# ./make.sh" (es es crea el mòdul).
+
+Tant si funciona com si no, t'agrairia que ho diguessis, per veure si hi pot tenir a vaure o no.
+
+(La resposta ha sigut ràpida perquè en aquesta pàgina hi ha el servei de que quan algú posa un comentari, l'autor rep un correu ;) )<p class="comment-author">Escrit al 2006-12-28 13:46:25 per EliziR</p></li><li class="list-group-item comment">Re: Acceleració 3D a les ATI e Hola soc el mateix d'abans. El patch que em vas donar no hem funciona, quan faig el comandu patch -p0 es keda com si fes algu pero no fa res, pero l'ordinador no es keda penjat ni res. Vaig probar la teva guia amb un amic amb un kernel 2.6.8 i a anat perfecte menys en que sempre li surt que esta amb mesa en lloca d'ati. perque pot ser?
+I una altre pregunta, hauria de funconar amb una ati 9550 no? per lo menys a la pagina d'ati oficial els drivers i son, ho dic perque a l'últim pas de tots, al fer el modprobe fglrx hem dona el seguent error:
+FATAL: Error inserting fglrx (/lib/modules/2.6.8/kernel/drivers/fglrx.ko): No such device
+
+I aquest error ens de no reconeixer la tarjeta veritat?
+espero no ser pesat.
+gracies.<p class="comment-author">Escrit al 2006-12-28 13:47:47 per Anònim</p></li><li class="list-group-item comment">Re: Acceleració 3D a les ATI e Bé, poden ser varies les coses que poden fer que no et funcioni :( Però ja són coses específiques de cada usuari i no sé exactament com ajudar-te, ja que poden ser mil coses :(
+
+En canvi, si dius que al teu amic tot li ha anat bé però que li surt "Mesa" en comptes de "ATI", segurament serà per tenir alguna cosa malament a l'arxiu /etc/X11/XF86Config-4
+
+Però això, igual que abans t'he dit que amb el patch era possible que es sol·lucionés, és una causa que ara se'm passa pel cap.
+
+Pel què fa a l'altre pregunta de si aquest article pot funcionar per a una ATI 9550, el més segur és que si (és a dir, no ho he probat però estic bastant segur que si).
+
+L'error aquest és del mòdul, i pot ser tant de no reconèixer la tarja com de molts altres problemes :S
+
+Em sap greu respondre't tant ambiguament.<p class="comment-author">Escrit al 2006-12-28 13:48:56 per EliziR</p></li><li class="list-group-item comment">Nou driver d'ATI Les coses canvien...
+
+Ara ja fa uns dies aquí a Catux va sortir una notícia que ho anunciava.
+
+Només afegir que va molt bé, però no amb tots els nuclis. Per exemple, va perfecte en un nucli 2.6.11, però no amb un 2.6.11.5 o un 2.6.12. Aquesta és la meva experiència (m'hi he barellat bastant).
+
+És només executar el .run, apretar un parell o tres de botons, i al driver ja està instal·lat. Llavors només és carregar el mòdul (el fglrx) i canviar alguna cosa a l'arxiu de configuració /etc/X11/XF86Config-4 .
+
+Aviam si aviat hi penso i faig un article explicant detalladament aquests passos.<p class="comment-author">Escrit al 2006-12-28 13:49:42 per Elizir</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

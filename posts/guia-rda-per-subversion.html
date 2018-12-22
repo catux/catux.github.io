@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Guia ràpida per Subversion
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-04-17 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <br />    <div id="article" class="article_normal">Aqu&iacute; faig una petita guia r&agrave;pida per treballar amb el Subversion.<br /> <br /> Com a exemple aprofito per fer-ho amb el codi del web de Catux.<br /> <br /><a href="http://pinux.info/"></a></div><br /> Primer de tot agafarem el codi font:<br /> <br /> svn checkout svn://catux.org/php<br /> <br /> I ja el tindrem a un directori del nostre disc.<br /> <br /> A partir d&#39;aqu&iacute; podem treballar de forma normal amb els fitxers. De totes maneres, si volem copiar, moure o eliminar fitxers haurem de fer:<br /> <br /> <br /> svn copy origen desti<br /> svn move origen desti<br /> svn delete pp.c<br /> <br /> <br /> Aix&iacute; informarem a Subversion del que estem fent (que dest&iacute; &eacute;s una c&ograve;pia d&#39;origen, etc.)<br /> <br /> A vegades, potser volem &quot;desfer&quot; els canvis que hem fet a un fitxer, ho podr&iacute;em fer aix&iacute;:<br /> <br /> <br /> svn revert hola.php<br /> <br /> <br /> Quan haguem acabat, farem:<br /> <br /> <br /> svn commit<br /> <br /> <br /> Ens demanar&agrave; una descripci&oacute; del que haguem fet. &Eacute;s important posar descripcions concises, i a m&eacute;s enviar les modificacions freq&uuml;entment (&eacute;s a dir, no treballar una setmana sencera i enviar les actualitzacions sin&oacute; fer-ho de tant en tant).<br /> <br /> Si volem actualitzar la nostra c&ograve;pia local:<br /> <br /> <br /> svn update<br /> <br /> <br /> Aix&iacute; ho actualitzem, tamb&eacute; &eacute;s important fer-ho freq&uuml;entment per tal de treballar sobre la &uacute;ltima c&ograve;pia que s&#39;hagi fet.<br /> <br /> Si volem tornar a agafar una versi&oacute; anterior, podem fer:<br /> <br /> <br /> svn update --revision 2<br /> <br /> <br /> (si fem svn help checkout veiem les opcions que tenim)<br /> <br /> Amb la comanda:<br /> <br /> <br /> svn log<br /> <br /> <br /> Podem veure els &uacute;ltims canvis que hi ha hagut, l&#39;usuari que els ha fet, la data i la descripci&oacute; que hi ha posat l&#39;usuari.<br /> <br /> I per &uacute;ltim, amb l&#39;ordre:<br /> <br /> <br /> svn diff<br /> <br /> <br /> Veurem, amb el format &quot;diff&quot; els canvis que hem fet<br /> <br /> M&eacute;s informaci&oacute;:<br /> <a href="http://svnbook.red-bean.com/svnbook/ch03s05.html">http://svnbook.red-bean.com/svnbook/ch03s05.html</a><br /> <br /> Carles Pina i Estany<br /> <a href="mailto:%20carles%20arroba%20pinux.info">carles arroba pinux.info</a><br /> <a href="http://pinux.info/">http://pinux.info</a>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Potrace: Transforma imatges de mapa de bits a gràfics vectorials
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2008-06-05 19:41:02
+    
+                per
+                
+        Mecatxis
+    
+            </h3>
+
+            <p>
+                
+        <p>Un nou article de <a href="http://debaday.debian.net/2008/01/20/lyx-a-text-editor-that-stays-out-of-the-way/">Deb a Day</a>  traduït a la web de Catux: potrace: Transforma imatges de mapa de bits a gràfics vectorials </p><p>Publicat el 19 de Maig del 2008 per <strong>András Horváth</strong>  	</p> 	 <p>A vegades pots trobar-te que necessites una determinada imatge en alta resolució. Sobretot si ets un dissenyador gràfic (o un tatuador), vols tenir uns resultats de qualitat en augmentar la mida d'una imatge de baixa resolució.</p>  <p>Per aconseguir-ho sense fer servir un programa traçador, tens la següent possibilitat: Utilitzant un programa de gràfics de píxels com ara Gimp, pots canviar la mida de la imatge amb el millor mètode de mostrejar i aplicar-li un filtre de difuminat selectiu. La majoria de vegades no s'obté la qualitat necessària </p>Hi ha una petita però potent utilitat anomenada <a href="http://potrace.sourceforge.net/">potrace</a> desenvolupada per Peter Selinger, un professor de matemàtiques de la universitat de Dalhousie. <br /><br />Amb un programa traçador com ara <font face="DejaVu Sans Mono"><span>potrace </span></font>només has d'indicar una imatge com a entrada, i obtindràs el resultat en el <font face="Times New Roman, serif"><span><a href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics">format SVG</a> standard. </span></font> <font face="DejaVu Sans Mono"><span>potrace</span></font>pot produir també una sortida en format PDF. <p>Exemple en línia de comandes: </p>  <p><font face="DejaVu Sans Mono"><span>$ potrace -s imatge.bmp</span></font> </p> <p>Amb aquest procediment,el programa transforma els píxels de la imatge en corbes plenes que tenen resolució infinita amb suaus línies encara que ampliem o reduïm.</p>     <p style="margin-bottom: 0cm">La meva experiència personal treballant com a dissenyador gràfic,<font face="Times New Roman, serif"> </font><font face="DejaVu Sans Mono"><span>potrace</span></font> m'ha donat molt bons resultats amb moltes imatges. Comparat amb altres programes propietaris molt cars, quan la imatge original te terminacions punxegudes, <font face="DejaVu Sans Mono"><span>potrace</span></font> dona terminacions punxegudes al resultat i altres programes donaven resultats amb terminacions corbes. Això feia que calgués molta correcció manual. </p> <br /><br />   <p>A favor (comparat amb altres programes):</p>   	 <ul><li>Molt bons resultats</li> <li>Força ràpid</li> <li>Es pot fer servir fàcilment des d'una línia de comandes</li> <li>Es pot fer servir des del programa lliure de gràfic vectorial <a href="http://www.inkscape.org/">Inkscape</a> (Camí/ Vectoritza un mapa de bits o Majúscules+Alt+B</li></ul> <p>En contra:</p> <ul><li>Només treballa amb dos colors (blanc i negre). Encara no permet processar altres colors</li><li><font face="DejaVu Sans Mono"><span>potrace</span></font>	no suporta imatges PNG com entrada (encara que les imatges es poden convertir des de PNG amb una pila de programes lliures)</li></ul> <p>Això és un exemple tret de la pàgina del projecte, es pot veure el mapa de bits original i la imatge vectoritzada:</p>  <p><a name="image433" title="image433"></a><img src="http://debaday.debian.net/wp-content/uploads/2008/05/head-orig3.png" border="0" alt="Original bitmap" width="171" height="138" align="bottom" name="Imatges1" /> <img src="http://debaday.debian.net/wp-content/uploads/2008/05/head-smooth3.png" border="0" alt="potrace output" width="171" height="138" align="bottom" name="Imatges2" /></p>    <p style="margin-bottom: 0cm">El paquet està disponible tant a Debian com a Ubuntu des de fa molt temps.</p>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Iniciació
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

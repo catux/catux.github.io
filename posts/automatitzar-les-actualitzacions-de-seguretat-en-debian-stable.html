@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Automatitzar les actualitzacions de seguretat en Debian stable
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-11-01 00:00:00
+    
+                per
+                
+        whats_up
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Avui (a causa d&#39;un comentari ;P) m&#39;he posat a escriure aquest mini article per explicar com es pot fer per automatitzar for&ccedil;a les actualitzacions de seguretat sense despreocupar-nos-en del tot.<br /> <br /> &Eacute;s molt senzill, per&ograve; tamb&eacute; for&ccedil;a &uacute;til. Espero que us faci servei!<br /> <br /> PD: (Aviam si m&#39;animo a fer m&eacute;s articles...)</span> <br />    <div id="article" class="article_normal">Una cosa molt important en qualsevol servidor, &eacute;s mantenir-lo al dia pel que fa a les actualitzacions de seguretat. La Debian estable ens prov&eacute; d&#39;un servidor destinat &iacute;ntegrament a aquest &uacute;s.<br /> <br /> Per afegir a les nostres fonts aquest servidor, hem d&#39;afegir la seg&uuml;ent l&iacute;nia a l&#39;arxiu /etc/apt/sources.list<br /> <br /> deb http://security.debian.org/ stable/updates main contrib non-free<br /> <br /> Un cop fet aix&ograve;, haurem d&#39;actualitzar la base de dades del apt.<br /> <br /> apt-get update<br /> <br /> I llavors, un cop ha acabat, nom&eacute;s ens quedar&agrave; fer un upgrade per tal d&#39;actualitzar tots els paquets als que s&#39;ha detectat i solucionat un problema de seguretat.<br /> <br /> apt-get upgrade<br /> <br /> Fins aqu&iacute; tenim una manera de tenir els nostres paquets actualitzats al 100%, ara nom&eacute;s ens falta fer-ho cada dia. Ho hem d&#39;automatitzar!<br /> <br /> Tenim dues opcions: instal&middot;lar el paquet cron-apt que el qu&egrave; fa &eacute;s descarregar-se les noves actualitzacions (es pot fer que les instal&middot;li per&ograve; no &eacute;s recomanable) i ens envia un correu en cas d&#39;error, o fer-nos una seq&uuml;&egrave;ncia que faci tota la feina per nosaltres.<br /> <br /> Jo he optat per fer una seq&uuml;&egrave;ncia i ,ja de pas, he afegit que tant si hi ha error com si no, envi&iuml; un correu per informar que hi ha actualitzacions i aix&iacute; anar a actualitzar els paquets. Aquesta seq&uuml;&egrave;ncia t&eacute; en compte de no enviar cap correu en cas que tots els paquets amb possibles actualitzacions tinguin marcat l&#39;estat hold.<br /> <br /> Aqu&iacute; el teniu:<br /> <br /> ***************************************************************************<br /> #!/bin/bash<br /> # seq&uuml;&egrave;ncia que mira si hi ha actualitzacions i si n&#39;hi ha, envia un correu al root<br /> <br /> HOSTNAME=$(hostname)<br /> MAIL_FROM=&quot;root&quot;<br /> <br /> #mirem si hi ha actualitzacions<br /> if [ &quot;$1&quot; = &quot;-v&quot; ]<br /> then<br />         echo &quot;Busquem actualitzacions al sistema...&quot;<br />         /usr/bin/apt-get update<br />         echo &quot;Mirem si tenim alguna cosa per actualitzar...&quot;<br /> else<br />         /usr/bin/apt-get update 1&gt; /dev/null<br /> fi<br /> <br /> tmp=$( apt-get upgrade -s | grep &#39;0 packages upgraded&#39;)<br /> <br /> <br /> #si n&#39;hi ha enviem un correu amb els paquets a actualitzar<br /> if [ ! -n &quot;$tmp&quot; ]<br /> then<br /> <br />         if [ &quot;$1&quot; = &quot;-v&quot; ]<br />         then<br />                 echo &quot;Enviant correu...&quot;<br />         fi<br /> <br />         echo &quot;$(apt-get upgrade -s)&quot; | /usr/bin/mail -s &quot;[$HOSTNAME]: Hi ha actualitzacions disponibles&quot; $MAIL_FROM<br /> else<br />         if [ &quot;$1&quot; = &quot;-v&quot; ]<br />         then<br />                 echo &quot;Res a actualitzar!&quot;<br />         fi<br /> fi<br /> <br /> ***************************************************************************<br /> <br /> <br /> Si afegim aquesta seq&uuml;&egrave;ncia a /etc/cron.daily/ aconseguirem que cada dia comprovi si hi ha actualitzacions i, en cas d&#39;haver-n&#39;hi, enviar&agrave; un correu avisant de quins s&oacute;n els paquets que tenen actualitzaci&oacute;. Un cop fet aix&ograve; nom&eacute;s caldr&agrave; esperar a rebre un correu avisant-nos que existeixen actualitzacions, i llavors anar al servidor a instal&middot;lar-les.<br /> <br /> Espero que us sigui &uacute;til!</div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Servidor
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

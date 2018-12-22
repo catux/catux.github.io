@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Introducció a la programació en GTK
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2005-02-12 00:00:00
+    
+                per
+                
+        Twinsen
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">L&#39;article consisteix en una introducci&oacute; a la programaci&oacute; amb GTK a trav&eacute;s d&#39;uns petits exemples.<br /> <br /> Hi ha una petita introducci&oacute; sobre el GTK, com gestionar senyals, organitzar visualment els elements, i dos exemples.</span><br />    <div id="article" class="article_normal">NOTA: traducci&oacute; al catal&agrave; d&#39;introducci&oacute; a la programaci&oacute; en GTK de <a href="http://www.uoc.edu/masters/softwarelibre/cat/">mestratge en programari lliure</a> de la <a href="http://www.uoc.edu/">UOC</a>, autor original <a href="http://www.softcatala.org/%7Ejmas/%22">Jordi Mas</a>.<br /> <br /> <h4>1. Introducci&oacute; i compilaci&oacute;</h4><br /> GTK &eacute;s una llibreria que simplifica el desenvolupament d&#39;interf&iacute;cies gr&agrave;fiques d&#39;aplicacions. Proporciona una col&middot;lecci&oacute; de ginys (o elements visuals) que s&#39;utilitzen freq&uuml;entment en els di&agrave;legs d&#39;interacci&oacute; amb els usuaris, gesti&oacute; d&#39;incid&egrave;ncies de teclat i ratol&iacute;, o suport per a fer clic i arrastrar elements entre diferents aplicacions.<br /> <br /> La llibreria GTK va ser originalment dissenyada com a part del programa d&#39;edici&oacute; gr&agrave;fica GIMP i m&eacute;s tard va ser adoptada com a llibreria base de l&#39;escriptori GNOME. GTK &eacute;s actualment multiplataforma i es troba disponible per a GNU/Linux, Mac i Windows, el que permet escriure aplicacions que es poden executar en diferents entorns.<br /> <br /> GTK est&aacute; escrita en llenguatge C encara que existeixen connectors que permeten utilitzar aquesta llibreria des d&#39;un gran nombre de llenguatges com ara C#, Java, Perl, Python o C++.<br /> <br /> GTK es basa en tres llibreries addicionals:<br /> - Glib: una llibreria general d&#39;utilitats com ara diferents tipus de contenidors (llistes enlla&ccedil;ades, matrius, etc), an&agrave;lisis de cadenes de text, temporitzadors, etc.<br /> - Pango: una llibreria que gestiona la representaci&oacute; de text i tipus de lletres amb suport per a diferents cultures.<br /> - ATK: una llibreria per a simplificar l&#39;accessibilitat d&#39;aplicacions, es a dir, facilitar l&#39;&uacute;s d&#39;aplicacions desenvolupades amb GTK a personas amb discapacitats.<br /> <br /> Per a compilar els exemples GTK d&#39;aquest article utilitzarem la seg&uuml;ent l&iacute;nia de comandes:<br /> gcc -Wall -g exemple1.c -o exemple1 `pkg-config --cflags &ndash;--libs gtk+-2.0`<br /> <br /> La comanda pkg-config serveix per a obtener detalls de configuraci&oacute; sobre paquets de programari que tinguem instal&middot;lat. Una vegada invocat indicant el paquet sobre el que volem obtenir informaci&oacute; ens retorna el directori on es troba instalada la llibreria que volem utilitzar.<br /> <br /> La classe <strong>GtkWidget</strong> &eacute;s la base de tot el sistema, ja que tots els elements gr&agrave;fics hereten de GtkWidget.<br /> A la adre&ccedil;a seg&uuml;ent podem troba la documentaci&oacute; de totes classes que podem utilitzar: <a href="http://developer.gnome.org/doc/API/">http://developer.gnome.org/doc/API/</a>.<br /> <h4>2. Exemple &ldquo;Hola Mon&quot;<br /></h4> El seg&uuml;ent codi ens crea una finestra amb el t&iacute;tol &quot;Hola mon&quot;.<br /> <br /> <br /> #include <br /> int main (int argc, char *argv[] )<br /> {<br /> GtkWidget *window;<br /> <br /> /* Inicialitzaci&oacute; de la llibreria GTK*/<br /> gtk_init (&amp;argc, &amp;argv);<br /> <br /> /* Creaci&oacute; d&#39;una finestra */<br /> window = gtk_window_new (GTK_WINDOW_TOPLEVEL);<br /> <br /> /* Mostra la finsetra */<br /> gtk_widget_show (window);<br /> <br /> /* Estableix el titol de la finestra*/<br /> gtk_window_set_title ((GtkWindow*) window, &quot;Hola mon&quot;);<br /> <br /> /* Entra al bucle principal del programa */<br /> gtk_main ();<br /> <br /> return 0;<br /> }<br /> <br /> <br /> <br /> El resultat que obtindrem ser&agrave;:<br /> <br /> <img src="http://www.catux.org/imatges/articles/gtk/Exemple1GTK.png" alt="" /><br /> <br /> <br /> <br /> <h4>3. Gesti&oacute; de senyals</h4><br /> <br /> Per tal de gestionar les incid&egrave;ncies cal assignar una funci&oacute; al senyal que volem tractar, aix&ograve; ho podem fer amb el seg&uuml;ent m&egrave;tode:<br /> <br /> <br /> /* Connecta la senyal &#39;clicked&#39; del bot&oacute; */<br /> gtk_signal_connect (GTK_OBJECT (button_ok), &quot;clicked&quot;, GTK_SIGNAL_FUNC<br /> (buttonok_clicked), text_nombre);<br /> <br /> /* Funci&oacute; que es cridada al pr&eacute;mer el bot&oacute; */<br /> void buttonok_clicked (GtkWidget *widget, gpointer gdata)<br /> {<br /> g_print (&quot;El bot&oacute; Acceptar ha estat pressionat. &quot;);<br /> }<br /> <br /> <br /> Quan l&#39;usuari fa click al bot&oacute; la rutina button_ok es activada.<br /> <br /> <br /> <br /> <h4>4. Ordenaci&oacute; visual dels elements mitjan&ccedil;ant caixes</h4><br /> <br /> GTK utilitza el concepte de caixes per a permetre al desenvolupador posicionar els elements visuals a la interf&iacute;cie d&#39;usuari de forma relativa a la mida de la finestra. <br /> Les caixes, que actuen com a contenidors de ginys, tenen l&#39;avantatge que permeten crear interf&iacute;cies que s&oacute;n consistents a diferents resolucions de pantalla i tipus de lletra. <br /> Les caixes poden ser verticals o horizontals i s&oacute;n invisibles a l&#39;usuari, simplement s&#39;usen per a posicionar els ginys.<br /> <br /> Les caixes existents s&oacute;n:<br /> <br /> <li><strong>GtkHBox</strong> - Caixa que posiciona els widgets que cont&eacute; de forma horitzontal<br /> </li><li><strong>GtkVBox</strong> - Caixa que posiciona els widgets que cont&eacute; de forma vertical<br /> <br /> <br /> <br /> <h4>5. Exemple de caixes i senyals</h4><br /> <br /> Aquest exemple crea una caixa de text on podem escriure-hi i un bot&oacute; acceptar al qual li assignem una funci&oacute;.<br /> <br /> <br /> #include <br /> #include <br /> <br /> /* Funci&oacute; que &eacute;s invocada al pulsar acceptar */<br /> void buttonok_clicked (GtkWidget *widget, gpointer gdata)<br /> {<br /> GtkEntry *text_nombre = (GtkEntry *) gdata;<br /> g_print (&quot;El boto Acceptar ha estat pressionat. Text en la caixa:&quot;);<br /> <br /> /* Obt&eacute; el text actual de la caixa d&#39;entrada */<br /> g_print (gtk_entry_get_text (text_nombre));<br /> g_print (&quot;\n&quot;);<br /> }<br /> <br /> int main (int argc, char *argv[] )<br /> {<br /> GtkWidget *window;<br /> GtkWidget *label_nombre;<br /> GtkWidget *text_nombre;<br /> GtkWidget *button_ok;<br /> GtkWidget *caja_horizontal;<br /> <br /> /* Inicialitzaci&oacute; de la llibreria GTK*/<br /> gtk_init (&amp;argc, &amp;argv);<br /> <br /> /* Creaci&oacute; d&#39;una finestra */<br /> window = gtk_window_new (GTK_WINDOW_TOPLEVEL);<br /> <br /> /* Contenidor horizontal */<br /> caja_horizontal = gtk_hbox_new (FALSE,0);<br /> <br /> /* Bot&oacute; acceptar */<br /> button_ok = gtk_button_new_with_label (&quot;Acceptar&quot;);<br /> <br /> /* Descripci&oacute; i caixa d&#39;entrada del nom */<br /> label_nombre = gtk_label_new (&quot;Nom:&quot;);<br /> text_nombre = gtk_entry_new ();<br /> gtk_entry_set_text (GTK_ENTRY (text_nombre), &quot;[teclegi el seu nom]&quot;);<br /> <br /> /* Conecta la senyal &#39;clicked&#39; del bot&oacute; */<br /> gtk_signal_connect (GTK_OBJECT(button_ok), &quot;clicked&quot;, GTK_SIGNAL_FUNC<br /> (buttonok_clicked), text_nombre);<br /> <br /> /* Empaquetar els widgets a la caixa horitzontal */<br /> gtk_box_pack_start(GTK_BOX (caja_horizontal), label_nombre, FALSE, FALSE, 4);<br /> gtk_box_pack_start(GTK_BOX (caja_horizontal), text_nombre, FALSE, FALSE, 4);<br /> gtk_box_pack_start(GTK_BOX (caja_horizontal), button_ok, FALSE, FALSE, 4);<br /> gtk_container_add (GTK_CONTAINER (window), caja_horizontal);<br /> <br /> /* Mostra totes les finestres */<br /> gtk_widget_show_all (window);<br /> <br /> /* Entra al bucle principal del programa */<br /> gtk_main ();<br /> <br /> return 0;<br /> }<br /> <br /> <br /> <br /> El resultat que obtindrem ser&agrave;:<br /> <br /> <img src="http://www.catux.org/imatges/articles/gtk/Exemple2GTK.png" alt="" /></li></div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

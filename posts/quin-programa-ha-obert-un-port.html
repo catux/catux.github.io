@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Quin programa ha obert un port?
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-12-18 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">A vegades, estem treballant (ja sigui instal&middot;lant un programa servidor, fent un programa nosaltres mateixos, etc.) i ens trobem que un port ja est&agrave; ocupat.<br /> &Eacute;s a dir, que &quot;alg&uacute;&quot; en el nostre sistema ha fet un &quot;bind&quot; del port i el t&eacute; ell.<br /> A aquest petit article veurem quines maneres tenim de saber quin &eacute;s el programa que ha obert un port.</span> A vegades podem necessitar saber quin programa ens ha obert un port.<br /> <br /> Per exemple, perqu&egrave; tenim un error de &quot;binded port&quot; a alguna aplicaci&oacute;, o b&eacute; hem fet un nmap per saber quins ports tenim oberts i en tenim algun que no coneixem o no sabem quin programa l&rsquo;ha obert.<br /> <br /> Per fer moltes de les operacions comentades aqu&iacute; &eacute;s necessari ser usuari root o <br /> b&eacute; nom&eacute;s podrem veure els ports que hem obert nosaltres, com usuari, etc.<br /> <br /> <h2>/etc/services</h2><br /> Un m&egrave;tode per fer-ho podria ser buscant el n&uacute;mero del port a /etc/services, i veure de quin protocol es tracta. Despr&eacute;s podr&iacute;em fer un ps auxw i intu&iuml;tivament veure quin programa pot ser.<br /> <br /> <h2>netstat</h2><br /> Mitjan&ccedil;ant netstat -pan tenim un llistat com el seg&uuml;ent:<br /> <br /> Active Internet connections (servers and established)<br /> Proto Recv-Q Send-Q Local Address           Foreign Address         State       <br /> PID/Program name   <br /> tcp        0      0 0.0.0.0:2401            0.0.0.0:*               LISTEN     2<br /> 172/inetd          <br /> tcp        0      0 0.0.0.0:8010            0.0.0.0:*               LISTEN     9<br /> 252/psi            <br /> tcp        0      0 0.0.0.0:139             0.0.0.0:*               LISTEN     2<br /> 462/smbd           <br /> tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN     1<br /> 987/portmap        <br /> tcp        0      0 0.0.0.0:6000            0.0.0.0:*               LISTEN     2<br /> 670/X              <br /> <br /> Les opcions s&oacute;n:<br /> <br /> <div id="article" class="article_normal"><li>p: mostra el PID/programa<br /> </li><li>a: mostra tots els protocols (TCP, UDP, etc.)<br /> </li><li>n: forma num&egrave;rica (no canvia IP&#39;s per noms, ports per noms de serveis, etc.)<br /> <br /> Quan la Local Address &eacute;s 0.0.0.0:x &eacute;s que est&agrave; escoltant (esperant connexions).<br /> El netstat tamb&eacute; ens mostrar&agrave; connexions establertes.<br /> <br /> <h2>lsof</h2><br /> <br /> lsof ens dona un llistat de fitxers oberts, incloent-hi tamb&eacute; els ports.<br /> lsof incorpora moltes m&eacute;s funcions a m&eacute;s de la de comprovar els ports oberts (podem veure f&agrave;cilment quins fitxers t&eacute; oberts una aplicaci&oacute;, quins fitxers hi ha oberts al sistema, etc.)<br /> Podem fer el llistat mitjan&ccedil;ant:<br /> <br /> lsof -ni|grep LISTEN<br /> <br /> Les opcions s&oacute;n:<br /> <br /> </li><li>n: forma num&egrave;ric<br /> </li><li>i: ensenya protocols d&#39;Internet i no d&rsquo;altres fitxers<br /> <br /> <br /> <br /> <h2>fuser</h2><br /> &Uacute;til per si volem investigar un port nom&eacute;s. Per exemple:<br /> <br /> pinux:~# fuser 25/tcp<br /> 25/tcp:               2449<br /> pinux:~# ps auxw | grep -i 2449<br /> root      2449  0.0  0.1  2924 1100 ?        Ss   Dec17   0:00 /usr/lib/postfix/<br /> master<br /> <br /> &Eacute;s el postfix que t&eacute; aquest port obert.<br /> <br /> Com a curiositat, i aprofitant el fuser, si tenim la tarja de so utilitzada per alg&uacute; i no sabem qui podem fer:<br /> <br /> pinux:~# fuser /dev/dsp<br /> /dev/dsp:            17788<br /> pinux:~# <br /> <br /> <br /> &Eacute;s el PID 17788 que l&rsquo;est&agrave; utilitzant. Amb lsof tamb&eacute; es pot fer, en canvi no &eacute;s possible fer-ho amb netstat ja que s&rsquo;utilitza per xarxa.<br /> <br /> El mateix si fem:<br /> <br /> pinux:~# umount /cdrom/<br /> umount: /cdrom: device is busy<br /> umount: /cdrom: device is busy<br /> <br /> No el podem desmuntar, mirem qui l&rsquo;est&agrave; fent servir:<br /> <br /> pinux:~# fuser /cdrom/<br /> /cdrom/:             18355c<br /> pinux:~# <br /> <br /> &Eacute;s el proc&eacute;s 18355 que t&eacute; com a current directory el /cdrom. <br /> <br /> Tots aquests programes tenen moltes m&eacute;s opcions i molt interessants et recomanem llegir les seves p&agrave;gines man.</li></div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

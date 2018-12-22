@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Com crear un fitxer pot amb projectes similars a geeqie?
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2009-03-22 18:31:23
+    
+                per
+                
+        Mecatxis
+    
+            </h3>
+
+            <p>
+                
+        <p>Preparant la traducció del <em><a href="http://sourceforge.net/projects/geeqie/">geeqie</a></em> m'he trobat que la versió del <em>subversion</em> no incorporava el fitxer pot i no sabia com crear-lo. Parlant-ne amb el jvprat ens n'hem sortit :D</p><p>&nbsp;</p><p>Primer cal tenir instal·lats els fitxers <em>autoconf</em> i <em>automake</em>:</p><p>&nbsp;</p> <pre><p>$sudo apt-get install autoconf automake</p><p>&nbsp;</p></pre>  <p>Ens posem a l'arrel dels fitxers descarregats amb el subversion, on trobem el fitxer autogen.sh i l'executem</p><p>&nbsp;</p> <pre><p>$./autogen.sh</p><p>&nbsp;</p></pre> <p>Ja s'hauran creant els fitxers «makefile» i «configure», que són els fitxers que ens faltaven. En cas que encara ens faltin els fitxers «makefile» fem un configure:</p><p>&nbsp;</p> <pre><p> $./configure</p><p>&nbsp;</p></pre> <p>Un cop tinguem els fitxers «makefile» Anem a la carpeta po</p><p>&nbsp;</p> <pre><p>$ cd po </p><p>&nbsp;</p></pre> <p>I creem el fitxer pot</p><p>&nbsp;</p> <pre><p>$ make update-po</p></pre> <p>&nbsp;</p><p>I ja ens haurà creat el fitxer geeqie.pot!</p>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

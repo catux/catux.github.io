@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Veu per IP lliure (programes i protocol)
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-02-18 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">La veu per IP est&agrave; arribant a m&eacute;s i m&eacute;s gent (m&eacute;s ample de banda, la inform&agrave;tica va madurant, etc.)<br /> <br /> Skype &eacute;s un programa privatiu, amb un protocol privatiu amb certes... zones obscures. Ha estat prohibit a algunes universitats, i hi ha varis motius per no fer-lo servir (en catal&agrave; es pot llegir <a href="http://weblog.bitassa.net/arxiu/2006/01/31/382/">aqu&iacute;</a>, m&eacute;s motius <a href="http://weblog.bitassa.net/arxiu/2006/02/13/392/">aqu&iacute;</a>).<br /> <br /> Hi ha moltes alternatives lliures, que funcionen molt b&eacute;. En aquest article s&#39;intenta veure quines s&oacute;n, com posar-les apunt i fer-les funcionar.<br /> <br /> L&#39;article  &eacute;s a nivell sobretot pr&agrave;ctic.</span><h2>Introducci&oacute;</h2><br /> La Veu sobre IP s&#39;est&agrave; extenen molt. El primer programa segurament que funcionava, a nivell d&#39;usuari, va ser Skype. Skype t&eacute; una s&egrave;rie de problemes que no el fan massa adequat, com pot ser que:<br /> <br /> <div id="article" class="article_normal"><li>El client no &eacute;s lliure<br /> </li><li>El protocol tampoc &eacute;s lliure, &eacute;s tancat<br /> </li><li>El protocol fa servir Peer-to-Peer, per tant podem estar enrutant nosaltres converses telef&ograve;niques d&#39;altres clients d&#39;Skype (utilitzant ample de banda i recursos nostres)<br /> </li><li>Ara per <a href="http://weblog.bitassa.net/arxiu/2006/02/13/392/">utilitzar Skype</a> de certes maneres s&#39;ha de ser client d&#39;Intel (quines coses que t&eacute; el programari/protocols no lliures)<br /> </li><li>Pels motius anteriors i alguns m&eacute;s, ha estat prohibit en <a href="http://weblog.bitassa.net/arxiu/2006/01/31/382/">alguna universitat p&uacute;blica</a><br /> <br /> <br /> Per tots aquests motius cal utilitzar alternatives a Skype. Conversaci&oacute; entre ordinadors es troba relatat a continuaci&oacute;, i qui faci servir SkypeOUT per trucar a n&uacute;meros fixes per poc que busqui trobar&agrave; alternatives, algunes de les quals poden fins i tot funcionar millor i for&ccedil;a alternatives s&oacute;n m&eacute;s econ&ograve;miques i tot.<br /> <br /> En aquest article es basar&agrave; amb el protocol SIP, tot i que n&#39;hi ha altres que tamb&eacute; tenen algunes d&#39;aquestes capacitats (Jingle, que anir&agrave; amb clients Jabber aviat, IAX d&#39;Asterisk que a vegades &eacute;s convenient per per alguns usos, etc.)<br /> <br /> L&#39;article intenta que sigui pr&agrave;ctic, i no s&#39;entrar&agrave; amb detalls de fluxes d&#39;informaci&oacute; RTP, ports -no sol caler!-, codecs (qualitat, ample de banda, llic&egrave;ncies, propietaris, etc.). Nom&eacute;s comentar que a Internet hi ha suficient informaci&oacute;, que canviar de codec pot ajudar a millorar la qualitat de transmisi&oacute;, i que els clients que es vulguin comunicar han de fer servir el mateix codec (la negociaci&oacute; &eacute;s autom&agrave;tica).<br /> <br /> <h2>Configuraci&oacute; de l&#39;&agrave;udio</h2><br /> Cal tenir el sistema d&#39;&agrave;udio ben configurat. Tan Linphone com Twinkle saben treballar amb ALSA i OSS (veure les seves configuracions). Cal tenir configurat el micr&ograve;fon. Aix&ograve; &eacute;s, en el nostre mesclador d&#39;&agrave;udio (kmix, aumix, alsamixer) tenir marcat com entrada d&#39;&agrave;udio el canal de Micr&ograve;fon i que no estigui silenciat.<br /> <br /> Amb el programa &quot;audacity&quot; es pot provar de fer alguna gravaci&oacute; per veure com sentim la nostra veu.<br /> <br /> &Eacute;s millor fer servir auriculars i micr&ograve;fon, sense altaveus (l&#39;altre persona, sin&oacute;, sentir&agrave; la seva pr&ograve;pia veu com torna). Uns auriculars amb micr&ograve;fon senzill valen uns 3 Euros aproximadament.<br /> <br /> <h2>Fer una compte a Sipphone</h2><br /> Farem una compte al servidor SIP de Sipphone. Els passos s&oacute;n:<br /> <br /> </li><li>Anar a http://www.sipphone.com/<br /> </li><li>Clicar, al mig de la pantalla, on posa &quot;Online account management&quot;<br /> </li><li>Clicar, a baix a l&#39;esquerre a &quot;Create an account&quot;<br /> </li><li>Despr&egrave;s d&#39;omplir les dades, ens arribar&agrave; un mail perqu&egrave; hi fem click<br /> </li><li>Despr&egrave;s de fer click al mail per activar la compte, ens vindr&agrave; un mail amb certa informaci&oacute;<br /> <br /> <br /> El servidor de Sipphone ens permetr&agrave; connectar-nos a altres usuaris d&#39;altres servidors Sipphone (com si fos correu electr&ograve;nic, no com si fos Skype o Messenger que un nom&eacute;s es pot connectar al seu servidor per parlar amb la seva gent). El protocol SIP &eacute;s un protocol estandaritzat, fins i tot hi ha molts tel&egrave;fons hardware que el fan servir, aix&iacute; que podriem comprar-ne un i no necessitar l&#39;ordinador per trucar.<br /> <br /> He escollit Sipphone per explicar-ho aqu&iacute; b&agrave;sicament perqu&egrave; es pot fer una compte nova des de la Web (alguns es necessita un programa privatiu -i alguns nom&eacute;s per Windows), i &eacute;s un servidor que funciona raonablament b&eacute;. Pagant cert preu per les trucades es pot parlar amb tel&egrave;fons fixes o m&ograve;bils, per trucades internacionals &eacute;s molt econ&ograve;mic. Altres servidors permeten trucades gratu&iuml;tes durant un minut o pagant uns Euros durant una temporada.<br /> <br /> Sipphone t&eacute; un servei de b&uacute;stia (arriba un fitxer .WAV per mail), llistat de trucades perdudes, etc.<br /> <br /> Comentarem el servei d&#39;echo m&eacute;s avall, per&ograve; hi ha m&eacute;s n&uacute;meros on trucar de Sipphone mateix que es troben a <a href="http://sipphone.com/numbers/">aquesta p&agrave;gina Web.</a><br /> <br /> Si mirem la p&agrave;gina Web de Sipphone ens cridar&agrave; l&#39;atenci&oacute; que intenten que s&#39;utilitza el client Gizmo. Cal no caure al parany, el Gizmo (que est&agrave; tamb&eacute; per Linux) &eacute;s un client privatiu, tot i fer servir el protocol SIP. A m&eacute;s a m&eacute;s, Gizmo fa servir un codec que sembla que t&eacute; algun tipus de llic&egrave;ncia i no el poden implementar altres clients lliures, per&ograve; per compatibilitat inclou tamb&eacute; els clients lliures. Quan vem fer les proves, &quot;misteriosament&quot; el sentit de comunicaci&oacute; Gizmo a clients lliures NO funcionava (no se sentia b&eacute;) per&ograve; de clients lliures a Gizmo s&iacute; (provat amb diferents codecs). Aix&iacute; que si f&egrave;ssim servir el client Gizmo estariem amb un client NO lliure, un codec NO lliure, i que &quot;misteriosament&quot; fa unes setmanes no solia funcionar b&eacute; la comunicaci&oacute; amb clients lliures.<br /> <br /> Hi ha altres servidors SIP, alguns m&eacute;s propers. Buscant per Google els podem trobar f&agrave;cilment, i la configuraci&oacute; del client &eacute;s similar a tots ells. En cas que no donguin explicassions per Linphone o Twinkle, sempre es pot anar a l&#39;ajuda per saber com configurar altres dispositius (com tel&egrave;fons de Veu per IP o Asterisk) i llavors agafar les dades.<br /> <br /> <h2>Trucant amb Linphone</h2><br /> Primer de tot, cal instal&middot;lar el programa. Amb Debian, Ubuntus, etc. nom&eacute;s cal fer:<br /> <br /> apt-get install linphone<br /> <br /> Tamb&eacute; el podriem descarregar de la seva <a href="http://linphone.org/?lang=us&amp;rubrique=1">p&agrave;gina Web.</a><br /> <br /> Un cop instal&middot;lat, anem a &quot;Go&quot; - &quot;Preferences&quot;. All&agrave;, es pot activar el &quot;NAT Traversal options&quot; i posar la nostra IP externa. A mi a cap lloc que ho he provat m&#39;ha fet falta, per&ograve; si vol es pot marcar i escriure la IP externa (si no la sabem, es pot saber en <a href="http://www.whatismyip.com/">aquesta p&agrave;gina Web</a>). Ull que si tenim IP din&agrave;mica pot canviar cada cert temps (per&ograve; temps llarg, no hi hauria problemes per fer servir el servei)<br /> <br /> Despr&egrave;s s&#39;anir&agrave; a la pestanya &quot;SIP&quot;, i es clicar&agrave; a &quot;Add proxy/registrar&quot;. All&agrave; ho deixarem de la seg&uuml;ent manera:<br /> <br /> <img src="http://catux.org/imatges/articles/sip/sip1.png" alt="" /><br /> <br /> <br /> Quan haguem clicat a &quot;D&#39;acord&quot; ens demanar&agrave; la informaci&oacute; d&#39;autentificaci&oacute; cap al servei. En aquest quadre de di&agrave;leg ho deixarem aix&iacute;:<br /> <br /> <img src="http://catux.org/imatges/articles/sip/sip5.png" alt="" /><br /> <br /> (El username i userid hi posarem el n&uacute;mero rebut per mail, sense els guions. A contrasenya, doncs la contrasenya que hem escollit.)<br /> <br /> Ara farem la primera prova. A la finestra principal trucarem al n&uacute;mero &quot;sip:17474743246@proxy01.sipphone.com&quot;. &Eacute;s un n&uacute;mero que ens dir&agrave; que ja tenim el programa configurat i despr&egrave;s ens dona l&#39;oportunitat de fer echo (&eacute;s a dir, parlar i nosaltres sentirem com ens sentim, amb cert retard).<br /> <br /> Per trucar a una altra persona, caldr&agrave; marcar el seu n&uacute;mero (igual que el servei echo). Si paguessim des de la Web, podriem trucar a n&uacute;meros fixes o m&ograve;bils trucant a 0034938750000@proxy01.sipphone.com<br /> <br /> <h2>Trucant amb Twinkle</h2><br /> Twinkle &eacute;s un altre programa de Veu per IP que suporta SIP. &Eacute;s un programa prou nou, per&ograve; ja &eacute;s totalment utilitzable. El podem trobar com a paquet Debian d&#39;Unstable (apt-get install twinkle) o b&eacute; des de la seva mateixa p&agrave;gina Web (<a href="http://www.twinklephone.com/">http://www.twinklephone.com</a><br /> <br /> Twinkle est&agrave; fer per KDE, per&ograve; es pot compilar sense les llibreries de KDE. T&eacute; bona integraci&oacute; amb KDE, l&#39;aspecte &eacute;s segurament m&eacute;s elegant que Linphone. T&eacute; suport per dues trucades simult&agrave;nies i tot el qu&egrave; se li pot demanar a un programa d&#39;aquest tipus.<br /> <br /> A continuaci&oacute; s&#39;explicar&agrave; breument la configuraci&oacute; d&#39;aquest, saltant alguns passos que s&oacute;n (espero) trivials (pot demanar si tenim varies interf&iacute;cies quina es vol fer servir, etc.)<br /> <br /> El primer cop que l&#39;engeguem ens permetr&agrave; seleccionar un &quot;Wizard&quot; (assistent) per la configuraci&oacute;. Tamb&eacute; un nom per la configuraci&oacute; (posarem prova01). Despr&eacute;s haurem de configurar-ho de la seg&uuml;ent manera:<br /> <br /> <br /> <img src="http://catux.org/imatges/articles/sip/sip9.png" alt="" /><br /> <br /> <br /> <br /> Podem trucar tamb&eacute; al servei d&#39;echo, per fer una primera prova. Cliquem a &quot;Call&quot; i posem la direcci&oacute; d&#39;echo: &quot;sip:17474743246@proxy01.sipphone.com&quot;. Aqu&iacute; el tenim en funcionament:<br /> <br /> <img src="http://catux.org/imatges/articles/sip/sip10.png" alt="" /><br /> <br /> <br /> <br /> Twinkle t&eacute; suport per servidors STUN. Aix&ograve; vol dir que no s&#39;ha de posar la IP externa, ja que la sabr&agrave; autom&agrave;ticament. El fet que tingui suport per servidors STUN vol dir que pot superar alguns tallafocs millor.<br /> <br /> <br /> <h2>Annex</h2><br /> Hi ha molts m&eacute;s programes amb suport per SIP, alguns lliures i alguns no. Pel sistema operatiu Microsoft Windows, un d&#39;ells &eacute;s el Xten X-Lite (gratu&iuml;t per&ograve; no &eacute;s lliure). La configuraci&oacute; &eacute;s semblant que a Linphone o Twinkle.<br /> <br /> Un altre programa que promet molt &eacute;s la continuaci&oacute; del <a href="http://www.gnomemeeting.org/">Gnomemeeting</a>, el <a href="http://www.ekiga.org/">Ekiga</a>. Ja t&eacute; suport per SIP, i ara es troba a fase Beta2, ben aviat la final. Aquest anir&agrave; molt b&eacute;, i a m&eacute;s tamb&eacute; hi ha un servidor SIP segurament ja previament configurat (amb opci&oacute; per trucar a tel&egrave;fons fixes). I suport d&#39;audio i video, etc.<br /> <br /> <a href="http://openwengo.com/">OpenWengo</a> &eacute;s una altra opci&oacute;. &Eacute;s un programa, amb suport per video, de la gent de WengoPhone. Les proves que vaig fer amb ells no van ser del tot satisfact&ograve;ries, per&ograve; cal tenir-lo en compte. Ofereixen trucades gratu&iuml;tes i el programa &eacute;s GPL, amb paquets ja fets per Debian i per Windows. Caldria segurament provar-ho de nou (ho vaig provar fa setmanes) a veure si ha millorat o no. Es poden utilitzar altres programes per connectar-se a OpenWengo<br /> <br /> La Veu sobre IP t&eacute; alguna dificultat, que &eacute;s com carai es fan les proves. Amb el servei d&#39;echo sol ser suficient (per&ograve; no &eacute;s perfecte). Aix&iacute; que hi ha gent que, una mica for&ccedil;ats han hagut de col&middot;laborar en fer aquest article. Concretament en Grap i na Laura, i en Jordi.</li></div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Varis
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

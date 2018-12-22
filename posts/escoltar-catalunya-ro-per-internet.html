@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Escoltar Catalunya Ràdio per Internet
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-06-12 00:00:00
+    
+                per
+                
+        cpina
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">En aquest article es veur&agrave; com escoltar Catalunya R&agrave;dio per Internet, utilitzant Linux i Firefox.<br /> <br /> Fa mesos Catalunya R&agrave;dio va canviar els sistemes d&#39;emissi&oacute; per Internet, fent una mica dif&iacute;cil accedir als continguts.</span><br />    Fa mesos que van canviar el sistema de transmissi&oacute; per Internet de Catalunya R&agrave;dio i companyia (iCatFM, Catalunya Informaci&oacute;)<br /> <br /> Si es vol escoltar els programes ja emesos (repeticions) nom&eacute;s cal Flash instal&middot;lat. En aquest text es veur&agrave; els passos a seguir quan es vol escoltar la transmissi&oacute; en directe, utilitzant Linux i Firefox. Caldr&agrave; instal&middot;lar fitxers no lliures (Flash i w32codecs).<br /> <br /> <h2>Requisits</h2><br /> <br /> <div id="article" class="article_normal"><li>Tenir Firefox instal&middot;lat. Tant &eacute;s v&agrave;lid un de Debian com el mateix baixat de la Web</li><br /> <br /> <li>Instal&middot;lar el mplayer. Amb Debian es pot posar al /etc/apt/sources.list: deb http://www.debian-multimedia.org sid main . Llavors fer apt-get update, apt-get install mplayer w32codecs</li><br /> <br /> <li>Instal&middot;lar el paquet mozilla-mplayer: apt-get install mozilla-mplayer</li><br /> <br /> <li>Instal&middot;lar, si no es t&eacute;, el <strong>reproductor de Flash</strong>. Jo normalment el baixo de la Web de Flash, descomprimeixo un .tar.gz i moc els fitxers al directori plugins del Firefox (fitxers libflashplayer.so i flashplayer.xpt a $HOME/.mozilla/plugins). Veig que hi ha un paquet que es diu flashplugin-nonfree (al contrib de Debian) que ho deu automatitzar.</li><br /> <br /> <strong>Nota: </strong>si es t&eacute; el Firefox instal&middot;lat sense paquet Debian, podem copiar els fitxers del mozilla-mplayer al nostre $HOME:<br /> <br /> cp /usr/lib/firefox/plugins/* $HOME/.mozilla/plugins<br /> <br /> (segurament hi ha una manera diferent de fer-ho, configurar el Firefox perqu&egrave; busqui els plugins a m&eacute;s d&#39;un lloc)<br /> <br /> <h2>&Uacute;s</h2><br /> Un cop s&#39;ha fet tot aix&ograve;, nom&eacute;s cal anar a la Web de <a href="http://catradio.cat/">Catalunya R&agrave;dio</a> i, permetent que Firefox obri finestres emergents, fer click a la barra de dalt &quot;EN DIRECTE&quot;.<br /> <br /> Llavors, NO s&#39;ha de fer click a &quot;Si utilitzes LINUX pots escoltar...&quot; sin&oacute; que s&#39;ha de fer click a &quot;Windows Media&quot; (desafiant tota l&ograve;gica). <strong>Cal esperar uns 40 o 45 segons</strong> i ja sonar&agrave;. Podem veure que s&#39;ha executat el mplayer si a una consola escrivim: ps auxw | grep mplayer.<br /> <br /> A la part superior de la finestra apareix un missatge del Firefox que diu &quot;Es necessiten connectors addicionals per a mostrar alguns continguts d&#39;aquesta p&agrave;gina&quot;. Hi &eacute;s per&ograve; funciona b&eacute;, no &eacute;s problema.<br /> <br /> <h2>Comentaris/cr&iacute;tica</h2><br /> En altres Webs que tenen uns sistema semblant, per&ograve; sense tan de Flash, s&#39;obre una petita interf&iacute;cie del mozilla-mplayer per modificar el volum, etc. A la Web de Catalunya R&agrave;dio aix&ograve; no apareix, hi deu haver algun Flash que ho tapa.<br /> Si es va a la Web de <a href="http://icatfm.cat/">iCatFM</a> sonar&agrave; de manera autom&agrave;tica, per&ograve; hi ha altres &quot;emisores&quot; o semblant des de la mateixa Web.<br /> <br /> Altres emisores la configuraci&oacute; &eacute;s trivial. A <a href="http://rac1.com/">RAC1</a> nom&eacute;s entrar a dalt hi ha l&#39;enlla&ccedil; per escoltar (el navegador segurament ja ho reconeix i es pot escoltar amb mplayer, xmms, etc. sense problemes). <a href="http://rac105.com/">RAC105</a> el mateix, <a href="http://www.onamallorca.net/">Ona Mallorca</a> (tamb&eacute; amb possibilitat de ogg-vorbis, genial!), les emisores de <a href="http://www.live365.com/">Live365</a> i un llarg etc&egrave;tera.<br /> <br /> A <a href="http://www.radio-occitania.com/">R&agrave;dio-Occit&agrave;nia</a> hi ha un directe re-em&eacute;s de Catalunya R&agrave;dio que &eacute;s m&eacute;s f&agrave;cil d&#39;escoltar.<br /> <br /> Comentar a t&iacute;tol personal que es podria haver fet d&#39;una manera molt m&eacute;s f&agrave;cil per l&#39;usuari, i segurament fins i tot m&eacute;s f&agrave;cil d&#39;implementar per qui ho ha fet. Sense obligar a plugins no lliures (Flash), codecs no lliures (w32codecs), etc. La p&agrave;gina Web hauria de facilitar l&#39;acc&eacute;s al contingut, no dificultar-lo ni posar-hi impediments. Per exemple, els usuaris de Mac i Linux ho tenen encara m&eacute;s dif&iacute;cil (pel tema del w32codecs i Flash). Caldria provar si amb el plugin lliure de Flash, el <a href="http://www.gnu.org/software/gnash/">gnash</a>, funciona b&eacute;.<br /> Un altre cop que facin alguna cosa similar, caldria tenir tot aix&ograve; en compte. Afegir tamb&eacute; que pel fet d&#39;estar fet amb Flash, que t&eacute; molts problemes (no &eacute;s lliure, no n&#39;hi ha per alguns sistemes) la gent invident normalment no pot accedir a les Webs en q&uuml;esti&oacute; ni escoltar Catalunya R&agrave;dio per Internet.</div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Escoltar ràdio en català per i Ara és possible escoltar una multitud de registres d\'audio en català a través del web www.audioencatala.cat.
+
+Aquest web, permet escoltar els fitxers de les diferents emisores de radio i podcasts, que emeten els seus arxius d\'audio en català utilitzant només un web. Aquest fet facilita la tasca de cercar allò que volem escoltar i ens permet crear la nostra ràdio personalitzada, que s\'actualitza amb el nous registres que apareixen de les nostres preferéncies.
+
+Us recomano que passeu i us hi registreu per treure\'n més profit del web.
+
+Permet escoltar els fitxers de múltiples formes, utilitzant Playlist de Amarok, Iphone, Internet Tablet o els típics de Real Audio, iTunes, Winamp, RSS i Windows media. També disposa d\'un reproductor flash a través de web.
+
+Manual de audioencatala.cat<p class="comment-author">Escrit al 2008-01-29 12:36:11 per Gerard</p></li><li class="list-group-item comment">Perdoneu l\'adreça del manual de audioencatala es la següent:
+http://www.audioencatala.cat/tutorial_alta.pdf
+
+http://www.audioencatala.cat<p class="comment-author">Escrit al 2008-01-29 12:37:55 per None</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

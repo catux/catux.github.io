@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Instal·lar, configurar i utilitzar Xorg
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-09-07 00:00:00
+    
+                per
+                
+        seoman
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">He tradu&iuml;t un manual que vaig trobar per tal d&#39;instal&middot;lar les X.org des del CVS. L&#39;he tradu&iuml;t (estava en castell&agrave;) ja que hi havia d&#39;afegir algunes coses que m&#39;he trobat jo a l&#39;hora d&#39;instal&middot;lar les X.org.</span><br /> <h3>0.- Introducci&oacute;.</h3><br /> <br /> Aquest document &eacute;s una traducci&oacute; del que podem trobar en castell&agrave; a <a href="http://debianitas.net/phpBB2/viewtopic.php?t=18">Debianitas</a>. Cont&eacute; algunes modificacions que m&#39;han semblat oportunes, aix&iacute; com errors i solucions de problemes que em vaig trobar jo a l&#39;hora de fer-ho.<br /> <br /> La idea d&#39;aquest document &eacute;s poder testar la versio 6.8 per tal de que pogui sortir abans. Aix&iacute; que ja sabeu =P.<br /> <br /> <br /> <h3>1 .- Baixar X.org del CVS.</h3><br /> <br /> Creem un directori on baixarem les fonts del X.org, com per exemple /share/cvs-xorg/.<br /> Un cop dins d&#39;aquest directori, executem les seg&uuml;ents comandes per tal de baixar les fonts.<br /> <br /> cvs -d :pserver:anoncvs@cvs.freedesktop.org:/cvs/xorg login<br /> Password: <br /> <br /> <br /> Amb aix&ograve; accedim al servidor cvs.<br /> <br /> <br /> cvs -d :pserver:anoncvs@cvs.freedesktop.org:/cvs/xorg co -P -rXORG-6_7_99_902 xc <br /> <br /> <br /> I amb aix&ograve; procedim a baixar-nos les fonts. Comen&ccedil;aran a surtir noms de fitxers i directoris; aix&ograve; vol dir que s&#39;est&agrave; baixant. <strong>AV&Iacute;S!:</strong> S&oacute;n uns 300 MB.<br /> <br /> <br /> <h3>2.- Configurant abans de compilar.</h3><br /> <br /> Si la desc&agrave;rrega ha anat b&eacute;, tindrem un directori xc. Entrem en ell. Ara entrem al directori config/cf/ i copiem l&#39;arxiu d&#39;exemple xorgsite.def a host.def, que ser&agrave; el fixer de configuraci&oacute; per la compilaci&oacute;.<br /> <br /> La forma de configurar-lo &eacute;s descomentar les entrades i posar-hi valors, &eacute;s a dir, ens trobarem quelcom semblant a aix&ograve;:<br /> <br /> /*<br /> * To disable building Xvfb, uncomment this.<br /> *<br /> #define XVirtualFramebufferServer NO<br /> */ <br /> <br /> <br /> El fet de que estigui entre /* */ significa que &eacute;s un comentari i que a l&#39;hora de la compilaci&oacute;, fara cas omis del parametre de configuraci&oacute; &quot;XVirtualFramebufferServer&quot;. Si realment volem definir aquest parametre i deshabilitar la compilacio del Xvfb, tindrem que deixar el parametre fora del comentari, quedant d&#39;aquesta forma:<br /> <br /> /*<br /> * To disable building Xvfb, uncomment this.<br /> */<br /> #define XVirtualFramebufferServer NO<br /> <br /> <br /> D&#39;aquesta manera no ignorar&agrave; el par&agrave;metre i com diu la seva entrada, NO compilar&agrave; Xvfb. Alguns dels par&agrave;metres m&eacute;s destacables s&oacute;n els seg&uuml;ents:<br /> <br /> #define XF86CardDrivers -&gt; Definirem els drivers de la targeta gr&agrave;fica que necessitarem.<br /> <br /> #define XInputDrivers -&gt; Definim dispositius d&#39;entrada com el ratol&iacute; o el teclat.<br /> <br /> #define BuildFonts -&gt; Ja que segurament X.org compilar&agrave; fonts que ja teim instal&middot;lades, ho podem deshabilitar i estalviar temps.<br /> <br /> #define DefaultGcc2i386Opt -&gt; Especifiquem els flags per al compilador. Com que actualment aquesta versi&oacute; est&agrave; en fase de proves, s&#39;aconsella no activar optimitzacions, ja que si tenim algun error, podria ser degut al compilador, i llavors no podr&iacute;em avisar als desenvolupadors del X.org.<br /> <br /> Tamb&eacute; seria interessant configurar l&#39;arxiu corresponent al nostre S.O., com per exemple linux.cf o bsd.cf (el m&eacute;s destacable &eacute;s la versi&oacute; del S.O. i la ruta on guardarem el que compilem, NothingOutsideProjectRoot). Si emprem GNU/Linux i com a distribuci&oacute; Red Hat, SuSe o Debian, ell mateix pot autodetectar aquets par&agrave;metres, encara que no est&agrave; de m&eacute;s que els configurem.<br /> <br /> <br /> <h3>3.- Preparant la compilaci&oacute;.</h3><br /> <br /> Aquest pas nom&eacute;s t&eacute; sentit si despr&eacute;s volem actualitzar la versi&oacute; del CVS a la &uacute;ltima, sense tenir que baixar-lo tot sencer (cosa m&eacute;s que recomenable =P). Es tracta d&#39;una serie de enlla&ccedil;os simb&ograve;lics que proporcionen un lloc diferent a l&#39;hora de compilar, sense tenir que canviar l&#39;estructura de les fonts.<br /> <br /> Tenin en compte que estem a /share/cvs-xorg/xc, fem el seg&uuml;ent:<br /> <br /> mkdir ../build<br /> cd ../build<br /> lndir ../xc<br /> <br /> <br /> Amb aix&ograve; ser&agrave; suficient per crear l&#39;estructura dins del directori build, que ser&agrave; on treballarem.<br /> <br /> <br /> <h3>4.- Arriba la compilaci&oacute;.</h3><br /> <br /> La forma que aconsellen en els docs &eacute;s make World &gt; World.log 2&gt;&amp;1&raquo; si utilitzem bash i &laquo;make World &gt;&amp; World.log&raquo; si utilitzem csh o tcsh. Podem seguir la compilacio en una altra consola amb la comanda &laquo;tail -f -n 15 World.log&raquo;.<br /> <br /> NOTA: Al final del document, posar&eacute; els erros m&eacute;s comuns, o si m&eacute;s no, amb els que em vaig trobar jo i amb els que enviueu vosaltres. Aix&iacute; que si en trobeu algun i el solucioneu, sius plau, envieu-me un correu a <strong>seoman at seoman.homelinux.net</strong>.<br /> <br /> Un cop haguem compilat, farem:<br /> <br /> make install<br /> make install.man<br /> <br /> <br /> I amb aix&ograve; hauria de ser suficient.<br /> <br /> <br /> <h3>5.- Configurant les X.org</h3><br /> <br /> Per tal de configurar les X.org, s&#39;hauria de fer el seg&uuml;ent:<br /> <br /> &laquo;Xorg -configure&raquo; -&gt; Aix&ograve; ens crear&agrave; un fitxer de configuraci&oacute;, anomenat xorg.conf.new. Nom&eacute;s pot executar aquesta comanda l&#39;usuari root.<br /> <br /> &laquo;Xorg -config xorg.conf.new&raquo; -&gt; Aix&ograve; provar&aacute; el fitxer de configuraci&oacute;, per veure si est&agrave; b&eacute; i funciona correctament. Teniu en compte, que si volem provar-ho amb un usuari que no siga root, ens haurem de referir al fitxer en ruta relativa i no podr&agrave; contenir &quot;..&quot;. Si ens arranca l&#39;entorn gr&agrave;fic (sense consola ni entorn ni r&eacute;s), vol dir que la cosa va b&eacute;. &quot;Matem&quot; la sessi&oacute; premen control + alt + borrar.<br /> <br /> Segurament haurem d&#39;editar l&#39;arxiu de configuraci&oacute; per adaptar la resoluci&oacute;, el refresc, el driver de la tarja de vidio, etc. Un cop haguem acavat, copiem el fitxer a /etc/X11/xorg.conf. <br /> <br /> Comentar que tamb&eacute; funciona si utilitzem el fitxer del xfree, XFConfig-4. &Eacute;s amb el que estic corrent jo ara mateix les X.org.<br /> <br /> Ara tot hauria d&#39;anar, tant el startx com qualsevol gestor com gdm, kdm o xdm (especificant el path dels binaris si utilitzem algun altre directori als habituals com /opt/ o /usr/local/).<br /> <br /> <br /> <h3>6.- Les transpar&egrave;ncies i les ombres.</h3><br /> <br /> Tornem al directori de les fonts (en el meu cas /share/cvs-xorg/) i baixem les dues aplicacions que nessecitem; xcompmgr i transset:<br /> <br /> cvs -d :pserver:anoncvs@cvs.freedesktop.org:/cvs/xapps login<br /> Password: <br /> cvs -d :pserver:anoncvs@pdx.freedesktop.org:/cvs/xapps co xcompmgr<br /> cvs -d:pserver:anoncvs@freedesktop.org:/cvs/xapps co transset <br /> <br /> <br /> <br /> <h4>7.1.- Compilant xcompmgr</h4><br /> <br /> Entrem en el directori xcompmgr creat i executem les seg&uuml;ents ordres:<br /> <br /> export PKG_CONFIG_PATH=/usr/X11R6/lib/pkgconfig<br /> ./autogen.sh<br /> ./configure --prefix=/usr<br /> make<br /> make install<br /> <br /> <br /> NOTA: Nessecitem tenir instal&middot;lat l&#39;automake. Tamb&eacute; comentar que jo vaig tenir algun problema menor amb el fitxer de configuraci&oacute; de la compilaci&oacute; &laquo;configure.ac&raquo;. Els erros que em va donar a mi eren bastant explicatius i em demanaven que la l&iacute;nia AC_CONFIG_HEADER, havia de ser AM_CONFIG_HEADER. <br /> L&#39;altre error era en aquesta l&iacute;nia tamb&eacute;. Em deia que no trobava el fitxer [config.h].in. Aix&iacute; que a la l&iacute;nia AM_CONFIG_HEADER([config.h]) li treiem els claudators i queda de la seg&uuml;ent manera:<br /> <br /> AM_CONFIG_HEADER(config.h)<br /> <br /> <br /> Si tot ha anat b&eacute;, ja podem passar al seg&uuml;ent punt.<br /> <br /> <br /> <h4>7.2.- Compilant transset</h4><br /> <br /> Entrem al directori transset (el que hem baixat junt amb el xcompmgr) i l&#39;instal&middot;lem de la seg&uuml;ent manera:<br /> <br /> make<br /> cp transset /usr/bin/<br /> <br /> <br /> <br /> <h3>8.- Configurant les transpar&egrave;ncies i les ombres.</h3><br /> <br /> Editarem el fitxer /etc/X11/xorg.conf per afegir el seg&uuml;ent:<br /> <br /> Section &quot;Extensions&quot;<br /> Option &quot;Composite&quot; &quot;Enable&quot;<br /> EndSection <br /> <br /> <br /> Desem els canvis i arranquem les Xorg. Ara ja estem preparats per utilitzar les tan esperades transpar&egrave;ncies.<br /> <br /> <br /> <h3>9.- Emprant les transpar&egrave;ncies i les ombres.</h3><br /> <br /> Per a aix&ograve;, executarem &laquo;xcompmgr&raquo; o &laquo;xcompmgr -c&raquo; si volem tenir ombres. Despr&eacute;s, amb la comanda &laquo;transset num&raquo; i cliquem sobre la finestra que volguem, i aconseguirem que sigui transparent. El num ser&agrave; el % d&#39;opacitat del canal alpha. Per exemple, si volem que la finestra tingui un nivell d&#39;opacitat del 30 % executarem &laquo;transset 0.30&raquo;. <br /> <br /> &Eacute;s probable que, al voler utilitzar aquestes dues comandes, ens trobem amb que ens falta una llibreria del tipus libX.... En format .deb les vaig trobar a la p&agrave;gina <a href="../../%E2%80%9Dhttp://www.hanzubon.org/Linux/Debian/HANZUBON/unstable/i386/%E2%80%9D"> http://www.hanzubon.org</a>. He de dir que quan me&#39;ls vaig baixar, la &uacute;ltima versi&oacute; era de feia nom&eacute;s unes hores =).<br /> <br /> <br /> <h3>10.- Errors en la compilaci&oacute;.</h3><br /> <br /> <h4>10.1.- libpam0g</h4><br /> <br /> L&#39;error &eacute;s del tipus:<br /> <br /> make[3]: Entering directory `/share/cvs-org/xc/programs/xdm&#39; <br /> rm -f auth.o <br /> gcc -c -O2 -fno-strength-reduce -ansi -pedantic -Wall -Wpointer-arith -I../.. -I../../exports/include -Dlinux -D__i386__ -D_POSIX_C_SOURCE=199309L -D_POSIX_SOURCE -D_XOPEN_SOURCE -D_BSD_SOURCE -D_SVID_SOURCE -D_GNU_SOURCE -DFUNCPROTO=15 -DNARROWPROTO -DBINDIR=\&quot;/usr/X11R6/bin\&quot; -DXDMDIR=\&quot;/usr/X11R6/lib/X11/xdm\&quot; -DUSESHADOW -DUSE_PAM -DUNIXCONN -DTCPCONN -DHAS_STICKY_DIR_BIT -DHAS_FCHOWN -DGREET_USER_STATIC -DFRAGILE_DEV_MEM -DOSMAJORVERSION=2 -DOSMINORVERSION=4 -DXPM -DUSE_XINERAMA auth.c <br /> In file included from auth.c:44: <br /> dm.h:105: security/pam_appl.h: No such file or directory <br /> make[3]: *** [auth.o] Error 1 <br /> make[3]: Leaving directory `/share/cvs-org/xc/programs/xdm&#39; <br /> make[2]: *** [install] Error 2 <br /> make[2]: Leaving directory `/share/cvs-org/xc/programs&#39; <br /> make[1]: *** [install] Error 2 <br /> make[1]: Leaving directory `/share/cvs-org/xc/&#39; <br /> make: *** [install] Error 2 <br /> <br /> <br /> La soluci&oacute; &eacute;s instal&middot;lar el paquet libpam0g-dev.
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

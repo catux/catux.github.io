@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Instalar el módem Comtrend en una Ubuntu sense xarxa
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-07-15 00:00:00
+    
+                per
+                
+        Pinucset
+    
+            </h3>
+
+            <p>
+                
+        <div class="centrat"> <span class="noticia">En aquest article s&#39;explica com instal&middot;lar i configurar pas a pas un m&oacute;dem Comtrend a Ubuntu. Aplicable a les altres distribucions basades en Debian.</span> <br /> </div>         <br />     <div id="article" class="article_normal">Primer hem d&#39;aconseguir dos fitxers que podem baixar aqu&iacute;:<br /> <br /> <a href="http://archive.ubuntu.com/ubuntu/pool/universe/r/rp-pppoe/pppoe_3.5-4ubuntu1_i386.deb">Primer fitxer</a><br /> <br /> <a href="http://download.gna.org/eagleusb/eagle-usb-2.3.0/eagle-usb-2.3.3.tar.bz2">Segon fitxer</a><br /> <br /> Els grabem a una mem&ograve;ria USB, CD o a on volguem per tenir-los accessibles des d&#39;Ubuntu (si no tenim Internet ho podem fer des de casa un amic, des d&#39;una partici&oacute; de Windows que potser tinguem etc.).<br /> <br /> Comencem:<br /> <br /> 1- Engeguem Ubuntu i posem el CD d&#39;Ubuntu (amb el que vam instal&middot;lar) i fem:<br /> 2- Sistema - Administraci&oacute; - Gestor de paquets Synaptic. I a dins d&#39;aquest: Par&agrave;metres - Repositoris. Els desactivem tots i fem clic a &quot;Afegeix CD-ROM&quot;.<br /> 3- Busquem i instal&middot;lem els paquets seg&uuml;ents:<br /> <br /> <li>GCC<br /> </li><li>binutils<br /> </li><li>build-essentials<br /> </li><li>linux-kernel-headers (tots, n&#39;hi han 3)<br /> <br /> 4- Obrim una consola i des del directori on tenim els fitxers que ens em baixat abans fem:<br /> 5- cp pppoe_3.5-4ubuntu1_i386.deb eagle-usb-2.3.3.tar.bz2 /opt/ (Movem o copiem el que ens em descarregat anteriorment a /opt/) <br /> 7- cd /opt/ (Anem a /opt/)<br /> 8- tar jxvf eagle-usb-2.3.3.tar.bz2 (Descomprimim el fitxer eagle) <br /> 9- dpkg -i pppoe_3.5-4ubuntu1_i386.deb (Instal&middot;lem el de pppoe) <br /> 10- cd eagle[TAB][TAB] (Anem al directori on hem descomprimit el fitxer) <br /> 11- sudo ./configure (Vigilem que estigui tot correcte, tot hauria de dir yes, excepte documentation).<br /> 12- sudo make (Compilem) <br /> 13- sudo make install (Instal&middot;lem) <br /> 14- sudo eagleconfig (Configurem  (Seleccionem ES01, adslppp@telefonicanetpa, adslppp i fem Intros fins acabar)<br /> 15- sudo startadsl (Iniciem la connexi&oacute;!) <br /> <br /> Ja est&agrave;!<br /> <br /> Aquests controladors encara no estan a dins del Kernel (per aix&ograve; s&#39;han d&#39;instal&middot;lar a m&agrave;, quan s&#39;hagin testejat suficientment es ficaran a dins del Kernel de mode que nom&eacute;s ser&agrave; enxufar i funcionar. Fins que passi aix&ograve; podem fer-ho tal com hem explicat o comprar un modem completament compatible, per exemple els linmodems que es connecten i funcionen.<br /> <br /> Cal dir que aquest tutorial el va escriure el GraP en forma de correu pel noi de S&uacute;ria i que jo m&#39;he encarregat d&#39;explicar-ho, ordenar-ho i ficar-ho en forma d&#39;article per tal que sigui &uacute;til per a m&eacute;s gent.</li></div>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Iniciació
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

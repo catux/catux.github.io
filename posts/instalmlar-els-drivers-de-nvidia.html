@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Instal·lar els drivers de nVidia
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2004-04-05 00:00:00
+    
+                per
+                
+        whats_up
+    
+            </h3>
+
+            <p>
+                
+        Molts de nosaltres tenim una targeta gr&agrave;fica amb un xip de Nvidia al nostre ordinador, i ens trobem que si volem jugar a qualsevol joc 3D, no ens entra o ens va super lent. Per poder utilitzar l&#39;acceleraci&oacute; grafica de la nostra targeta, necessitem baixar-nos els programes de control (drivers) oficials de Nvidia, que tot i no estar sota GPL, val la pena posar-los ja que augmenta de forma impressionant el seu rendiment.  <br /> Per baixar-los heu d&#39;anar al web de Nvidia a la secci&oacute; &quot;linux drivers&quot;<a href="http://www.nvidia.com/object/linux.html" target="_blank">http://www.nvidia.com/object/linux.html</a>. Aqu&iacute; haureu de triar l&#39;arquitectura del vostre ordinador. En els casos normals IA32. Baixeu-vos l&#39;ultima versi&oacute;. Actualment &eacute;s la versi&oacute; 1.0-4496 i l&#39;arxiu s&#39;anomena NVIDIA-Linux-x86-1.0-4496-pkg2.run<br /> <br /> <br /> Primer de tot, mirar si el maquinari que teniu funcionaria amb els programes de control que Nvidia posa a la vostra disposici&oacute;.<br /> <br /> <br /> Seguidament, poso una llista del maquinari que podeu accelerar amb aquests drivers a la data de l&#39;article:<br /> <br /> <br />  o RIVA TNT<br />  o RIVA TNT2<br />  o RIVA TNT2 Ultra<br />  o Vanta<br />  o RIVA TNT2 Model 64<br />  o Aladdin TNT2<br />  o Geforce (tots els models I, II, III, IV)<br />  o Quadro (tota la familia)<br />  o GeForce FX (5800, 5600, 5200)<br />  o Quadro FX (2000, 1000, 500)<br /> <br /> <br /> Un cop tenim l&#39;arxiu a la nostre partici&oacute; Linux (o qualsevol partici&oacute; amb acc&eacute;s) des de Linux; ens disposarem a l&#39;instal&middot;laci&oacute; i configuraci&oacute; del m&ograve;dul (driver).<br /> <br /> <br /> Aquests s&oacute;n els requeriments per instal&middot;lar-los<br /> <br />  o linux kernel     2.2.12<br />  o XFree86          4.0.1<br />  o Kernel modutils  2.1.121<br /> <br /> I si no hi ha els m&ograve;duls pr&egrave;viament compilats, tamb&eacute; necessitareu:<br /> <br />  o binutils         2.9.5<br />  o GNU make         3.77<br />  o gcc              2.91.66<br /> <br /> <br /> Per fer aix&ograve;, haurem d&#39;aturar el servidor de les X (el nostre entorn gr&agrave;fic, ja que per instal&middot;lar-ho ens demanar&agrave; que les X estiguin aturades).<br /> <br /> El servidor de les X el podem aturar amb l&#39;ordre:<br /> <br /> pachu@debian:~# /etc/init.d/xdm stop<br /> (aqu&iacute; podeu canviar xdm per kdm,gdm,etc)<br /> <br /> <br /> Pels usuaris de Mandrake, ho podeu fer arrencant el Linux en failsafe, i triant l&#39;opci&oacute; console... al men&uacute; que us sortir&agrave;.<br /> <br /> <br /> Un cop no tinguem les X executant-se, accedirem a una de les consoles reals que tenim. Per fer aix&ograve; premerem Ctrl+Alt+F* (on F* &eacute;s qualsevol tecla de Funci&oacute;: F1, F2, F3,...,F12).<br /> <br /> <br /> Llavors farem un login amb el root del sistema, ja que per instal&middot;lar el m&ograve;dul de nVidia, haurem de tocar coses del sistema.<br /> <br /> <br /> Ara ja estem a punt de instal&middot;lar. Per fer aix&ograve;, executarem l&#39;arxiu &quot;auto-instal&middot;lable&quot;, que ens hem baixat abans, de la seg&uuml;ent manera:<br /> <br /> <br /> sh NVIDIA-Linux-x86-X.X-XXXX-pkg2.run (desde el directori on estigui emmagatzemat o b&eacute; posant despr&eacute;s de sh la ruta completa de l&#39;arxiu).<br /> <br /> <br /> Veurem una barra de proc&eacute;s, despr&eacute;s d&#39;acceptar una llic&egrave;ncia, que ens indicar&agrave; que el proc&eacute;s ha acabat.<br /> <br /> Tenim els drivers instal&middot;lats (m&ograve;dul), ara nom&eacute;s ens queda configurar el sistema gr&agrave;fic, per tal que utilitzi aquest m&ograve;dul per arrencar les X.<br /> <br /> <br /> Per fer aix&ograve;, modificarem l&#39;arxiu XF86config-4:<br /> <br /> pachu@debian:~# vim /etc/X11/XF86Config-4 (qui diu vim, diu nano xD)<br /> <br /> llavors dins el document buscarem la secci&oacute;: Device section i reempla&ccedil;ar la l&iacute;nia:<br /> <br /> Driver &quot;nv&quot; (or Driver &quot;vesa&quot;)<br /> <br /> per<br /> <br /> Driver &quot;nvidia&quot;<br /> <br /> un cop fet aix&ograve; assegurar-se que dins la secci&oacute;: Module section hi tenim:<br /> <br /> Load  &quot;glx&quot;<br /> <br /> i eliminar, en cas de ser-hi, les l&iacute;nies:<br /> <br /> Load &quot;dri&quot;<br /> Load &quot;GLcore&quot;<br /> <br /> <br /> Ara ja podeu arrencar de nou el servidor de les X:<br /> <br /> salles:/home/albert# /etc/init.d/gdm restart<br /> <br /> o<br /> <br /> salles:/home/albert# /etc/init.d/kdm restart<br /> <br /> o<br /> <br /> salles:/home/albert# /etc/init.d/xdm restart<br /> <br /> etc, etc depenent del servidor utilitzat<br /> <br /> A part d&#39;aquests passos, hi ha moltes m&eacute;s opcions que oferiran rendiment a la vostra targeta. Les m&eacute;s notables s&oacute;n activar el suport per Fast Writes i per SBA que ho podreu fer de la seg&uuml;ent manera:<br /> <br /> <br /> Primer s&#39;ha de mirar si ja el teniu activat (per si de cas s&#39;activ&eacute;s sol ;))<br /> <br /> salles:/home/albert# cat /proc/driver/nvidia/agp/status<br /> <br /> Status:         Enabled<br /> Driver:         NVIDIA<br /> AGPRate:        8x<br /> Fast Writes:    Disabled<br /> SBA:            Disabled<br /> <br /> <br /> Tal com veiem les dues opcions estan desactivades. Llavors la seg&uuml;ent cosa a fer &eacute;s mirar si la placa mare i la targeta ens ho suporta:<br /> <br /> salles:/home/albert# cat /proc/driver/nvidia/agp/card        <br /> <br /> <br /> //la targeta<br /> Fast Writes:     Supported<br /> SBA:             Supported<br /> AGP Rates:       8x 4x<br /> Registers:       0x1f000e1b:0x1f004112<br /> <br /> salles:/home/albert# cat /proc/driver/nvidia/agp/host-bridge     <br /> <br /> //la placa<br /> Host Bridge:     Intel Corp. 82875P Memory Controller Hub<br /> Fast Writes:     Supported<br /> SBA:             Supported<br /> AGP Rates:       8x 4x<br /> Registers:       0x1f004a1b:0x00000912<br /> <br /> <br /> Ara que veiem que s&iacute; que ens soporta les dues opcions podrem passar-li les dues opcions al m&ograve;dul. Per fer-ho escriurem dues l&iacute;nies al nostre /etc/modules.conf, just abans de la la l&iacute;nia actual que fa que ens carregui el m&ograve;dul cada vegada. Quedar&agrave; una cosa com aquesta:<br /> <br /> options nvidia NVreg_EnableAGPSBA=1 NVreg_EnableAGPFW=1<br /> alias char-major-195 nvidia<br /> <br /> <br /> Ara si mirem les nostres dues opcions, ja les tindrem activades. En teoria augmenten un 8% el rendiment.<br /> <br /> salles:/home/albert# cat /proc/driver/nvidia/agp/status<br /> Status:         Enabled<br /> Driver:         NVIDIA<br /> AGP Rate:       8x<br /> Fast Writes:    Enabled<br /> SBA:            Enabled<br /> <br /> Ara nom&eacute;s ens falta anomenar algunes de les opcions m&eacute;s importants que tamb&eacute; ens poden<br /> interessar a l&#39;hora de configurar el nostre sistema. Tamb&eacute; dir que sempre que volgueu podeu mirar l&#39;enlla&ccedil; oficial. Les opcions es troben a l&#39;apendix d.<a href="ftp://download.nvidia.com/XFree86/Linux-x86/1.0-4496/README.txt">README.txt</a><br /> <br /> Aquestes opcions s&#39;han de posar a l&#39;arxiu de configuraci&oacute; de les X, a la secci&oacute; device.<br /> <br /> Option &quot;NoLogo&quot; &quot;1&quot;<br /> Aquesta opci&oacute; el que fa, &eacute;s desactivar el logotip de presentaci&oacute; de Nvidia.<br /> Opci&oacute; per als usuaris q no voleu perdre ni un segon a l&#39;inici del vostre sistema, o simplement no us agrada. Un 0 &eacute;s desactivada, i un 1 &eacute;s activada.<br /> <br /> Option &quot;NvAGP&quot; &quot;1&quot;<br /> Aquesta opci&oacute; t&eacute; 3 valors:<br /> <br /> 1: el modul intenta fer servir el suport AGP intern del m&ograve;dul. Si teniu el suport AGP compilat al nucli no us anir&agrave;<br /> <br /> 2: utilitza l&#39;AGPGART si &eacute;s possible<br /> <br /> 3: aquesta opci&oacute; &eacute;s la que et fa per defecte, intenta utilitzar AGPGART, i si no &eacute;s possible ho intenta amb el suport AGP que porta el mateix m&ograve;dul<br /> <br /> Sort amb la instal&middot;laci&oacute;, i recordeu que aquest article &eacute;s molt b&agrave;sic, si voleu que l&#39;ampliem i hi englobem el vostre cas en particular, nom&eacute;s falta que ens envieu un correu electr&ograve;nic solicitant-ho.<br /> <br /> PD: He notat que en la Mandrake9.1, fa falta un cop fet tot aix&ograve;, tornar a executar l&#39;arxiu .run, i arrencar de nou seguidament, perqu&egrave; funcioni.<br /> <br /> (Article fet per pachulin i whats_up)
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Nucli
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item comment">Re: Instal·lar els drivers de He seguit els passos per la instal·lació en una Mandrake 10 amb un èxit relatiu.
+
+Quan arrancava petaven les X, donant un error d'inicialització del driver.
+
+(EE) NVIDIA (0):Failed to initialize the NVIDIA kernel module!
+
+L'error es produioa degut a que no es carregava el modul, malgrat havia posat la línia corresponent al etc/modules i al etc/modules.conf.
+
+Buscant, buscant, he trobat aqui un fitxer que es diu /etc/modprobe.preload. Cal afegir-hi nvidia<p class="comment-author">Escrit al 2006-12-26 01:46:33 per mecatxis</p></li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

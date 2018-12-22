@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        Instal·lar el controlador ATI
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2006-11-09 00:00:00
+    
+                per
+                
+        Mecatxis
+    
+            </h3>
+
+            <p>
+                
+        <span class="noticia">Un nou article fruit de les trifulgues dels usuari d&#39;ATI.<br /> <br /> Aqu&iacute; teniu un truc imprescindible per instal&middot;lar la darrera versi&oacute; del controlador</span> <br />    Despr&eacute;s de descarregar el darrer controlador propietari d&#39;Ati <a href="https://a248.e.akamai.net/f/674/9206/0/www2.ati.com/drivers/linux/ati-driver-installer-8.30.3.run">aqu&iacute;</a> amb data 31 d&#39;octubre i d&#39;intentar instal&middot;lar-los seguint les instruccions, he detectat que falla estrepitosament.<br /> <br /> Miro el fitxer /usr/share/ati/fglrx-install.log i trobo:<br /> <br /> [Message] Kernel Module : Trying to install a precompiled kernel module.<br /> [Message] Kernel Module : Precompiled kernel module version mismatched.<br /> [Message] Kernel Module : Found kernel module build environment, generating kernel module now.<br /> ATI module generator V 2.0<br /> ==========================<br /> initializing...<br /> cleaning...<br /> patching &#39;highmem.h&#39;...<br /> assuming new VMA API since we do have kernel 2.6.x...<br />  Assuming default VMAP API<br /> doing Makefile based build for kernel 2.6.x and higher<br /> make -C /lib/modules/2.6.16-2-686/build SUBDIRS=/lib/modules/fglrx/build_mod/2.6.x modules<br /> make[1]: Entering directory `/usr/src/linux-headers-2.6.16-2-686&#39;<br />   CC [M]  /lib/modules/fglrx/build_mod/2.6.x/firegl_public.o<br /> /lib/modules/fglrx/build_mod/2.6.x/firegl_public.c:456: warning: initialization from incompatible pointer type<br /> /lib/modules/fglrx/build_mod/2.6.x/firegl_public.c:2264: warning: &#39;deferred_flush&#39; defined but not used<br />   LD [M]  /lib/modules/fglrx/build_mod/2.6.x/fglrx.o<br />   Building modules, stage 2.<br />   MODPOST<br />   CC      /lib/modules/fglrx/build_mod/2.6.x/fglrx.mod.o<br />   LD [M]  /lib/modules/fglrx/build_mod/2.6.x/fglrx.ko<br /> make[1]: Leaving directory `/usr/src/linux-headers-2.6.16-2-686&#39;<br /> build succeeded with return value 0<br /> duplicating results into driver repository...<br /> done.<br /> ==============================<br /> - recreating module dependency list<br /> - trying a sample load of the kernel modules<br /> failed.<br /> [Error] Kernel Module : Failed to install compiled kernel module - please consult readme.<br /> <br /> <br /> Consulto el readme i no trobo cap m&eacute;s pista del possible problema. He investigat una mica.<br /> <br /> <br /> Doncs be. Finalment he trobat la soluci&oacute;. El problema radica en que el controlador est&agrave; preparat per ser compilat amb la versi&oacute; 4.0 de gcc, mentre que la versi&oacute; que jo tenia instal&middot;lada era la 4.1. Ves per on.<br /> <br /> La soluci&oacute; passa per fer com a superusuari:<br /> <br /> updatedb <br /> <br /> Aix&oacute; pot trigar uns minutets, tinguem paci&egrave;ncia. Quan acabi, fem:<br /> <br /> locate fglrx-uninstall <br /> <br /> Amb aix&ograve; localitzem el fitxer de desinstal&middot;laci&oacute; del controlador fglrx antic, si el tenim.<br /> <br /> Anem al directori que contingui el controlador. En el meu cas:<br /> <br /> cd /usr/share/fglrx<br /> sh ./fglrx-uninstall.sh <br /> <br /> A continuaci&oacute; instal&middot;lem la versi&oacute; del compilador, si no la tenim instal&middot;lada.<br /> <br /> apt-get install gcc-4.0<br /> <br /> I substitu&iuml;m la versi&oacute; del gcc.<br /> <br /> rm /usr/bin/gcc<br /> ln -s /usr/bin/gcc-4.0 /usr/bin/gcc<br /> <br /> Ja ho tenim. Ara caldr&agrave; anar al directori on hagem descarregat l&#39;instal&middot;lador del nou controlador. En el meu cas:<br /> <br /> cd /home/angel/ <br /> <br /> I instal&middot;lar<br /> <br /> sh ./ati-driver-installer-8.30.3.run<br /> <br /> Un com completada la instal&middot;laci&oacute;, seguim el manual d&#39;instal&middot;laci&oacute; de Ati i executem<br /> <br /> aticonfig --initial<br /> <br /> A mi m&#39;ha anat be i m&#39;ha instal&middot;lat el controlador configurat amb acceleraci&oacute; gr&agrave;fica. Ara faltar&agrave; configurar-la per treure&#39;n el m&agrave;xim rendiment, per&ograve; aix&ograve; ho deixo per gent m&eacute;s experta que jo. :-)
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Iniciació
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="cat">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
+    <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
+    <meta name="author" content="Catux">
+    <link rel="icon" href="http://localhost:9000/images/favicon.ico">
+
+    <title>Catux</title>
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:9000/css/main.css">
+    <script src="http://localhost:9000/js/main.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container">
+
+            <nav class="navbar navbar-inverse">
+                <div class="container">
+                    <div class="navbar-header col-sm-5">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="http://localhost:9000/">
+                            <img src="http://localhost:9000/images/catuxlogo.png" alt="Catux" width="40%"><br>
+                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse navbar-links">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="http://localhost:9000/post_list.html">Blog</a></li>
+                            <li><a href="http://localhost:9000/traduccio.html">Traducció</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div> <!-- /.navbar-wrapper -->
+
+    <div class="container">
+        
+    <div class="container-fluid">
+
+        <div class="post">
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+
+            <h1>
+                
+        deborphan: Troba els paquets que no vols
+    
+            </h1>
+
+            <h3>
+                Escrit al
+                
+        2007-10-23 20:11:03
+    
+                per
+                
+        Mecatxis
+    
+            </h3>
+
+            <p>
+                
+        Un nou article de  <a href="http://debaday.debian.net/">Deb a Day</a> tradu&iuml;t a la web de Catux: Deborphan, una eina per trobar f&agrave;cilment els paquets que tens instalats i potser no necessites<!-- 		@page { size: 21cm 29.7cm; margin: 2cm } 		P { margin-bottom: 0.21cm } 		H3 { margin-bottom: 0.21cm } 	--> 	  <h3>deborphan: Troba els paquets que no vols</h3> <p style="margin-bottom: 0.5cm">Un nou article de <a href="http://debaday.debian.net/">Deb a Day</a> tradu&iuml;t a la web de Catux: deborphan:Troba els paquets que no vols.  </p> <p><a href="http://debaday.debian.net/2007/09/02/conky-highly-configurable-system-monitor-for-x/"><font color="#000000"><span style="text-decoration: none">Publicat per</span></font></a><strong><a href="http://debaday.debian.net/2007/09/02/conky-highly-configurable-system-monitor-for-x/"> </a></strong><strong><font color="#000000"><span style="text-decoration: none">James Cameron </span></font></strong>el 2 de setembre del 2007 a <a href="http://debaday.debian.net/">http://debaday.debian.net</a><a href="http://debaday.debian.net/2007/07/15/hugin-create-amazing-panoramas-from-your-photos/"> </a>sota llic&egrave;ncia <a href="http://www.opencontent.org/openpub/">Open Publication License</a></p> <p style="margin-bottom: 0cm"><br /> </p> <p style="margin-bottom: 0cm">Si heu estat llegint debaday durant un cert temps, &eacute;s possible que tingueu una pila de paquets instal&middot;lats que heu volgut provar, alguns dels quals voleu tenir instal&middot;lats, i alguns altres dels quals us heu oblidat.</p> <p style="margin-bottom: 0cm"><br /> </p> <p style="margin-bottom: 0cm">Aquests paquets oblidats et poden donar problemes. Poden contenir binaris setuid o fer c&oacute;rrer dimonis que podrien comprometre la teva seguretat. Les actualitzacions trigaran m&eacute;s, i hi haureu de descarregar m&eacute;s coses. Les vostres c&ograve;pies de seguretat seran m&eacute;s grans. <em>Feu</em> c&ograve;pies de seguretat, oi? Per aix&ograve; serveix <a href="http://debaday.debian.net/2007/09/09/duplicity-encrypted-bandwidth-efficient-backup-using-the-rsync-algorithm/">duplicity</a>.</p> <p style="margin-bottom: 0cm"><br /> </p> <p>Si feu servir aptitude per instal&middot;lar els paquets, llavors la opci&oacute; autoclean esborrar&agrave; unes quantes coses que no vols.</p> <p>Un exemple de l&#39;us de deborphan en un sistema Debian Etch:</p> <pre>&nbsp;</pre><pre># deborphan </pre><pre>libssl0.9.7 </pre><pre>libstdc++5</pre><pre>&nbsp;</pre><p> En aquest exemple, deborphan ha descobert dos petits paquets que s&oacute;n superflus, i es poden esborrar. Com que deborphan us dona nom&eacute;s el nom del paquet en aquest mode, pot fer-se servir en una comanda:</p><p>&nbsp;</p> <pre style="margin-bottom: 0.5cm"># aptitude purge `deborphan`</pre><p style="margin-bottom: 0.5cm"> O si est&agrave;s acostumat a treballar un nivell per sota d&#39;aptitude:</p> <pre style="margin-bottom: 0.5cm"># dpkg --purge `deborphan`</pre><p> <strong>Deborphan Recursiu</strong></p> <p style="margin-bottom: 0.5cm">El que esborreu pot donar com a resultat altres nous paquets orfes. Podr&iacute;eu voler aix&ograve; de forma recursiva:</p> <pre>#!/bin/sh while [ -n &quot;`deborphan`&quot; ]; do </pre><pre>	deborphan </pre><pre>	echo</pre><pre>	aptitude </pre><pre>	purge `deborphan` </pre><pre>done</pre><pre>&nbsp;</pre><p style="margin-bottom: 0.5cm"> Podr&iacute;eu anomenar-ho un script deborphan-recursive.</p> <p><strong>No nom&eacute;s llibreries</strong></p> <p style="margin-bottom: 0.5cm">Deborphan us dona una llista dels paquets instal&middot;lats al vostre sistema dels quals no dep&egrave;n cap altre paquet. Per defecte nom&eacute;s nom&eacute;s mostra les llibreries. Per&oacute; podeu demanar-li que us doni  una llista  de tots aquests paquets amb la opci&oacute; -a ... considereu la seg&uuml;ent comanda:</p> <pre># dpkg-query -W --showformat=&#39;${Installed-Size} ${Package}n&#39;  </pre><pre>`deborphan -a | awk &#39;{print $2}&#39;` | sort -rn</pre><pre>&nbsp;</pre><p style="margin-bottom: 0.5cm"> Podeu anomenar-lo deborphan-by-size. El que fa &eacute;s donar-vos una llista de paquets dels quals no dep&egrave;n cap altre paquet, ordenats per mida de m&eacute;s gran a m&eacute;s petit. Revisa&#39;ls comen&ccedil;ant pel primer, escollint els que no vols tenir instal&middot;lats. Per&ograve; recorda que cada cop que en treguis un, la llista pot canviar degut a que el paquet eliminat pot haver deixat depend&egrave;ncies orfes.</p> <p style="margin-bottom: 0.5cm">Qu&egrave; &eacute;s el pitjor que pot passar?Pot ser que tragueu algun paquet que hageu de tornar a instal&middot;lar i configurar. Teniu les c&ograve;pies de seguretat. [Si teniu instal&middot;lada alguna aplicaci&oacute; sense fer servir el sistema de paquets de Debian, &eacute;s una altra hist&ograve;ria. Haureu  d&#39;assegurar-vos que els paquets que  elimineu amb deborphan no en s&oacute;n depend&egrave;ncies. Ed.]</p> <p style="margin-bottom: 0.5cm">Que us semblaria un petit sistema on cal treure el m&agrave;xim de paquets possibles per tal de poder disposar d&#39;espai pel vostre propi material? Deborphan es pot fer servir pas a pas per ajudar-te a treure els paquets que no necessites. En tot cas dpkg, apt-get, o aptitude us avisaran si esteu intentant treure algun paquet que considerin essencials. No seguiu endavant, si no voleu tenir problemes.</p> <p>Hi ha vegades que els paquets de llibreries per satisfer alguna depend&egrave;ncia d&#39;un paquet en desenvolupament. Els desenvolupadors trobaran que les decisions de deborphan els fan tornar a instal&middot;lar els paquets que necessiten per desenvolupar el seu programari... una resposta a aquest problema podria ser crear un metapaquet que faci refer&egrave;ncia als paquets que necessiteu, o utilitzar  pbuilder.</p> <p style="margin-bottom: 0.5cm">Deborphan est&agrave; disponible a Debian i Ubuntu des dels inicis dels temps.</p>
+    
+            </p>
+
+            <h3>
+                Categories:
+                
+        Articles, Trucs
+    
+            </h3>
+
+            <hr />
+            <h1>Comentaris</h1>
+            <ul class="list-group">
+                
+        <li class="list-group-item">Sense comentaris</li>
+    
+            </ul>
+
+
+            <a href="http://localhost:9000/post_list.html">
+                <i class="fas fa-chevron-left"></i>
+                Arxius
+            </a>
+        </div>
+
+    </div>
+
+
+    </div> <!-- /.container -->
+
+    <div class="container">
+        <nav class="navbar navbar-inverse catux-footer">
+            <p class="navbar-text">
+                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
+            </p>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>
