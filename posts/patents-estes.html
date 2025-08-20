@@ -1,50 +1,43 @@
 <!DOCTYPE html>
-<html>
-<head lang="cat">
+<html lang="ca">
+<head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Associació d'usuaris de GNU/Linux de la Catalunya Central">
     <meta name="keywords" content="gnu/linux, linux, programari lliure, gnu, lug, associacio, manresa, sant joan de vilatorrada, catalan, català, catalunya">
     <meta name="author" content="Catux">
     <link rel="icon" href="https://catux.org/images/favicon.ico">
 
-    <title>Catux</title>
+    <title>Catux - Associació d'usuaris de GNU/Linux de la Catalunya Central</title>
 
+    <!-- Bootstrap 5 CSS is included in main.css -->
     <link rel="stylesheet" type="text/css" href="https://catux.org/css/main.css">
-    <script src="https://catux.org/js/main.js"></script>
+    <!-- Bootstrap 5 JS and dependencies are included in main.js -->
+    <script src="https://catux.org/js/main.js" defer></script>
 </head>
 <body>
-    <div class="navbar-wrapper">
-        <div class="container">
-
-            <nav class="navbar navbar-inverse">
-                <div class="container">
-                    <div class="navbar-header col-sm-5">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a href="https://catux.org/">
-                            <img src="https://catux.org/images/catuxlogo.png" alt="Catux" width="40%"><br>
-                            <div class="visible-lg"> Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
-                        </a>
-                    </div>
-                    <div id="navbar" class="navbar-collapse collapse navbar-links">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="https://catux.org/post_list.html">Blog</a></li>
-                            <li><a href="https://catux.org/traduccio.html">Traducció</a></li>
-                            <li><a href="https://catux.org/contactar.html">Contactar</a></li>
-                        </ul>
-                    </div>
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://catux.org/">
+                    <img src="https://catux.org/images/catuxlogo.png" alt="Catux" height="50" class="me-3">
+                    <div class="d-none d-lg-block d-xl-none">Associació d'usuaris de GNU/Linux de la Catalunya Central</div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div id="navbarMain" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link px-3" href="https://catux.org/post_list.html">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="https://catux.org/traduccio.html">Traducció</a></li>
+                        <li class="nav-item"><a class="nav-link px-3" href="https://catux.org/contactar.html">Contactar</a></li>
+                    </ul>
                 </div>
-            </nav>
-        </div>
-    </div> <!-- /.navbar-wrapper -->
+            </div>
+        </nav>
+    </header>
 
-    <div class="container">
+    <div class="container main-container">
         
     <div class="container-fluid">
 
@@ -109,14 +102,24 @@ Les patents d'aquest web no són de programari, però si que ho són de idees =)
 
     </div> <!-- /.container -->
 
-    <div class="container">
-        <nav class="navbar navbar-inverse catux-footer">
-            <p class="navbar-text">
-                Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
-                <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca">Creative Commons</a>
-            </p>
-        </nav>
-    </div>
+    <footer class="bg-dark text-light py-4 mt-5 fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <p class="mb-0">
+                        <small><small>Tot el contingut de Catux està subjecte sota la nova versió de la llicència de
+                        <a href="http://creativecommons.org/licenses/by/2.5/es/deed.ca" class="text-light">Creative Commons</a></small></small>
+                    </p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <p class="mb-0">
+                        <a href="https://github.com/catux" class="text-light me-3"><i class="fab fa-github"></i></a>
+                        <a href="https://t.me/+UaRevB06YidmYTY0" class="text-light"><i class="fab fa-telegram"></i></a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 
 
