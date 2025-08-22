@@ -1,0 +1,9 @@
+# robots.txt for catux.org
+User-agent: *
+Allow: /
+
+# Allow all bots to access all content
+Disallow:
+
+# Specify sitemap location
+Sitemap: https://catux.org/sitemap.xml
